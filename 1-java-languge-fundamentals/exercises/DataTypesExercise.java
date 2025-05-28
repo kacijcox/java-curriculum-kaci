@@ -1,6 +1,7 @@
 public class DataTypesExercise {
 
     public static void main(String[] args) {
+        System.out.println("hello ben");
 
         /* 1. Declare and assign variables related to a soccer player */
         // store the name of a soccer player.
@@ -79,6 +80,14 @@ public class DataTypesExercise {
         // for each of the 8 primitive data types declare and
         // initialize a variable that would store a real world value fitting for each data type
         // byte, short, int, long, float, double, boolean, char
+
+        System.out.println("This will print on a single line and ends with a newline character");
+        System.out.print("there is no new line");
+        System.out.print("there is no new line");
+        System.out.println(); // we can add a new line with emptycall to println
+        System.out.println("we can manually addd a new line \n" +
+                "as you can see");
+
 
     }
 }
