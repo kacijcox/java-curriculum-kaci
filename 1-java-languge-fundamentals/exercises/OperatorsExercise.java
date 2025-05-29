@@ -10,7 +10,14 @@ public class OperatorsExercise {
         // number of inches in a foot
         // number of feet in a mile (5280)
         // length of the movie Titanic in minutes (195 minutes)
-        //
+
+        int hoursDay = 24;
+        int minutesHour = 60;
+        int secondsMinute = 60;
+        int inchesFoot = 12;
+        int feetMile = 5280;
+        int titanicMovie = 195;
+
         // using the above variables and arithmetic operators (+ - / * %)
         // print to the console solutions to the following prompts:
         // number of hours in a week
@@ -19,7 +26,22 @@ public class OperatorsExercise {
         // how many hours and minutes long is the movie Titanic?
         // a mile and 900 feet is how many inches?
 
-        /* 2. Compound assignment operators */
+        int hoursInWeek = (minutesHour * hoursDay);
+        System.out.println(hoursInWeek);
+
+        int minutesInWeek = (minutesHour * hoursDay) * 7;
+        System.out.println(minutesInWeek);
+
+        int titanicHours = titanicMovie / 60;
+        int titanicMinutes = titanicMovie % 60;
+        System.out.println("the titanic movie is " + titanicHours + " hours long and " + titanicMinutes + " minutes.");
+
+        int totalInches = (feetMile * 12) + 900 * 12;
+        System.out.println(totalInches);
+
+
+
+        ;    /* 2. Compound assignment operators */
         // demonstrate the use of all 5 compound assignment numbers with the variable x to print out the correct value
         int x = 10;
         // Same as x = x + 7; // print "x is 17"
@@ -27,6 +49,21 @@ public class OperatorsExercise {
         // Same as x = x * 7; // print "x is 84"
         // Same as x = x / 3; // print "x is 28"
         // Same as x = x % 9; // print "x is 2"
+
+        int compoundOne = x + 7;
+        System.out.println("x is " + compoundOne);
+
+        int compoundTwo = compoundOne - 5;
+        System.out.println("x is " + compoundTwo);
+
+        int compoundThree = compoundTwo * 7;
+        System.out.println("x is " + compoundThree);
+
+        int compoundFour = compoundThree / 3;
+        System.out.println("x is " + compoundFour);
+
+        int compoundFive = compoundFour % 9;
+        System.out.println("x is " + compoundFive);
 
 
         /* 3. Complete the Conversion formulas  */
@@ -36,22 +73,22 @@ public class OperatorsExercise {
         double kelvin = 350;
         double fahrenheit = 212;
 
-        double celsiusToKelvin = 0; // ~305.15°K
+        double celsiusToKelvin = 32.0 + 273.15; // ~305.15°K
         System.out.println(celsius + "° Celsius = " + celsiusToKelvin + "° Kelvin");
 
-        double kelvinToCelsius = 0; // ~76.85°C
+        double kelvinToCelsius = 350 - 273.15; // ~76.85°C
         System.out.println(kelvin + "° Kelvin = " + kelvinToCelsius + "° Celsius");
 
-        double fahrenheitToCelsius = 0; // ~100°C
+        double fahrenheitToCelsius = (fahrenheit - 32) * 5/9; // ~100°C
         System.out.println(fahrenheit + "° Fahrenheit = " + fahrenheitToCelsius + "° Celsius");
 
-        double celsiusToFahrenheit = 0; // ~ 89.6°K
+        double celsiusToFahrenheit = celsius * 9/5 + 32; // ~ 89.6°K
         System.out.println(celsius + "° Celsius = " + celsiusToFahrenheit + "° Kelvin");
 
-        double fahrenheitToKelvin = 0; // ~373.15°K
+        double fahrenheitToKelvin = (fahrenheit - 32) * 5/9 + 273.15; // ~373.15°K
         System.out.println(fahrenheit + "° Fahrenheit = " + fahrenheitToKelvin + "° Kelvin");
 
-        double kelvinToFahrenheit = 0; // ~170.33°F
+        double kelvinToFahrenheit = (kelvin - 273.15) * 9/5 + 32; // ~170.33°F
         System.out.println(kelvin + "° Kelvin = " + kelvinToFahrenheit + "° Fahrenheit");
 
 

@@ -39,14 +39,33 @@ public class DataTypesExercise {
         // store the temperature in Fahrenheit.
         // store the humidity percentage.
         // store a short description of the weather (e.g., "Cloudy").
+
+        String nameOfCity = "lake charles";
+        int cityTemperature = 90;
+        int humidityPercentage = 100;
+        String weatherDescription = "muggy";
+
         // -- use all of these variables in print out statements to the console
         /* Example output:
             Weather Report: Philadelphia
             It is currently raining with a temperature of 63°F and a humidity of 44%
         */
+        System.out.println("weather report: " + nameOfCity);
+        System.out.println("it is currenty " + weatherDescription + " with a temperature of " + cityTemperature + "°F"
+                + " and humdity of " + humidityPercentage + "%"
+        );
+
         // change the temperature, humidity, and description of the weather
         // reprint the previous console output with requested updates
 
+        cityTemperature = 75;
+        humidityPercentage = 80;
+        weatherDescription = "sunny";
+
+        System.out.println("weather report: " + nameOfCity);
+        System.out.println("it is currenty " + weatherDescription + " with a temperature of " + cityTemperature + "°F"
+                + " and humdity of " + humidityPercentage + "%"
+        );
 
         /* 4.  Declare and assign the following variables for a flight at an airport: */
         // store the flight number (e.g., "AA256").
@@ -55,6 +74,18 @@ public class DataTypesExercise {
         // store the seat number for the flight.
         // store the terminal number at the airport.
         // store whether the flight is delayed (true or false)
+
+        String flightNumber = "aa758";
+        String departureCity = "austin";
+        String arrivalCity = "miami";
+        String seatNumber = "1a";
+        int terminalNumber = 45;
+        boolean flightDelayed = false;
+
+        System.out.println("flight: " + flightNumber + " " + departureCity + " to " + arrivalCity);
+        System.out.println("gate: " + terminalNumber);
+        System.out.println("delayed: " + flightDelayed);
+
         // -- use all of these variables in print out statements to the console
         /* Example output:
             Flight: AF21084 London to New York (NYC)
@@ -64,16 +95,25 @@ public class DataTypesExercise {
         */
 
 
+
         /* 5. Declare and assign three boolean variables related to school or work. */
         // whether you have homework (true or false).
         // whether today is the weekend (true or false).
         // whether you attended class today (true or false)
         // -- these variables in print out statements to the console
+
+        boolean isHomework = true;
+        boolean isWeekend = false;
+        boolean attendClass = true;
         /* Example output:
             Do I have homework? False
             Is it the weekend? False
             Did I attend class today? True
          */
+
+        System.out.println("do i have homework? " + isHomework);
+        System.out.println("is it the weekend? " + isWeekend);
+        System.out.println("did i attend class today?" + attendClass);
 
 
         /* 6. primitive data types */
@@ -81,12 +121,14 @@ public class DataTypesExercise {
         // initialize a variable that would store a real world value fitting for each data type
         // byte, short, int, long, float, double, boolean, char
 
-        System.out.println("This will print on a single line and ends with a newline character");
-        System.out.print("there is no new line");
-        System.out.print("there is no new line");
-        System.out.println(); // we can add a new line with emptycall to println
-        System.out.println("we can manually addd a new line \n" +
-                "as you can see");
+        byte isByte = 90;
+        short isShort = 5;
+        int isInt = 5;
+        long isSLong = 17464374742L;
+        double isDouble = 15.78;
+        boolean isBoolean = true;
+        char isChar = 'f';
+
 
 
     }
