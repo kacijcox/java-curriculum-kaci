@@ -92,14 +92,5 @@ public class OperatorsExercise {
         System.out.println(kelvin + "° Kelvin = " + kelvinToFahrenheit + "° Fahrenheit");
 
 
-
-
     }
-
-
-
-
-
-
-
 }

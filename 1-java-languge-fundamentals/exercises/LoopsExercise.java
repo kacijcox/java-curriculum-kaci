@@ -28,73 +28,73 @@ public class LoopsExercise {
 		//  Fizzbuzz
 
 
-//		int[][] numbers = {
-//				{1, 100}
-//		};
-//
-//		for (int[] range : numbers) {
-//			int start = range[0];
-//			int end = range[1];
-//
-//			for (int i = start; i <= end; i++) {
-//				if (i % 3 == 0) {
-//					System.out.println("fizz");
-//				}
-//				else if (i % 5 == 0) {
-//					System.out.println("buzz");
-//				}
-//
-//				else if (i % 5 == 0 && i % 3 == 0) {
-//					System.out.println("fizzbuzz");
-//				}
-//
-//				else {
-//					System.out.println(numbers);
-//				}
-//
+		int[][] numbers = {
+				{1, 100}
+		};
 
+		for (int[] range : numbers) {
+			int start = range[0];
+			int end = range[1];
 
-			/* 2. Running Total  */
-			// We want to create a script that calculates a user's running total of whole numbers. The flow of the script should behave like this:
-			// Initialize a variable to store the running total with a value of zero.
-			// Start a while loop with the condition that the input is not equal to "Q".
-			// Prompt the user for a number or Q to quit.
-			// If the user enters "Q" or "q", let the loop end.
-			// If the user does not enter "Q", assume it is a whole number, convert it to an integer value, and add it to the running total variable.
-			// Display the final total when the loop ends.
-			//
-			// Sample Output:
-			//  Enter a number (Q to quit): 10
-			//  Enter a number (Q to quit): 5
-			//  Enter a number (Q to quit): 1
-			//  Enter a number (Q to quit): -6
-			//  Enter a number (Q to quit): Q
-			//  The total is: 10
-
-			int runningTotal = 0;
-			String userInput = "";
-			Scanner console = new Scanner(System.in);
-
-
-				System.out.println("enter a number or press q to quit");
-				userInput = console.nextLine();
-
-				while (true) {
-					if (userInput.equals("q")) {
-					break;
+			for (int i = start; i <= end; i++) {
+				if (i % 3 == 0) {
+					System.out.println("fizz");
+				}
+				else if (i % 5 == 0) {
+					System.out.println("buzz");
 				}
 
-					runningTotal += Integer.parseInt(userInput);
-					System.out.println("the total is: " + runningTotal);
+				else if (i % 5 == 0 && i % 3 == 0) {
+					System.out.println("fizzbuzz");
+				}
 
-					System.out.println("enter a number or press q to quit");
-					userInput = console.nextLine();
+				else {
+					System.out.println(numbers);
+				}
+
+
+
+		/* 2. Running Total  */
+		// We want to create a script that calculates a user's running total of whole numbers. The flow of the script should behave like this:
+		// Initialize a variable to store the running total with a value of zero.
+		// Start a while loop with the condition that the input is not equal to "Q".
+		// Prompt the user for a number or Q to quit.
+		// If the user enters "Q" or "q", let the loop end.
+		// If the user does not enter "Q", assume it is a whole number, convert it to an integer value, and add it to the running total variable.
+		// Display the final total when the loop ends.
+		//
+		// Sample Output:
+		//  Enter a number (Q to quit): 10
+		//  Enter a number (Q to quit): 5
+		//  Enter a number (Q to quit): 1
+		//  Enter a number (Q to quit): -6
+		//  Enter a number (Q to quit): Q
+		//  The total is: 10
+
+		int runningTotal = 0;
+		String userInput = "";
+		Scanner console = new Scanner(System.in);
+
+
+		System.out.println("enter a number or press q to quit");
+		userInput = console.nextLine();
+
+		while (true) {
+			if (userInput.equals("q")) {
+				break;
+			}
+
+			runningTotal += Integer.parseInt(userInput);
+			System.out.println("the total is: " + runningTotal);
+
+			System.out.println("enter a number or press q to quit");
+			userInput = console.nextLine();
 
 
 
 
 
-		/* 3. Number Guessing Game (Hot or Cold Edition) */
+			/* 3. Number Guessing Game (Hot or Cold Edition) */
 			// Create a game where the user must correctly guess a secret number.
 			// Initialize a variable and set it to a random integer  (example: secret_number = 7)
 			// Create a header similar to "--Number Guessing Game--" that displays only at the start of the game
@@ -116,10 +116,41 @@ public class LoopsExercise {
 			//  About the same temperature...Guess Again: 7
 			//  Congratulations!
 
-			int secretNumber = 7;
+		int secretNumber = 5;
 			int guess = 0;
 			int distance = 0;
+			String usernumInput = "";
+
+			System.out.println("--number guessing game--");
+			while (true) {
+				System.out.println("guess a number");
+				usernumInput = (console.nextLine());
+				guess = Integer.parseInt(usernumInput);
+
+				if (Integer.parseInt(usernumInput) == secretNumber) {
+					System.out.println("congrats you got it");
+					break;
+				}
+
+				else if (!usernumInput.equals(secretNumber)) {
+					System.out.println("try again");
+				}
+
+				for (int i = 0; i < guess; i++) {
+					System.out.println("you are getting warmer");
+
+				}
+
+				for (i = 0; i < guess; i--) {
+					System.out.println("you are getting colder");
+
+				}
+
+
+
+
+			}
 		}
 	}
-}
+
 
