@@ -21,24 +21,18 @@ public class ConditionalsExercise {
         int ageDogYears = age * 7;
 
         if (ageDogYears <= 21) {
-            System.out.printf(ageDogYears +"," + " just a pup");
-        }
-
-        else if (ageDogYears >= 21 && ageDogYears <= 70) {
-            System.out.printf(ageDogYears + "," + " the irs is requiring you to file your dog taxes");
-        }
-
-        else if (ageDogYears >= 70 && ageDogYears <= 112) {
-            System.out.printf(ageDogYears + "," + " can a dog even retire in this economy");
-        }
-
-        else if (ageDogYears >= 112) {
-            System.out.printf(ageDogYears + "," + " wise ancient dog");
-        }
-
-        else {
+            System.out.printf(ageDogYears + "," + " just a pup \n");
+        } else if (ageDogYears >= 21 && ageDogYears <= 70) {
+            System.out.printf(ageDogYears + "," + " the irs is requiring you to file your dog taxes \n");
+        } else if (ageDogYears >= 70 && ageDogYears <= 112) {
+            System.out.printf(ageDogYears + "," + " can a dog even retire in this economy \n");
+        } else if (ageDogYears >= 112) {
+            System.out.printf(ageDogYears + "," + " wise ancient dog \n");
+        } else {
             System.out.println("invalid age");
         }
+
+
 
         /* 2. Transaction Calculator V2 */
         // Ask number of items to purchase
@@ -54,6 +48,7 @@ public class ConditionalsExercise {
         //  Is a sales tax required for this purchase? (y/n): y
         //  Enter the sales tax: 8.25
         //  Total Cost: $113.28
+
 
 
         System.out.println("how many items would you like to purchase?");
@@ -77,11 +72,11 @@ public class ConditionalsExercise {
         }
 
 
-        if (isSalesTax.equals("no")) {
+        else if (isSalesTax.equals("no")) {
             System.out.println("your total cost is: " + numOfItems * pricePerItem);
         }
 
-        else if (isSalesTax.equals("")){
+        else {
             System.out.println("invalid input" );
         }
 
@@ -118,13 +113,11 @@ public class ConditionalsExercise {
         //
         //  Final Grade is: 87 (B+)
         int userInputInt = 0;
-
         double exercisesGrade = 0;
         double quizzesGrade = 0;
         double midtermGrade = 0;
         double finalProject = 0;
         double finalGrade = 0;
-        String letterGrade = "";
 
         System.out.println("enter your exercise grade");
         userInputInt = (int) exercisesGrade;
@@ -149,34 +142,29 @@ public class ConditionalsExercise {
         //final grade logic
         finalGrade = exercisesGrade + quizzesGrade + midtermGrade + finalProject;
 
-        // letter grade strings put in array
+        String letterGrade = "F";
+        if (finalGrade >= 60) {
+            letterGrade = "D";
+        }
+        else if (finalGrade >= 70) {
+            letterGrade = "C";
+        } else if (finalGrade >= 80) {
+            letterGrade = "B";
+        }
+        else if (finalGrade >= 90) {
+            letterGrade = "A";
+        }
 
-        String[][] grades = {
-                {"A+","97","100"},
-                {"A", "93","96"},
-                {"A−", "90","92"},
-                {"B+", "87","89"},
-                {"B", "83","86"},
-                {"B−", "80","82"},
-                {"C+", "77","79"},
-                {"C", "73","76"},
-                {"C−","70","72"},
-                {"D+", "67","69"},
-                {"D", "63","66"},
-                {"D−","60","62"}
-       };
+        if(finalGrade % 10 > 6) {
+            letterGrade += "+";
+        }
 
-        // for userInput scan the grades array and return the range value
-        // save result as letterGrade
-
-        for (String[] range: grades) {
-            //
-
+        if (finalGrade % 10 > 3) {
+            letterGrade += "-";
         }
 
 
-
-        System.out.println("final grade is :" + finalGrade + letterGrade );
+        System.out.println("final grade is: " + finalGrade + letterGrade );
 
 
     }
