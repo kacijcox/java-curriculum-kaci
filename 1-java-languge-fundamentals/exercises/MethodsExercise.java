@@ -83,8 +83,6 @@ public class MethodsExercise {
 	}
 
 
-
-
 	// 7. Method Overloading (Greeting Message)
 	// Create two overloaded methods named greet().
 	// Steps:
@@ -92,6 +90,18 @@ public class MethodsExercise {
 	// 2. Method 2: greet(String name, int age) → Prints "Hello, [name]!
 	//                                            You are [age] years old."
 	// 3. Call both methods in main with different arguments.
+
+	public static String greet(String name) {
+		System.out.println("hello, " + name);
+		return name;
+	}
+
+
+	public static String greet(String name, int age) {
+		System.out.println("hello, " + name + " you are " + age + " years old");
+		return name;
+
+}
 
 
 	// 8. Count Vowels in a String Method
@@ -102,6 +112,19 @@ public class MethodsExercise {
 	// 3. Return the count.
 	// 4. Call the method in main and print the result for "hello world" and "java programming".
 	// Hint: Could use .substring() to check each character
+
+	public static int countVowels(String text) {
+		int count = 0;
+		for (int i = 0; i < text.length(); i++) {
+			char letter = text.charAt(i);
+			if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u') {
+				count++;
+			}
+		}
+		return count;
+	}
+
+
 
 
 	/* 9. Transaction Report Method */
@@ -131,6 +154,27 @@ public class MethodsExercise {
 	//  -- SUMMARY --
 	//  Transaction Total: $250.82
 
+	public static void transactionReport (String[] itemNames, int[] itemCounts, double[] prices	) {
+		System.out.println("-- transaction report --");
+		System.out.println(" ITEM:       | COUNT | PRICE  | TOTAL");
+		// looping tthrough arrays
+		double total =0;
+		for (int i = 0; i < itemNames.length; i++) {
+			total += lineItems(itemNames[i], itemCounts[i], prices[i]);
+		}
+
+
+		System.out.println("-- summary --");
+		System.out.println("transaction total: $");
+
+	}
+
+	public static double lineItems(String name, int count, double price) {
+		double lineItemTotal = count * price;
+		System.out.printf("%-10 | %-6s| %-6.2f|\n",name, count, price, lineItemTotal);
+		return lineItemTotal;
+	}
+
 	public static void main(String[] args) {
 
 
@@ -141,6 +185,9 @@ public class MethodsExercise {
 		System.out.println("the fahrenheit equiv is:" + convertFahrenheit(100));
 		System.out.println("is your number even?" + isEven(99));
 		System.out.println("the multiple times is:" + printMultipleTimes("hello", 5));
+		System.out.println(greet("kaci", 24 ) );
+		System.out.println(countVowels("hello world"));
+		System.out.println(itemCount);
 
 	}
 
