@@ -1,37 +1,32 @@
 import java.util.Scanner;
 
 public class AdventureLab {
-	private String userName;
-	private int keys = 0;
-	private boolean monsterKeyTaken = false;
-	private boolean witchKeyTaken = false;
-	private boolean redRoomKeyTaken = false;
+	private static String userName;
+	private static int keys = 0;
+	private static boolean monsterKeyTaken = false;
+	private static boolean witchKeyTaken = false;
+	private static boolean redRoomKeyTaken = false;
+	private static Scanner scanner = new Scanner(System.in);
 
-	private void resetKeys() {
-		keys = 0;
-		monsterKeyTaken = false;
-		witchKeyTaken = false;
-		redRoomKeyTaken = false;
-	}
 
 	//    START
 //        Welcome to the Adventure!
 //        >>> Prompt user to enter their name
 //
-	public void main() {
+	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("welcome to the adventure");
 		System.out.println("enter your name: ");
-		this.userName = scanner.nextLine();
+		userName = scanner.nextLine();
 		System.out.println("\n");
-		pageZero();
+		pageZero(args);
 
 	}
 
 //    PAGE0
 //        You wake up in a dark forest. You see a crossroad ahead of you and approach.
-	public void pageZero() {
+	public static void pageZero(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("welcome " + userName + "!");
@@ -39,7 +34,7 @@ public class AdventureLab {
 		System.out.println("press any key to continue");
 		scanner.nextLine();
 		System.out.println("\n");
-		pageOne();
+		pageOne(args);
 
 
 	}
@@ -54,7 +49,7 @@ public class AdventureLab {
 //        1. Dark path (GOTO PAGE2)
 //        2. Bright path (GOTO PAGE3)
 //        3. Castle (GOTO PAGE4)
-	public void pageOne() {
+	public static void pageOne(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("you arrive at the crossroads and see several possible paths");
 		System.out.println("one is dark and winding");
@@ -71,15 +66,15 @@ public class AdventureLab {
 			case 1:
 				System.out.println("you chose option 1");
 				System.out.println("\n");
-				pageTwo();
+				pageTwo(args);
 			case 2:
 				System.out.println("you chose option 2");
 				System.out.println("\n");
-				pageThree();
+				pageThree(args);
 			case 3:
 				System.out.println("you chose option 3");
 				System.out.println("\n");
-				pageFour();
+				pageFour(args);
 
 		}
 
@@ -102,7 +97,7 @@ public class AdventureLab {
 //            After finding the key,
 //            There is nothing left to loot on the monster.
 //            (GOTO PAGE1)
-	public void pageTwo() {
+	public static void pageTwo(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("traveling the dark and winding path, you stumble across a monster :o");
@@ -113,7 +108,7 @@ public class AdventureLab {
 		switch(option) {
 			case 1:
 				System.out.println("you selected option 1 and chose to run");
-				badEnd();
+				badEnd(args);
 			case 2:
 				System.out.println("you chose option 2 and chose to fight");
 				System.out.println("with a valiant effort, you defeated the monster");
@@ -122,17 +117,17 @@ public class AdventureLab {
 					monsterKeyTaken = true;
 					keys++;
 					System.out.println("\n");
-					pageOne();
+					pageOne(args);
 				}
 				else {
 					System.out.println("you have already collected a key from here");
 					System.out.println("\n");
-					pageOne();
+					pageOne(args);
 				}
 				System.out.println("we'll go back to page one now");
 				keys++;
 				System.out.println("\n");
-				pageOne();
+				pageOne(args);
 		}
 	}
 
@@ -157,7 +152,7 @@ public class AdventureLab {
 //            "Why hello {userName}, I hope you're doing well!" Says the witch.
 //            After a quick visit you return to the Forest
 //            (GOTO PAGE1)
-	public void pageThree() {
+	public static void pageThree(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("the flowery path smells wonderful");
 		System.out.println("you lose track of time on your walk and barely catch yourself from running into someone. \n");
@@ -174,19 +169,19 @@ public class AdventureLab {
 					witchKeyTaken = true;
 					keys++;
 					System.out.println("\n");
-					pageOne();
+					pageOne(args);
 				}
 				else {
 					System.out.println("\f hello " + new String[]{userName});
 					System.out.println("the witch has already given you a key. you wil return to the forest now");
 					System.out.println("\n");
-					pageOne();
+					pageOne(args);
 				}
 			case 2:
 				System.out.println("you chose option 2 and decided to give her a fake name");
 				System.out.println("the witch can tell you are lying. you'll wake up and remember nothing");
 				System.out.println("\n");
-				pageZero();
+				pageZero(args);
 		}
 
 
@@ -198,7 +193,7 @@ public class AdventureLab {
 //        1. Blue door (GOTO PAGE5)
 //        2. Red door (GOTO PAGE6)
 //        3. Return to crossroads
-	public void pageFour() {
+	public static void pageFour(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("inside the castle you see two doors");
 		System.out.println("what do you choose?");
@@ -211,15 +206,15 @@ public class AdventureLab {
 			case 1:
 				System.out.println("you chose the blue door");
 				System.out.println("\n");
-				pageFive();
+				pageFive(args);
 			case 2:
 				System.out.println("you chose the red door");
 				System.out.println("\n");
-				pageSix();
+				pageSix(args);
 			case 3:
 				System.out.println("you chose option 3, returning to the crossroads");
 				System.out.println("\n");
-				pageOne();
+				pageOne(args);
 
 		}
 
@@ -234,19 +229,19 @@ public class AdventureLab {
 //            The door is locked and requires 3 keys.
 //            You leave to find more keys
 //            (GOTO PAGE4)
-	public void pageFive() {
+	public static void pageFive(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("you see a locked blue door with 3 keyholes");
 
 		if (keys == 3) {
 			System.out.println("you have 3 keys");
 			System.out.println("\n");
-			goodEnd();
+			goodEnd(args);
 		} else {
 			System.out.println("the door is locked and requires 3 keys");
 			System.out.println("you leave to find more keys");
 			System.out.println("\n");
-			pageFour();
+			pageFour(args);
 		}
 
 	}
@@ -259,7 +254,7 @@ public class AdventureLab {
 //        RE-VISIT:
 //            You feel like you've searched this room thoroughly.
 //            (GOTO PAGE4)
-	public void pageSix () {
+	public static void pageSix (String[] args) {
 		System.out.println("you find the red door is unlocked");
 		if (!redRoomKeyTaken) {
 			System.out.println("you found a key!");
@@ -269,12 +264,12 @@ public class AdventureLab {
 		else {
 			System.out.println("you've already collected a key from here");
 			System.out.println("\n");
-			pageFour();
+			pageFour(args);
 		}
 		System.out.println("you feel like you've searched this room thoroughly");
 		System.out.println("you leave the room and continue searching the castle");
 		System.out.println("\n");
-		pageFour();
+		pageFour(args);
 
 	}
 //
@@ -284,7 +279,7 @@ public class AdventureLab {
 //        >>> Prompt 1 or 2
 //        1. Yes. (GOTO START)
 //        2. No. (End Game)
-	public void badEnd () {
+	public static void badEnd (String[] args) {
 		System.out.println("you have failed your quest. would you like to try again? press 1 for yes and 2 to exit");
 		Scanner scanner = new Scanner(System.in);
 
@@ -295,7 +290,7 @@ public class AdventureLab {
 			case 1:
 				System.out.println("restarting game");
 				System.out.println("\n");
-				pageZero();
+				pageZero(args);
 			case 2:
 				System.out.println("you chose to exit");
 				System.exit(0);
@@ -306,7 +301,7 @@ public class AdventureLab {
 //        Inside the blue door you find endless treasure, and you are set for life!
 //        Congrats!
 //        (End Game)
-	public void goodEnd () {
+	public static void goodEnd (String[] args) {
 		System.out.println("inside the blue door you find endless treasure, and you are set for life. congrats!");
 		System.out.println("would you like to play again? press 1 for yes and 2 to exit");
 		Scanner scanner = new Scanner(System.in);
@@ -317,7 +312,7 @@ public class AdventureLab {
 			case 1:
 				System.out.println("restarting game");
 				System.out.println("\n");
-				pageZero();
+				pageZero(args);
 				break;
 			case 2:
 				System.out.println("you chose to exit");
