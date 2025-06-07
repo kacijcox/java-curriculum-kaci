@@ -4,9 +4,10 @@ import java.util.Random;
 
 public class JavaSummative {
 	private Scanner random;
-	private static int [] lockerNumbers =  new int [10];
+	private static int[] lockerNumbers = new int[10];
 	private static String[] lockerPins = new String[10];
 	private static int count = 0;
+	private static Scanner scanner = new Scanner(System.in);
 
 
 	public static void main(String[] args) {
@@ -16,7 +17,6 @@ public class JavaSummative {
 //		3. Release a Locker
 //				---
 //				Any other key to exit.
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("what would you like to do next?");
 		System.out.println("1. rent a locker");
 		System.out.println("2. access a locker");
@@ -24,7 +24,7 @@ public class JavaSummative {
 		System.out.println("------------");
 		System.out.println("any other key to exit");
 
-		int option = scanner.nextInt();
+		int option = Integer.parseInt(scanner.nextLine());
 
 
 		switch (option) {
@@ -45,6 +45,17 @@ public class JavaSummative {
 		}
 		main(args);
 	}
+
+	public static boolean lockerAccess(int lockerNumber, int pin) {
+		for (int i = 0; i < lockerPins.length; i++) {
+			if (lockerPins[i] != null &&
+					lockerPins[i].equals(String.valueOf(pin)) && (i + 1) == lockerNumber) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 //2. [Feature] Rent a Locker
 	//● Assign next available locker number
 	//● Generate and display a 4-digit PIN (as a String with leading zeros)
@@ -55,20 +66,20 @@ public class JavaSummative {
 		System.out.println("assigning next available locker number...");
 
 		for (int i = 0; i < lockerPins.length; i++) {
-			if (lockerPins[i] == null ) {
+			if (lockerPins[i] == null) {
 				lockerPins[i] = String.format("%04d", new Random().nextInt(10000));
 				lockerNumbers[i] = i + 1;
 				System.out.println("assigned locker " + (i + 1));
 				System.out.println("your pin is " + lockerPins[i]);
+				return;
+			}
+			if (count == 3) {
+				System.out.println("no lockers available, returning to main menu");
+				main(args);
 				break;
 			}
-					if (count == 3) {
-		System.out.println("no lockers available, returning to main menu");
-						main(args);
-						break;
-					}
-	}
 		}
+	}
 
 //	3. [Feature] Access a Locker
 	//● Prompt user for locker number and PIN
@@ -76,23 +87,19 @@ public class JavaSummative {
 	//● Grant access if match is found, else show error
 
 	public static void accessLocker(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("please enter your locker number");
+		System.out.println("enter your locker number");
 		int accessLocker = Integer.parseInt(scanner.nextLine());
-		System.out.println("enter your pin");
+
+		System.out.println("enter pin");
 		int accessPin = Integer.parseInt(scanner.nextLine());
 
-
-		for (int i = 0; i < lockerPins.length; i++) {
-			if (lockerPins[i] != null && lockerPins[i].equals(String.valueOf(accessPin)) && (i + 1) == accessLocker) {
-			System.out.println("access granted. returning to main menu");
-				System.out.println( lockerPins[i] + " " + accessPin);
-				main(args);
-				break;
-			}
+		if (lockerAccess(accessLocker, accessPin)) {
+			System.out.println("access granted");
+		} else {
+			System.out.println("invalid locker number or pin");
 		}
-		System.out.println("access denied. returning to main menu");
 		main(args);
+
 	}
 
 //4. [Feature] Release a Locker
@@ -102,38 +109,20 @@ public class JavaSummative {
 	//● Show error for incorrect PIN or locker
 
 	public static void releaseLocker(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-
 		System.out.println("enter your locker number");
 		int releaseLocker = Integer.parseInt(scanner.nextLine());
 
 		System.out.println("enter your pin");
 		int releasePin = Integer.parseInt(scanner.nextLine());
-		
-		for (int i = 0; i < lockerPins.length; i++) {
-			if (lockerPins[i] != null && lockerPins[i].equals(String.valueOf(releasePin)) && (i +1) == releaseLocker) {
-				lockerPins[i]= null;
-				lockerNumbers[i]= 0;
-				System.out.println("locker found. releasing...");
-					System.out.println("returning to main menu");
-			
-					return;
-			}
-			else {
-			System.out.println("locker not found or invalid pin. returning to main menu");
-				main(args);
+
+		if (lockerAccess(releaseLocker, releasePin)) {
+			lockerPins[releaseLocker - 1] = null;
+			System.out.println("the locker has been released");
+		} else {
+			System.out.println("invalid locker number or pin");
 		}
-
 	}
-
-
-
-
-
 }
-}
-
-
 
 
 
