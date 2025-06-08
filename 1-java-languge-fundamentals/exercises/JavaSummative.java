@@ -18,33 +18,41 @@ public class JavaSummative {
 //		3. Release a Locker
 //				---
 //				Any other key to exit.
-		System.out.println("what would you like to do next?");
-		System.out.println("1. rent a locker");
-		System.out.println("2. access a locker");
-		System.out.println("3. release a locker");
-		System.out.println("------------");
-		System.out.println("any other key to exit");
+		while(true) {
+			System.out.println("what would you like to do next?");
+			System.out.println("1. rent a locker");
+			System.out.println("2. access a locker");
+			System.out.println("3. release a locker");
+			System.out.println("------------");
+			System.out.println("any other key to exit");
 
-		int option = Integer.parseInt(scanner.nextLine());
 
+			try {
+				int option = Integer.parseInt(scanner.nextLine());
+				switch (option) {
+					case 1:
+						System.out.println("you chose to rent a locker");
+						rentLocker(args);
+						break;
+					case 2:
+						System.out.println("you chose to access to a locker");
+						accessLocker(args);
+						break;
+					case 3:
+						System.out.println("you chose to release a locker");
+						releaseLocker(args);
+						break;
+						default:
+							System.out.println("goodbye");
+							return;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("not a number \n");
 
-		switch (option) {
-			case 1:
-				System.out.println("you chose to rent a locker");
-				rentLocker(args);
-				break;
-			case 2:
-				System.out.println("you chose to access to a locker");
-				accessLocker(args);
-				break;
-			case 3:
-				System.out.println("you chose to release a locker");
-				releaseLocker(args);
-				break;
-			default:
-				System.exit(0);
+			}
+
+			main(args);
 		}
-		main(args);
 	}
 
 	public static boolean lockerAccess(int lockerNumber, int pin) {
@@ -65,25 +73,16 @@ public class JavaSummative {
 
 	public static void rentLocker(String[] args) {
 		System.out.println("assigning next available locker number...");
-
 		for (int i = 0; i < lockerPins.length; i++) {
-			try {
-				if (lockerPins[i] == null) {
-					lockerPins[i] = String.format("%04d", new Random().nextInt(10000));
-					lockerNumbers[i] = i + 1;
-					System.out.println("assigned locker " + (i + 1));
-					System.out.println("your pin is " + lockerPins[i]);
-					return;
-				}
-				if (count == 3) {
-					System.out.println("no lockers available, returning to main menu");
-					main(args);
-					break;
-				}
-			} catch (Exception e) {
-				throw new RuntimeException(e);
+			if (lockerPins[i] == null) {
+				lockerPins[i] = String.format("%04d", new Random().nextInt(10000));
+				lockerNumbers[i] = i + 1;
+				System.out.println("assigned locker " + (i + 1));
+				System.out.println("your pin is " + lockerPins[i]);
+				return;
 			}
 		}
+		System.out.println("no lockers available \n");
 	}
 
 //	3. [Feature] Access a Locker
@@ -92,23 +91,22 @@ public class JavaSummative {
 	//● Grant access if match is found, else show error
 
 	public static void accessLocker(String[] args) {
-		System.out.println("enter your locker number");
-		int accessLocker = Integer.parseInt(scanner.nextLine());
-
-		System.out.println("enter pin");
-		int accessPin = Integer.parseInt(scanner.nextLine());
-
 		try {
+			System.out.println("enter your locker number");
+			int accessLocker = Integer.parseInt(scanner.nextLine());
+
+			System.out.println("enter pin");
+			int accessPin = Integer.parseInt(scanner.nextLine());
+
 			if (lockerAccess(accessLocker, accessPin)) {
 				System.out.println("access granted");
 			} else {
 				System.out.println("invalid locker number or pin");
 			}
 			main(args);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+		} catch (NumberFormatException e) {
+			System.out.println("numbers only \n");
 		}
-
 	}
 
 //4. [Feature] Release a Locker
@@ -118,32 +116,35 @@ public class JavaSummative {
 	//● Show error for incorrect PIN or locker
 
 	public static void releaseLocker(String[] args) {
-		System.out.println("enter your locker number");
-		int releaseLocker = Integer.parseInt(scanner.nextLine());
+		try {
+			System.out.println("enter your locker number");
+			int releaseLocker = Integer.parseInt(scanner.nextLine());
 
-		System.out.println("enter your pin");
-		int releasePin = Integer.parseInt(scanner.nextLine());
+			System.out.println("enter your pin");
+			int releasePin = Integer.parseInt(scanner.nextLine());
 
-		System.out.println("are you sure you want to release the locker? (yes/no)");
-		String answer = scanner.nextLine();
-		if (answer.equals("yes")) {
-			try {
+			System.out.println("are you sure you want to release the locker? (yes/no)");
+			String answer = scanner.nextLine();
+			if (answer.equals("yes")) {
 				if (lockerAccess(releaseLocker, releasePin)) {
 					lockerPins[releaseLocker - 1] = null;
 					System.out.println("the locker has been released");
 				} else {
 					System.out.println("invalid locker number or pin");
 				}
-			} catch (Exception e) {
-				throw new RuntimeException(e);
 			}
-		}
-		if (answer.equals("no")) {
-			System.out.println("you declined to release a locker. returning to main menu \n");
+				else if (answer.equals("no"))
+			{
+					System.out.println("you declined to release a locker. returning to main menu \n");
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("numbers only \n");
 		}
 	}
 
-}
+		}
+
+
 
 
 
