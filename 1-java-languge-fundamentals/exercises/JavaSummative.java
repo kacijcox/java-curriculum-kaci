@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -123,23 +124,26 @@ public class JavaSummative {
 		System.out.println("enter your pin");
 		int releasePin = Integer.parseInt(scanner.nextLine());
 
-//		System.out.println("are you sure you want to release the locker? (yes/no)");
-//		String answer = scanner.nextLine();
-
-		try {
-			if (lockerAccess(releaseLocker, releasePin)) {
-				lockerPins[releaseLocker - 1] = null;
-				System.out.println("the locker has been released");
-			} else {
-				System.out.println("invalid locker number or pin");
+		System.out.println("are you sure you want to release the locker? (yes/no)");
+		String answer = scanner.nextLine();
+		if (answer.equals("yes")) {
+			try {
+				if (lockerAccess(releaseLocker, releasePin)) {
+					lockerPins[releaseLocker - 1] = null;
+					System.out.println("the locker has been released");
+				} else {
+					System.out.println("invalid locker number or pin");
+				}
+			} catch (Exception e) {
+				throw new RuntimeException(e);
 			}
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+		}
+		if (answer.equals("no")) {
+			System.out.println("you declined to release a locker. returning to main menu \n");
 		}
 	}
+
 }
-
-
 
 
 
