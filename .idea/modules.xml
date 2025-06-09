@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/2-java-oop/2-java-oop.iml" filepath="$PROJECT_DIR$/2-java-oop/2-java-oop.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-curriculum.iml" filepath="$PROJECT_DIR$/java-curriculum.iml" />
     </modules>
   </component>
