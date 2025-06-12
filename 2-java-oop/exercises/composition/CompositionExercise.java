@@ -23,7 +23,7 @@ public class CompositionExercise {
 			System.out.println("3. print budget");
 			System.out.println("4. exit");
 
-			int choice = objects.ConsoleUI.getInt("enter selection");
+			int choice = objects.ConsoleUI.getInt("enter selection: \n");
 			switch (choice) {
 				case 1:
 					double income = ConsoleUI.getDouble("enter income: ");
@@ -49,7 +49,16 @@ public class CompositionExercise {
 					break;
 				case 3:
 					budgetObject.printBudgetSummary();
+					double totalIncome = 0;
+					for (BudgetItem item : budgetObject.getIncome()) {
+						totalIncome += item.getAmount() * item.getRepeatCount();
+					}
+					for (BudgetItem item : budgetObject.getExpenses()) {
+						totalIncome -= item.getAmount() * item.getRepeatCount();
+					}
+					System.out.println("net income: " + totalIncome);
 					break;
+
 				case 4:
 					System.out.println("adios");
 					return;

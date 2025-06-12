@@ -16,4 +16,12 @@ public void printBudgetSummary() {
 	System.out.println("income: " + income);
 	System.out.println("expenses: " + expenses);
 }
+
+	public BudgetItem[] getIncome() {
+		return income.toArray(new BudgetItem[0]);
+	}
+
+	public BudgetItem[] getExpenses() {
+	return expenses.toArray(new BudgetItem[0]);
+	}
 }
