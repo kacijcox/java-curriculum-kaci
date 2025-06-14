@@ -39,5 +39,23 @@ public class InheritenceExercise {
 		System.out.println(secondTeacher.getName() + "'s pay: $" + secondTeacher.getPay());
 		System.out.println(firstStaff.getName() + "'s pay: $" + firstStaff.getPay());
 		System.out.println(secondStaff.getName() + "'s pay: $" + secondStaff.getPay());
+
+		System.out.println("--checking account--");
+		CheckingAccount checking = new CheckingAccount(12345, 1000, 1.5);
+		System.out.println(checking.toString());
+
+		System.out.println("--savings account--");
+		SavingsAccount savings = new SavingsAccount(23456, 2000, 2.5) {
+			@Override
+			public double withdraw(Double withdrawAmount) {
+				return 0;
+			}
+		};
+		System.out.println(savings.toString());
+
+		System.out.println("--money market account--");
+		MoneyMarketAccount moneyMarket = new MoneyMarketAccount(34567, 3000, 3.5);
+		System.out.println(moneyMarket.toString());
+		System.out.println("end of year balance: " + moneyMarket.endOfYearBalanceEstimate());
 	}
 }

@@ -1,5 +1,10 @@
 package objects;  // package keyword describes the location of this file, and from where it is accessible
 
+// Challenge
+// Two books should be equal if their title and author are the same - create .equals() for this
+// Books should be sorted by Author alphabetically, and then by title alphabetically - implement comparable and create .compareTo() for this
+
+import java.util.Objects;
 
 public class Book {
 	// Encapsulation - private fields/properties that cannot be interacted with outside of this class
@@ -52,7 +57,7 @@ public class Book {
 	// set checkedOutBy to customer name passed as parameter
 	// set isCheckedOut to true
 	public boolean checkOut(String customer) {
-		if(isCheckedOut) {
+		if (isCheckedOut) {
 			return false;
 		}
 		checkedOutBy = customer;
@@ -65,7 +70,7 @@ public class Book {
 	// set checkedOutBy to null
 	// return true
 	public boolean checkIn() {
-		if(!isCheckedOut){
+		if (!isCheckedOut) {
 			return false;
 		}
 		isCheckedOut = false;
@@ -97,17 +102,20 @@ public class Book {
 	public boolean getCheckedOut() {
 		return isCheckedOut;
 	}
+
 	/* another example of how a boolean
 		public boolean isCheckedOut() {
 			return isCheckedOut;
 		}
 	 */
-	public void setCheckedOut(boolean checkedOut){
+	public void setCheckedOut(boolean checkedOut) {
 		isCheckedOut = checkedOut;
 	}
+
 	public String getAuthor() {
 		return author;
 	}
+
 	public void setAuthor(String author) {
 		this.author = author;
 	}
@@ -115,6 +123,7 @@ public class Book {
 	public String getCheckedOutBy() {
 		return checkedOutBy;
 	}
+
 	public void setCheckedOutBy(String checkedOutBy) {
 		this.checkedOutBy = checkedOutBy;
 	}
@@ -122,6 +131,7 @@ public class Book {
 	public boolean getFiction() {
 		return isFiction;
 	}
+
 	public void setFiction(boolean isFiction) {
 		this.isFiction = isFiction;
 	}
@@ -129,6 +139,7 @@ public class Book {
 	public int getPageNumber() {
 		return pageNumber;
 	}
+
 	public void setPageNumber(int pageNumber) {
 		this.pageNumber = pageNumber;
 	}
@@ -140,4 +151,13 @@ public class Book {
 		return "Title: " + title + " Author: " + author + " Number of pages: " + pageNumber;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (o == null || getClass() != o.getClass()) return false;
+		Book book = (Book) o;
+		return isCheckedOut == book.isCheckedOut && isFiction == book.isFiction && pageNumber == book.pageNumber && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(checkedOutBy, book.checkedOutBy) && Objects.equals(ISBN, book.ISBN);
+	}
+
 }
+
+
