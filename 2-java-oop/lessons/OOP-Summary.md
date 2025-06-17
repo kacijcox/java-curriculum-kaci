@@ -55,7 +55,7 @@
 * Be able to implement an interface
   * "implements" keyword
 * Know the difference between extending abstract classes / implementing an interface
-  * tyyou can only extend one class, you can implement multiple interfaces
+  * you can only extend one class, you can implement multiple interfaces
   *  if you have state and behaviors that are shared then exctend, interfaces are behaviors only
   
 # collections
@@ -64,5 +64,50 @@
   * know how to add/modify elements
   * know how to remove elements
   * using them in loops
-  * 
+  
+* ArrayList
+  * mainstain insertion order
+  * can be sorted
+  * have an index to access elements
+  * can grow to accomdate more elements
+  * know when to use an arraylist
+    * if you are needing to access elements from 
+    * anytime you are wanting to sort elements
+    * know when to use an ArrayList
+    * Pros
+      * if you are needing to access elements from the list based on an index
+      * any time you're wanting to sort elements an array list has build in funcitonality for it
+    * Cons
+      * inserting new elements into a list are slower (the backing array must be copied to a larger array when adding)
+      * searching through an array list is slow
+    
+* Stack
+  * know push/pop
+  * last in first out
+  * know that java's method calls are stored on a stack
+  
+* Queue
+  * know add/remove
+  * first in first out
+  * think of it as a line of poeple waiting to be processed or something similiar
+
+* Set
+  * do not maintain an insertion order
+  * do not allow duplicate elements
+  * transverse or loop through the elements
+  * know when to use a set
+  * Pros
+    * fast insert
+    * removing duplicates from other data structures
+  * Cons
+    * not sortable
+    * don't try and treat them like a list
+    
+  * map
+    * key value pairs
+    * know what it is similiar to a dictionary in python
+    * can't have duplicate keys (can have only one null key)
+    * know when to use them
+    * know how to loop/iterate through the keys/values/entry sets
+    * 
   
