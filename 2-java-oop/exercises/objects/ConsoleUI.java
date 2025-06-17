@@ -3,7 +3,7 @@ package objects;
 import java.util.Scanner;
 
 public class ConsoleUI {
-	private static Scanner scanner = new Scanner(System.in);
+	public static Scanner scanner = new Scanner(System.in);
 
 	public static String getString(String prompt) {
 		System.out.print(prompt);
