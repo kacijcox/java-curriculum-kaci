@@ -3,6 +3,6 @@ public class PlatinumDiscount implements DiscountInterface {
 
 	@Override
 	public double calculateDiscount(double total) {
-		return 0;
+		return total * platinumPercentage;
 	}
 }

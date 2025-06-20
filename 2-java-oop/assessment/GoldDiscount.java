@@ -1,8 +1,9 @@
 public class GoldDiscount implements DiscountInterface {
+	float goldPercentage = .10F;
 
 	@Override
 	public double calculateDiscount(double total) {
-		return 0;
+		return total * goldPercentage;
 	}
 }
 
