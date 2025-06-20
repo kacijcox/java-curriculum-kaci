@@ -5,11 +5,11 @@
 
     MENU
         SWITCH:
-        DISPLAY CART
-        REMOVE ITEM
-        ADD ITEM
-        ADD DISCOUNT
-        CHECKOUT
+        DISPLAY CART //calls displayCart method in cart interface
+        REMOVE ITEM //calls removeItem method in cart interface
+        ADD ITEM //calls add item in method in cart interface
+        ADD DISCOUNT //calls  aDD discount in cart interface
+        CHECKOUT //calls the total method in the checkout class
         EXIT
 
     METHODS:
@@ -29,6 +29,7 @@
             addItem();
             removeItem(int id);
             double calculate total;
+            displayCart();
             boolean isEmpty();
             clearCart();
 
@@ -42,12 +43,17 @@
 
         METHODS:
             addItem()
-            //get item by ID
+            //display item catalog map from items class
+            //get item by id
             removeItem()
-            // get item by ID
+            //display cart items from itemsInCart map in current class
+            // get item by id
             calculateTotal()
             //discount property
+            setDiscount()
+            //sets the discount by taking the return of calculateTotal * setDiscount
             boolean isEmpty()
+            //checks IF itemsInCart > 1
             clearCart()
 
          GETTERS & SETTERS
@@ -86,36 +92,35 @@
 
      DISCOUNT INTERFACE
         METHODS:
-            silverDiscount()
-            goldDiscount()
-            platinumDiscount()
+            calculateDiscount()
+       toString()
 
 -----------------------------------------------------------------
     SILVER DISCOUNT IMPLEMENTS DISCOUNT
         PROPERTIES(public):
-        float silverPercentage
+        float silverPercentage //define percent
 
         METHODS:
-        silverDiscount(silverPercentage, price)
+        ca`lculateDiscount(silverPercentage, total)
 
 
         toString()
 -----------------------------------------------------------------
     GOLD DISCOUNT IMPLEMENTS DISCOUNT
         PROPERTIES(public):
-        float goldPercentage
+        float goldPercentage //define percent
 
         METHODS:
-        goldDiscount(goldPercentage)
+        calculateDiscount(goldPercentage, total)
 
         toString()
 -----------------------------------------------------------------
     PLATINUM DISCOUNT IMPLEMENTS DISCOUNT
         PROPERTIES(public):
-        float platinumPercentage
+        float platinumPercentage //define percent
 
         METHODS:
-        platinumDiscount(platinumPercentage)
+        calculate Discount(platinumPercentage, total)
 
         toString()
 -----------------------------------------------------------------
@@ -132,6 +137,10 @@
 
             discount Discount = new PlatinumDiscount()
             mycart.setdiscount
+
+        IF no discount
+
+        total()
 
         toString()
 
