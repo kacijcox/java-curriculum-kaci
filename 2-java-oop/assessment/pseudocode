@@ -104,7 +104,7 @@
         float silverPercentage //define percent
 
         METHODS:
-        ca`lculateDiscount(silverPercentage, total)
+        calculateDiscount(silverPercentage, total)
 
 
         toString()

@@ -8,8 +8,13 @@ public class ShoppingCart implements CartInterface
 	}
 
 	@Override
-	public void removeItem(int id) {
+	public void removeItem(int itemId, int quantity) {
 
+	}
+
+	@Override
+	public double calculateTotal() {
+		return 0;
 	}
 
 	@Override

@@ -2,8 +2,8 @@
 
 public interface CartInterface {
 	void addItem();
-	void removeItem(int id);
-	double calculateTotal = 0;
+	void removeItem(int itemId, int quantity);
+	double calculateTotal();
 	boolean isEmpty();
 	void clearCart();
 
