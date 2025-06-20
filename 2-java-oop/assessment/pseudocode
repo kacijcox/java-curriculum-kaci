@@ -1,0 +1,115 @@
+    ASSESSMENT CLASS
+        displays functionality
+
+-----------------------------------------------------------------
+
+    MENU
+        SWITCH:
+        DISPLAY CART
+        REMOVE ITEM
+        ADD ITEM
+        ADD DISCOUNT
+        CHECKOUT
+        EXIT
+
+    METHODS:
+      cartEmpty(cart)
+          IF cart isEmpty exclude "checkout"
+          IF cart isEmpty exclude "remove item"
+
+      cartNotEmpty(cart)
+      IF cart !isEmpty display all menu options
+
+
+-----------------------------------------------------------------
+
+    CART INTERFACE
+        PROPERTIES (public):
+            MAP itemsInCart
+            //itemsinCart.add(ID)
+
+        METHODS:
+            addItem (itemInfo)
+            //displays all available items IF inventoryCount > 1 then print
+            //selection options with switch
+            removeItem(cart)
+            //needs to be able to display items for user to chose to remove
+            //probably can use switch
+            calculateTotal(itemsInCart, itemInfo, price)
+            // pulls items from cart and calculates total
+            displayCart(itemsInCart, total)
+            isEmpty()
+            clearCart()
+
+-----------------------------------------------------------------
+
+     ITEMS IMPLEMENTS CART
+        PROPERTIES (public):
+            NESTED MAP itemInfo
+            // new hashmap per item
+            //put item into itemInfo
+                //id, item name, price, quantity,
+
+        METHODS:
+            displayItemPrice (itemInfo, price)
+            displayItemInventory (itemInfo, quantity)
+
+        toString()
+
+-----------------------------------------------------------------
+
+     DISCOUNT INTERFACE
+        METHODS:
+            checkDiscount(silver,gold,platinum);
+            WHILE discount count > 1 user input, prompt user for input
+            ELSE print sorry only one discount allowed
+
+-----------------------------------------------------------------
+    SILVER DISCOUNT IMPLEMENTS DISCOUNT
+        PROPERTIES(public):
+        float silverPercentage
+
+        METHODS:
+        calculateSilverDiscount(price, silverPercentage)
+
+
+        toString()
+-----------------------------------------------------------------
+    GOLD DISCOUNT IMPLEMENTS DISCOUNT
+        PROPERTIES(public):
+        float goldPercentage
+
+        METHODS:
+        calculateGoldDiscount(price, goldPercentage)
+
+        toString()
+-----------------------------------------------------------------
+    PLATINUM DISCOUNT IMPLEMENTS DISCOUNT
+        PROPERTIES(public):
+        float platinumPercentage
+
+        METHODS:
+        calculatePlatinumDiscount(price, silverPercentage)
+
+        toString()
+-----------------------------------------------------------------
+    CHECKOUT
+        METHODS:
+            DOUBLE processPayment
+            FLOAT total;
+
+            METHODS:
+            checkDiscount(silver,gold, plat)
+            total(CheckDiscount, itemsInCart)
+
+        toString()
+
+
+
+
+
+
+
+
+
+

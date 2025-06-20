@@ -109,5 +109,21 @@
     * can't have duplicate keys (can have only one null key)
     * know when to use them
     * know how to loop/iterate through the keys/values/entry sets
-    * 
+  * pros
+    * key and value can be any kind of object
+    * fast insert
+  * cons
+    * not sortable
+    * don't try to treat them like a list
+
+  # class design
+  * read the UML diagram
+  * create a basic UML diagram
+  * know POJOs
+  * know DTOs
+  * Services/utilities/business logic classes
+  * MVC project structure
+    * M - model: data related to the problem
+    * V - view: user interface, how the user is able to work
+    * C - controller: connection between user's view and model
   

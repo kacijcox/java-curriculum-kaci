@@ -1,7 +1,5 @@
 package sets;
 
-
-
 public class SetsAndMapsExercise {
 	public static void main(String[] args) {
 
