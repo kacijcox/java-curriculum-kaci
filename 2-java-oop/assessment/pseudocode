@@ -23,46 +23,72 @@
 
 -----------------------------------------------------------------
 
-    CART INTERFACE
-        PROPERTIES (public):
-            MAP itemsInCart
-            //itemsinCart.add(ID)
-
+    CART INTERFACE:
         METHODS:
-            addItem (itemInfo)
-            //displays all available items IF inventoryCount > 1 then print
-            //selection options with switch
-            removeItem(cart)
-            //needs to be able to display items for user to chose to remove
-            //probably can use switch
-            calculateTotal(itemsInCart, itemInfo, price)
-            // pulls items from cart and calculates total
-            displayCart(itemsInCart, total)
-            isEmpty()
-            clearCart()
+            Discount discount;
+            addItem();
+            removeItem(int id);
+            double calculate total;
+            boolean isEmpty();
+            clearCart();
 
 -----------------------------------------------------------------
 
-     ITEMS IMPLEMENTS CART
-        PROPERTIES (public):
-            NESTED MAP itemInfo
-            // new hashmap per item
-            //put item into itemInfo
-                //id, item name, price, quantity,
+    SHOPPINGCART CLASS IMPLEMENTS CART INTERFACE:
+        PROPERTIES:
+            Discount discount;
+            MAP itemsInCart
+
 
         METHODS:
-            displayItemPrice (itemInfo, price)
-            displayItemInventory (itemInfo, quantity)
+            addItem()
+            //get item by ID
+            removeItem()
+            // get item by ID
+            calculateTotal()
+            //discount property
+            boolean isEmpty()
+            clearCart()
+
+         GETTERS & SETTERS
+
+------------------------------------------------------------------
+
+     ITEMS CLASS
+        PROPERTIES (public):
+            MAP iteminfo > itemcatalog
+
+            //new hashmap
+            //put data
+
+        METHODS: //sorts through item catalog
+            getItemById : ItemInfo
+            displayItemPrice(int id) : void
+            displayItemInventory(int id) : void
+            displayAllItems() : void
 
         toString()
 
 -----------------------------------------------------------------
 
+    ITEM INFO CLASS
+        PROPERTIES(public):
+            int id;
+            String itemName;
+            double price;
+            int quantity;
+
+        CONSTRUCTOR:
+            iteminfo(id, itemname, price, quantity)
+
+        GETTERS & SETTERS
+-------------------------------------------------------------------
+
      DISCOUNT INTERFACE
         METHODS:
-            checkDiscount(silver,gold,platinum);
-            WHILE discount count > 1 user input, prompt user for input
-            ELSE print sorry only one discount allowed
+            silverDiscount()
+            goldDiscount()
+            platinumDiscount()
 
 -----------------------------------------------------------------
     SILVER DISCOUNT IMPLEMENTS DISCOUNT
@@ -70,7 +96,7 @@
         float silverPercentage
 
         METHODS:
-        calculateSilverDiscount(price, silverPercentage)
+        silverDiscount(silverPercentage, price)
 
 
         toString()
@@ -80,7 +106,7 @@
         float goldPercentage
 
         METHODS:
-        calculateGoldDiscount(price, goldPercentage)
+        goldDiscount(goldPercentage)
 
         toString()
 -----------------------------------------------------------------
@@ -89,18 +115,23 @@
         float platinumPercentage
 
         METHODS:
-        calculatePlatinumDiscount(price, silverPercentage)
+        platinumDiscount(platinumPercentage)
 
         toString()
 -----------------------------------------------------------------
     CHECKOUT
-        METHODS:
-            DOUBLE processPayment
-            FLOAT total;
+         PROPERTIES:
+         Cart myCart = newShoppingCart
 
-            METHODS:
-            checkDiscount(silver,gold, plat)
-            total(CheckDiscount, itemsInCart)
+         SWITCH:
+            discount Discount = new SilverDiscount()
+            mycart.setdiscount // comes from discount setter in shopping cart class
+
+            discount Discount = new GoldDiscount()
+            mycart.setdiscount
+
+            discount Discount = new PlatinumDiscount()
+            mycart.setdiscount
 
         toString()
 
