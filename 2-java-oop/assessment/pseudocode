@@ -65,7 +65,7 @@
 
      ITEMS CLASS
         PROPERTIES (public):
-            MAP iteminfo > itemcatalog
+         MAP itemdescription > itemcatalog
 
             //new hashmap
             //put data

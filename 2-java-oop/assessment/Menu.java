@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.Scanner;
 import objects.ConsoleUI;
 
@@ -24,10 +25,10 @@ public class Menu {
 
 			int selectedChoice = objects.ConsoleUI.getInt("enter selection: \n");
 			switch (selectedChoice) {
-				case 1:
-					//
+				case 3:
+					System.out.println("select an item by ID to add to your cart: \n");
+//					Items.printItems();
 			}
-
 		}
 	}
 }

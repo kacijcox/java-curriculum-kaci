@@ -3,8 +3,10 @@ package composition;
 import java.util.ArrayList;
 public class Customer {
 	String name;
+
 	ContactInformation contactInformation;
 	ArrayList<Payment> payments;
+
 	public Customer(String name, String phoneNumber, String email, Address address) {
 		this.name = name;
 		this.contactInformation = new ContactInformation(address, email, phoneNumber);

@@ -56,7 +56,6 @@ public class SetLesson {
 				duplicateCheck.add(number);
 			}
 		}
-		/// ////////////////////////////////////////
 
 		Set<Integer> duplicateCheck1 = new HashSet<>();
 		String printMe = "";
