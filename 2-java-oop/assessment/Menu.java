@@ -1,6 +1,4 @@
-import java.util.Map;
 import java.util.Scanner;
-import objects.ConsoleUI;
 
 //in this class i referenced my composition/list/adventure exercise for my menu/switches and
 // imported the consoleUI from the consoleUI exercise
@@ -27,7 +25,7 @@ public class Menu {
 			switch (selectedChoice) {
 				case 2:
 					System.out.println("remove an item");
-//					ShoppingCart.removeItem();
+					ShoppingCart.removeItem(selectedChoice);
 				case 3:
 					System.out.println("available items");
 					Items.displayItems();
