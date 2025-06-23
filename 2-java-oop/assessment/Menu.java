@@ -25,9 +25,17 @@ public class Menu {
 
 			int selectedChoice = objects.ConsoleUI.getInt("enter selection: \n");
 			switch (selectedChoice) {
+				case 2:
+					System.out.println("remove an item");
+//					ShoppingCart.removeItem();
 				case 3:
-					System.out.println("select an item by ID to add to your cart: \n");
-//					Items.printItems();
+					System.out.println("available items");
+					Items.displayItems();
+					int itemID = objects.ConsoleUI.getInt("enter id to add to cart ");
+					ShoppingCart.addItem(itemID);
+					System.out.println("confirmed \n");
+					System.out.println(ShoppingCart.cartItems.keySet());
+					break;
 			}
 		}
 	}
