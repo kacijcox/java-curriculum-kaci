@@ -1,4 +1,3 @@
-import java.util.HashMap;
 import java.util.Map;
 import java.util.LinkedHashMap;
 
@@ -47,35 +46,35 @@ public class Items {
 		rice.put("name", "rice");
 		rice.put("price", 1.79);
 		rice.put("stock", 20);
-		items.put("5", rice);
+		items.put("6", rice);
 
 		Map<String, Object> orangejuice = new LinkedHashMap<>();
 		orangejuice.put("id", 7);
 		orangejuice.put("name", "orange juice");
 		orangejuice.put("price", 2.59);
 		orangejuice.put("stock", 10);
-		items.put("6", orangejuice);
+		items.put("7", orangejuice);
 
 		Map<String, Object> cheddarcheese = new LinkedHashMap<>();
 		cheddarcheese.put("id", 8);
 		cheddarcheese.put("name", "cheddar cheese");
 		cheddarcheese.put("price", 2.89);
 		cheddarcheese.put("stock", 10);
-		items.put("7", cheddarcheese);
+		items.put("8", cheddarcheese);
 
 		Map<String, Object> cereal = new LinkedHashMap<>();
 		cereal.put("id", 9);
 		cereal.put("name", "cereal");
 		cereal.put("price", 3.79);
 		cereal.put("stock", 30);
-		items.put("8", cereal);
+		items.put("9", cereal);
 
 		Map<String, Object> broccoli = new LinkedHashMap<>();
 		broccoli.put("id", 10);
 		broccoli.put("name", "broccoli");
 		broccoli.put("price", 1.59);
 		broccoli.put("stock", 20);
-		items.put("9", broccoli);
+		items.put("10", broccoli);
 	}
 
 	public static void displayItems() {

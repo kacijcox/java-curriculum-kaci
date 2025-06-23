@@ -1,16 +1,6 @@
-import java.util.Scanner;
-
 //in this class i referenced my composition/list/adventure exercise for my menu/switches and
 // imported the consoleUI from the consoleUI exercise
-
 public class Menu {
-	static Scanner scanner = new Scanner(System.in);
-
-	public static Integer getInt(String prompt) {
-		System.out.print(prompt);
-		return Integer.valueOf(scanner.nextLine());
-	}
-
 	public static void main(String[] args) {
 		while (true) {
 			System.out.println("~~~welcome to food store~~~\n");
@@ -23,13 +13,20 @@ public class Menu {
 
 			int selectedChoice = objects.ConsoleUI.getInt("enter selection: \n");
 			switch (selectedChoice) {
+				case 1:
+					System.out.println("items in your cart: \n");
+					ShoppingCart.displayCart();
+					break;
 				case 2:
-					System.out.println("remove an item");
-					ShoppingCart.removeItem(selectedChoice);
+					int itemID = objects.ConsoleUI.getInt("enter id to remove: ");
+					ShoppingCart.removeItem(itemID, selectedChoice);
+					System.out.println("cart updated");
+					System.out.println(ShoppingCart.cartItems.keySet());
+					break;
 				case 3:
 					System.out.println("available items");
 					Items.displayItems();
-					int itemID = objects.ConsoleUI.getInt("enter id to add to cart ");
+					itemID = objects.ConsoleUI.getInt("enter id to add to cart ");
 					ShoppingCart.addItem(itemID);
 					System.out.println("confirmed \n");
 					System.out.println(ShoppingCart.cartItems.keySet());
