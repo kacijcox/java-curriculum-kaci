@@ -46,6 +46,9 @@ public abstract class ShoppingCart extends Items {
 	public static void displayCart() {
 		for (Map.Entry<String, Integer> entry : cartItems.entrySet()) {
 			System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+			System.out.println("your current cart: " + ShoppingCart.cartItems.keySet());
+			System.out.println("your total is: " + CheckOut.checkoutTotal());
+
 		}
 	}
 }

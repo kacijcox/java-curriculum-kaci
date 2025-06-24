@@ -3,14 +3,6 @@ import java.util.Map;
 public class CheckOut extends ShoppingCart {
 	public static double total;
 
-	public CheckOut() {
-		this.total = total;
-	}
-
-	public CheckOut(float total) {
-		super();
-	}
-
 	public static double checkoutTotal(){
 		total = 0;
 		for (Map.Entry<String, Integer> entry : cartItems.entrySet()) {

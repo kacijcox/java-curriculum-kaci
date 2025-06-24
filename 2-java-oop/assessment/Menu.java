@@ -1,6 +1,8 @@
 import objects.ConsoleUI;
+
+import java.sql.SQLOutput;
+
 public class Menu {
-	private static DiscountInterface discount;
 	public static void main(String[] args) {
 		String selectedDiscount = "";
 
@@ -22,19 +24,23 @@ public class Menu {
 					}
 					System.out.println("items in your cart: \n");
 					ShoppingCart.displayCart();
+					CheckOut.checkoutTotal();
 					break;
 				case 2:
+
 					if (ShoppingCart.cartItems.isEmpty()) {
 						System.out.println("your cart is empty");
 						break;
 					}
 					int itemID = objects.ConsoleUI.getInt("enter id to remove: ");
+					System.out.println("you current cart" + (ShoppingCart.cartItems.keySet()));
 					ShoppingCart.removeItem(itemID, selectedChoice);
 					System.out.println("cart updated");
-					System.out.println(ShoppingCart.cartItems.keySet());
+					System.out.println("your current cart: " + ShoppingCart.cartItems.keySet());
 					break;
 				case 3:
-					System.out.println("available items");
+					System.out.println("available items \n");
+					System.out.println("----------------");
 					Items.displayItems();
 					itemID = objects.ConsoleUI.getInt("enter id to add to cart ");
 					ShoppingCart.addItem(itemID);
@@ -44,6 +50,10 @@ public class Menu {
 				case 4:
 					if (ShoppingCart.cartItems.isEmpty()) {
 						System.out.println("your cart is empty");
+						break;
+					}
+					if (selectedDiscount.equals(1)) {
+						System.out.println("you have already addded a discount");
 						break;
 					}
 					System.out.println("add a discount");
@@ -65,7 +75,8 @@ public class Menu {
 						System.out.println("your cart is empty");
 						break;
 					}
-					CheckOut.checkoutTotal();
+					System.out.println("your items: " + ShoppingCart.cartItems.keySet());
+					System.out.println("your total is: ");
 					DiscountInterface discount = null;
 					switch (selectedDiscount.toLowerCase()) {
 						case "silver discount":

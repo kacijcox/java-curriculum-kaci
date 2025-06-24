@@ -21,26 +21,26 @@ Functional Requirements
 
 ### 2. Display Cart
 * Print off the items that have been added to the cart
-* Print off the current total
+* Print off the current total -------- MISSING -- DONE TO CHECK
 
 ### 3. Add an item
 * Print off the items that are in stock
-* Allow the user to add items either one by one or multiple at a time (your choice)
+* Allow the user to add items either one by one or multiple at a time (your choice) ---- MISSING
 * Don't allow the user to add more of an item than is in stock
 
 ### 4. Remove an item
-* Print to console the list of items that have been added to the cart
+* Print to console the list of items that have been added to the cart --- MISSING -- DONE TO CHECK
 * Allow the user to remove items either one by one or multiple at a time (your choice)
 
 ### 5. Add a Rewards Program Discount
 * Prompt the user to enter or select a reward and apply the appropriate discount on checkout
-* Only allow one discount at a time
+* Only allow one discount at a time --- MISSING --- DONE TO CHECK
 * Consider using a interface for applying this discount
 * discount interface that has a getDiscount(Some kind of list of items) that returns a double
 * each implementation of discount has a different way of handling the discount
 
 ### 6. Checkout
-* When the user checks out, print a receipt, empty the cart, and clear a discount 
+* When the user checks out, print a receipt, empty the cart, and clear a discount --- MISSING 
 
 ### 7. Exit
 * Print an exit message and end the program
