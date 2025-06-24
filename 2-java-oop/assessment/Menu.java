@@ -1,7 +1,4 @@
 import objects.ConsoleUI;
-
-//in this class i referenced my composition/list/adventure exercise for my menu/switches and
-// imported the consoleUI from the consoleUI exercise
 public class Menu {
 	private static DiscountInterface discount;
 	public static void main(String[] args) {
@@ -19,10 +16,18 @@ public class Menu {
 			int selectedChoice = objects.ConsoleUI.getInt("enter selection: \n");
 			switch (selectedChoice) {
 				case 1:
+					if (ShoppingCart.cartItems.isEmpty()) {
+						System.out.println("your cart is empty");
+						break;
+					}
 					System.out.println("items in your cart: \n");
 					ShoppingCart.displayCart();
 					break;
 				case 2:
+					if (ShoppingCart.cartItems.isEmpty()) {
+						System.out.println("your cart is empty");
+						break;
+					}
 					int itemID = objects.ConsoleUI.getInt("enter id to remove: ");
 					ShoppingCart.removeItem(itemID, selectedChoice);
 					System.out.println("cart updated");
@@ -37,6 +42,10 @@ public class Menu {
 					System.out.println(ShoppingCart.cartItems.keySet());
 					break;
 				case 4:
+					if (ShoppingCart.cartItems.isEmpty()) {
+						System.out.println("your cart is empty");
+						break;
+					}
 					System.out.println("add a discount");
 					selectedDiscount = ConsoleUI.getString("select a discount: ");
 					if (selectedDiscount.equals("silver discount")) {
@@ -52,7 +61,11 @@ public class Menu {
 						break;
 					}
 				case 5:
-					CheckOut.checkoutTotal(); // This sets CheckOut.total
+					if (ShoppingCart.cartItems.isEmpty()) {
+						System.out.println("your cart is empty");
+						break;
+					}
+					CheckOut.checkoutTotal();
 					DiscountInterface discount = null;
 					switch (selectedDiscount.toLowerCase()) {
 						case "silver discount":
@@ -73,8 +86,8 @@ public class Menu {
 						double discountAmount = discount.calculateDiscount(CheckOut.checkoutTotal());
 						double finalTotal = CheckOut.checkoutTotal() - discountAmount;
 						System.out.println("your total before discount: " + CheckOut.checkoutTotal());
-						System.out.println(discount.discountType() + " discount applied: -$" + discountAmount);
-						System.out.println("Total after discount: $" + finalTotal);
+						System.out.println(discount.discountType() + " discount applied: -$ " + discountAmount +
+								" and your total after discount is " + finalTotal);
 					}
 					break;
 			}

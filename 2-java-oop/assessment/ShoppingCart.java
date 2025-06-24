@@ -23,19 +23,22 @@ public abstract class ShoppingCart extends Items {
 	}
 
 	public static void removeItem(int selectedChoice, int choice) {
-		String userInput = String.valueOf(selectedChoice);
-		if (Items.items.containsKey(userInput)) {
-			Map<String, Object> item = Items.items.get(userInput);
-			String itemName = item.get("name").toString();
-			if (cartItems.containsKey(itemName)) {
-				int quantity = cartItems.get(itemName);
-				if (quantity > 1) {
-					cartItems.put(itemName, quantity - 1);
+		for (Map.Entry<String, Map<String, Object>> entry : Items.items.entrySet()) {
+			Map<String, Object> item = entry.getValue();
+			int id = (int) item.get("id");
+			if (id == selectedChoice) {
+				String itemName = (String) item.get("name");
+				if (cartItems.containsKey(itemName)) {
+					int quantity = cartItems.get(itemName);
+					if (quantity > 1) {
+						cartItems.put(itemName, quantity - 1);
+					} else {
+						cartItems.remove(itemName);
+					}
 				} else {
-					cartItems.remove(itemName);
+					System.out.println("item not found in cart");
 				}
-			} else {
-				System.out.println("item not found");
+				return;
 			}
 		}
 	}
