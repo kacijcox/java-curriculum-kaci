@@ -6,15 +6,18 @@ public abstract class ShoppingCart extends Items {
 	public static Map<String, Integer> cartItems = new HashMap<>();
 
 	public static void addItem(int selectedChoice) {
-		String userInput = String.valueOf(selectedChoice);
-		if (Items.items.containsKey(userInput)) {
-			Map<String, Object> item = Items.items.get(userInput);
-			String itemName = (String) item.get("name");
-			if (cartItems.containsKey(itemName)) {
-				int currentQuantity = cartItems.get(itemName);
-				cartItems.put(itemName, currentQuantity + 1);
-			} else {
-				cartItems.put(itemName, 1);
+		for (Map.Entry<String, Map<String, Object>> entry : Items.items.entrySet()) {
+			Map<String, Object> item = entry.getValue();
+			int id = (int) item.get("id");
+			if (id == selectedChoice) {
+				String itemName = (String) item.get("name");
+				if (cartItems.containsKey(itemName)) {
+					int currentQuantity = cartItems.get(itemName);
+					cartItems.put(itemName, currentQuantity + 1);
+				} else {
+					cartItems.put(itemName, 1);
+				}
+				return;
 			}
 		}
 	}

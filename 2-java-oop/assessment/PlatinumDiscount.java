@@ -1,8 +1,11 @@
 public class PlatinumDiscount implements DiscountInterface {
-	float platinumPercentage = .25F;
-
 	@Override
 	public double calculateDiscount(double total) {
-		return total * platinumPercentage;
+		return total * .5;
+	}
+
+	@Override
+	public String discountType() {
+		return "platinum";
 	}
 }
