@@ -127,3 +127,20 @@
     * V - view: user interface, how the user is able to work
     * C - controller: connection between user's view and model
   
+  # refactoring
+  * know the following terms
+    * tech debt
+    * cruft
+    * software erosion
+    * refactoring - making code better without changing functionality 
+  * large classes
+  * slow running code
+  * large classes
+  * slow running code
+  * long parameter list
+
+  # unit testing
+  * know how to write a unit test
+  * know what the point of testing your code is
+  * tdd t (test driven development)
+  * arrange, act, assert
