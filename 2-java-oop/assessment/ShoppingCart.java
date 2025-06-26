@@ -5,7 +5,7 @@ public abstract class ShoppingCart extends Items {
 
 	public static Map<String, Integer> cartItems = new HashMap<>();
 
-	public static void addItem(int selectedChoice) {
+	public static int addItem(int selectedChoice) {
 		for (Map.Entry<String, Map<String, Object>> entry : Items.items.entrySet()) {
 			Map<String, Object> item = entry.getValue();
 			int id = (int) item.get("id");
@@ -17,9 +17,10 @@ public abstract class ShoppingCart extends Items {
 				} else {
 					cartItems.put(itemName, 1);
 				}
-				return;
+				return id;
 			}
 		}
+		return selectedChoice;
 	}
 
 	public static void removeItem(int selectedChoice, int choice) {

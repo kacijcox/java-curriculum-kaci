@@ -26,6 +26,7 @@
       <sourceFolder url="file://$MODULE_DIR$/7-react/lessons" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/7-react/student-exercise-solutions" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/out" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
