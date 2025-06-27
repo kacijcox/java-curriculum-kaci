@@ -1,4 +1,4 @@
-package exercises;
+package bigdecimal;
 
 import org.junit.Assert;
 import org.junit.Test;
