@@ -17,13 +17,13 @@ public class TemporalExercise {
     // 1. return today's date
     public LocalDate getToday() {
         LocalDate today = LocalDate.now();
-        return today; //WRONG?
+        return today;
     }
 
     // 2. return the current time as a LocalTime
     public LocalTime getNow() {
         LocalTime time = LocalTime.now();
-        return time; //WRONG?
+        return time;
     }
 
     // 3. return December 17, 1903 as a LocalDate
