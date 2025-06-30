@@ -1,6 +1,7 @@
 import objects.ConsoleUI;
 
 import java.sql.SQLOutput;
+import java.util.Map;
 
 public class Menu {
 	public static void main(String[] args) {
@@ -15,24 +16,22 @@ public class Menu {
 			System.out.println("5. checkout \n");
 			System.out.println("6. exit \n");
 
-			int selectedChoice = objects.ConsoleUI.getInt("enter selection: \n");
+			int selectedChoice = ConsoleUI.getInt("enter selection: \n");
 			switch (selectedChoice) {
 				case 1:
 					if (ShoppingCart.cartItems.isEmpty()) {
 						System.out.println("your cart is empty");
 						break;
 					}
-					System.out.println("items in your cart: \n");
 					ShoppingCart.displayCart();
 					CheckOut.checkoutTotal();
 					break;
 				case 2:
-
 					if (ShoppingCart.cartItems.isEmpty()) {
 						System.out.println("your cart is empty");
 						break;
 					}
-					int itemID = objects.ConsoleUI.getInt("enter id to remove: ");
+					int itemID = ConsoleUI.getInt("enter id to remove: ");
 					System.out.println("you current cart" + (ShoppingCart.cartItems.keySet()));
 					ShoppingCart.removeItem(itemID, selectedChoice);
 					System.out.println("cart updated");
@@ -42,7 +41,7 @@ public class Menu {
 					System.out.println("available items \n");
 					System.out.println("----------------");
 					Items.displayItems();
-					itemID = objects.ConsoleUI.getInt("enter id to add to cart ");
+					itemID = ConsoleUI.getInt("enter id to add to cart ");
 					ShoppingCart.addItem(itemID);
 					System.out.println("confirmed \n");
 					System.out.println(ShoppingCart.cartItems.keySet());
@@ -94,12 +93,10 @@ public class Menu {
 						System.out.println(" " + CheckOut.checkoutTotal());
 					}
 					else {
-						double discountAmount = discount.calculateDiscount(CheckOut.checkoutTotal());
-						double finalTotal = CheckOut.checkoutTotal() - discountAmount;
-						System.out.println("your total before discount: " + CheckOut.checkoutTotal());
-						System.out.println(discount.discountType() + " discount applied: -$ " + discountAmount +
-								" and your total after discount is " + finalTotal);
+						CheckOut.discount = discount;
+						CheckOut.discountTotal();
 					}
+					ShoppingCart.clearCart();
 					break;
 			}
 		}

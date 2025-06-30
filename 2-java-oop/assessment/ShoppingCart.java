@@ -52,7 +52,14 @@ public abstract class ShoppingCart extends Items {
 
 		}
 	}
+
+	public static void clearCart() {
+		Items.items.clear();
+		cartItems.clear();
+	}
 }
+
+
 
 
 

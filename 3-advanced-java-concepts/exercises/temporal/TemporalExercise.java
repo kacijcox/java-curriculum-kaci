@@ -28,7 +28,7 @@ public class TemporalExercise {
 
     // 3. return December 17, 1903 as a LocalDate
     public LocalDate getFirstFlightDate() {
-        LocalDate firstFlight = LocalDate.of(1903,12,17);
+        LocalDate firstFlight = LocalDate.of(1903, 12, 17);
         return firstFlight; //PASSED
     }
 
@@ -45,7 +45,7 @@ public class TemporalExercise {
 
     // 5. return 4PM (tea time!) as a LocalTime.
     public LocalTime getTeaTime() {
-        LocalTime teaTime = LocalTime.of(16,00);
+        LocalTime teaTime = LocalTime.of(16, 00);
         return teaTime; //PASSED
     }
 
@@ -59,26 +59,39 @@ public class TemporalExercise {
     // if the date is Friday, don't count it.
 
     public LocalDate fiveFridaysFromDate(LocalDate date) {
-        LocalDate result = date.plusWeeks(5);
-        if(date.equals(DayOfWeek.FRIDAY)) {
-            return null;
+//        LocalDate result = date.plusWeeks(5);
+//        if(date.equals(DayOfWeek.FRIDAY)) {
+//            return null;
+//        }
+//        else {
+//            return result;
+//        }
+
+        //disregard the first day of the date
+        LocalDate fututureFriday = date.plusDays(1);
+
+        while (fututureFriday.getDayOfWeek() != DayOfWeek.FRIDAY) {
+            System.out.println(fututureFriday.getDayOfWeek());
+            fututureFriday = fututureFriday.plusDays(1);
+
         }
-        else {
-            return result;
-        }
+        return fututureFriday.plusWeeks(5);
+
     }
+
 
     // 8. given a date and a count,
     // return a list of the next `fridayCount` Fridays after the date.
     // if the date is Friday, don't include it.
     public List<LocalDate> getNextFridays(LocalDate date, int fridayCount) {
-            List<LocalDate> resultFridays = List.of();
-            String todaysDate = String.valueOf(getToday());
-
-            if (todaysDate.equals(DayOfWeek.FRIDAY)) {
-                resultFridays.add(LocalDate.parse(todaysDate));
-            }
-        return resultFridays;
+//            List<LocalDate> resultFridays = List.of();
+//            String todaysDate = String.valueOf(getToday());
+//
+//            if (todaysDate.equals(DayOfWeek.FRIDAY)) {
+//                resultFridays.add(LocalDate.parse(todaysDate));
+//            }
+//        return resultFridays;
+    return null;
     }
 
     // 9. return the absolute value of the days between two dates.
@@ -102,21 +115,30 @@ public class TemporalExercise {
     // time == 04:30:00
     // appointments == 04:30, 04:45, 05:00, 05:15
     public List<LocalTime> getQuarterHourAppointments(LocalTime time) {
-        List<LocalTime> appointmentTimes = new ArrayList<>();
-        DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HH:mm");
+//        List<LocalTime> appointmentTimes = new ArrayList<>();
+//        DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HH:mm");
+//
+//        String firstTimeResult = LocalTime.now().plusMinutes(15).format(formatTime);
+//        String secondTimeResult = time.withHour(16).withMinute(15).plusMinutes(15).format(formatTime);
+//        String thirdTimeResult = time.withHour(16).withMinute(30).plusMinutes(15).format(formatTime);
+//        String fourthTimeResult = time.withHour(16).withMinute(45).plusMinutes(15).format(formatTime);
+//
+//        appointmentTimes.add(LocalTime.parse(firstTimeResult));
+//        appointmentTimes.add(LocalTime.parse(secondTimeResult));
+//        appointmentTimes.add(LocalTime.parse(thirdTimeResult));
+//        appointmentTimes.add(LocalTime.parse(fourthTimeResult));
 
-        String firstTimeResult = time.withHour(16).withMinute(0).plusMinutes(15).format(formatTime);
-        String secondTimeResult = time.withHour(16).withMinute(15).plusMinutes(15).format(formatTime);
-        String thirdTimeResult = time.withHour(16).withMinute(30).plusMinutes(15).format(formatTime);
-        String fourthTimeResult = time.withHour(16).withMinute(45).plusMinutes(15).format(formatTime);
+        ArrayList<LocalTime> appointments = new ArrayList<>();
+        LocalTime appointmentTime;
+        int minutesToNetAppointment = 15 - time.getMinute() % 15;
+        appointmentTime = time.plusMinutes(minutesToNetAppointment);
+//        appointmentTime = LocalTime.of(appointmentTime.getHour(), appointmentTime.getMinute(), 0;
 
-        appointmentTimes.add(LocalTime.parse(firstTimeResult));
-        appointmentTimes.add(LocalTime.parse(secondTimeResult));
-        appointmentTimes.add(LocalTime.parse(thirdTimeResult));
-        appointmentTimes.add(LocalTime.parse(fourthTimeResult));
-
-
-        return appointmentTimes;
+        for (int i =0; i < 4; i++) {
+            appointments.add(appointmentTime);
+            appointmentTime.plusMinutes(15);
+        }
+        return appointments;
 
     }
 
