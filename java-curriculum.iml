@@ -25,6 +25,8 @@
       <sourceFolder url="file://$MODULE_DIR$/7-react/exercises" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/7-react/lessons" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/7-react/student-exercise-solutions" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/JavaConsoleApp/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/JavaConsoleApp/test" isTestSource="true" />
     </content>
     <content url="file://$MODULE_DIR$/out" />
     <orderEntry type="inheritedJdk" />
