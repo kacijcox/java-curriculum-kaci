@@ -1,0 +1,171 @@
+                                        -----> Product <-----
+                                        attributes:
+> int productID
+> String productName
+> int quantity
+> double price
+
+> create a constructor to initialize <
+// method that reads and writes to inventory.csv
+
+
+                                    -----> InventoryService <-----
+//business logic
+//user interaction
+//repo calls
+
+                                    addProduct() //create method for adding stock
+//call repository add
+Enter Product ID: [User Input] //productID
+Enter Product Name: [User Input] //productName
+Enter Quantity: [User Input] //quantity
+Enter Price: [User Input] //price
+Product added successfully!
+Press Enter to return to the main menu... // call the menu
+
+                                    deleteProduct() //create method for removing stock
+//call repository delete
+===== Delete Product =====
+Enter Product ID: [User Input] //findBy ID
+Are you sure you want to delete this product? (Y/N): [User Input]
+Product deleted successfully!
+Press Enter to return to the main menu.. // call the menu
+
+                            displayProductInfo() //create method for displaying the productInfo
+// call repository findAll
+===== Inventory List =====
+ID | Name | Quantity | Price
+-----------------------------------------
+101 | Laptop | 10 | $999.99
+102 | Mouse | 50 | $25.00
+103 | Keyboard | 30 | $49.99
+-----------------------------------------
+Press Enter to return to the main menu...
+
+                                    updateProduct() //create method for updating product
+//call repo update
+===== Update Product =====
+Enter Product ID: [User Input] // prompt, find by ID
+Current Details:
+Name: Laptop
+Quantity: 10
+Price: $999.99
+Enter New Quantity (or press Enter to skip): [User Input]
+Enter New Price (or press Enter to skip): [User Input]
+// serialize the updated product
+Product updated successfully!
+Press Enter to return to the main menu... //call the menu
+
+searchProduct() //create method for searching for product
+===== Search Product =====
+Enter Product ID or Name: [User Input] //findBy ID
+Product Found:
+ID: 101
+Name: Laptop
+Quantity: 10
+Price: $999.99
+Press Enter to return to the main menu... // call the menu
+
+                                                -----> Menu <-----
+
+//import consoleIU
+===== Inventory Manager =====
+1. Add Product // InventoryService.addProduct()
+2. View Products //InventoryService.displayProductInfo()
+3. Search Product //InventoryService.searchProduct()
+4. Update Product //InventoryService.updateProduct()
+5. Delete Product //InventoryService.deleteProduct()
+6. Save Inventory to File //serialize (need a method specific for serializing?)
+7. Load Inventory from File (need a method specific for deserializing?)
+8. Exit //exit out
+Enter your choice:
+
+                            -----> Inventory Repository <----- // references Product
+
+\\file i/o operations
+
+\\serialize product
+\\deserialize product
+
+
+                                                    === add ===
+add(Product product)
+create an ArrayList<Product>
+//try catch, append the item
+
+@Override
+public Product add(Product product) throws DataAccessException {
+List<Product> all = findAll();
+int nextId = getNextId(all);
+product.setId(nextId);
+all.add(product);
+writeToFile(all);
+return product;
+}
+
+                                                    ==findAll==
+// start deserialization for displaying details
+@Override
+public List<Product> findAll() throws DataAccessException {
+ArrayList<Product> result = new ArrayList<>();
+try (BufferedReader reader = new BufferedReader(new
+FileReader(filePath))) {
+for (String line = reader.readLine(); line != null; line =
+reader.readLine()) {
+Product p = lineToMemory(line);
+if (p != null) {
+result.add(p);
+}
+}
+} catch (FileNotFoundException ex) {
+
+} catch (IOException ex) {
+throw new DataAccessException("could not open the file path: " +
+filePath, ex);
+}
+return result;
+}
+
+                                                 === findbyID ===
+//start deserialization
+@Override
+public Product findById(int productId) throws DataAccessException {
+List<Product> all = findAll();
+for (Product : all) {
+if (product.getId() == memoryId) {
+return memory;
+}
+}
+return null;
+}
+
+                                                    === update ===
+//deserialize
+@Override
+public boolean update(Product product) throws DataAccessException {
+List<Product> all = findAll();
+for (int i = 0; i < all.size(); i++) {
+if (all.get(i).getId() == product.getId()) {
+all.set(i, memory);
+writeToFile(all);
+return true;
+}
+}
+return false;
+}
+//serialize
+
+                                                  === deleteByID ===
+//deserialize
+@Override
+public boolean deleteById(int ProductId) throws DataAccessException {
+List<Product> all = findAll();
+for (int i = 0; i < all.size(); i++) {
+if (all.get(i).getId() == productId) {
+all.remove(i);
+writeToFile(all);
+return true;
+}
+//serialize
+
+                                Implement inhertience -----> Perishable Product <-----
