@@ -6,7 +6,6 @@
 > double price
 
 > create a constructor to initialize <
-// method that reads and writes to inventory.csv
 
 
                                     -----> InventoryService <-----

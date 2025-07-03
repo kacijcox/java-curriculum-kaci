@@ -45,4 +45,7 @@ public class ConsoleUI {
 			}
 		}
 	}
+
+	public static int scanner(String s) {
+	}
 }
