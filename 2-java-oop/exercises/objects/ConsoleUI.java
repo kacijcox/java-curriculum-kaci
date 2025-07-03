@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ConsoleUI {
 	public static Scanner scanner = new Scanner(System.in);
 
-	public static String getString(String prompt) {
+	public static char getString(String prompt) {
 		System.out.print(prompt);
 		return scanner.nextLine();
 	}
@@ -33,17 +33,7 @@ public class ConsoleUI {
 	}
 
 	public static boolean getBoolean(String prompt) {
-		while (true) {
-			System.out.print(prompt + " (y/n): ");
-			String input = scanner.nextLine().toLowerCase();
-			if (input.equals("y") || input.equals("yes")) {
-				return true;
-			} else if (input.equals("n") || input.equals("no")) {
-				return false;
-			} else {
-				System.out.println("enter y/n");
-			}
-		}
+		return false;
 	}
 
 	public static int scanner(String s) {
