@@ -45,9 +45,10 @@ public class InventoryService {
 		//TODO: displayProductInfo()
 		System.out.println("Delete Product");
 		int productID = ConsoleUI.getInt("Enter Product ID: ");
-		char confirmDeletion = ConsoleUI.getString("Are you sure you want to delete this product? (Y/N) ");
+		String confirmDeletion = ConsoleUI.getString("Are you sure you want to delete this product? (Y/N) ");
 		//TODO: IF confirmDeletion.equals Y
 		// then InventoryRepository.deserializeProduct(productID)
 		// StandardOpenOption.DELETE
+		//TODO: InventoryRepository.serializeProduct(productID)
 	}
 }

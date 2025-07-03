@@ -56,7 +56,7 @@ public class Menu {
 						break;
 					}
 					System.out.println("add a discount");
-					selectedDiscount = ConsoleUI.getString("select a discount: ");
+					selectedDiscount = String.valueOf(ConsoleUI.getString("select a discount: "));
 					if (selectedDiscount.equals("silver discount")) {
 						System.out.println("you selected the silver discount \n");
 						break;

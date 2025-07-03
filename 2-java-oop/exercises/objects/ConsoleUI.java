@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ConsoleUI {
 	public static Scanner scanner = new Scanner(System.in);
 
-	public static char getString(String prompt) {
+	public static String getString(String prompt) {
 		System.out.print(prompt);
 		return scanner.nextLine();
 	}
@@ -37,5 +37,6 @@ public class ConsoleUI {
 	}
 
 	public static int scanner(String s) {
+		return 0;
 	}
 }

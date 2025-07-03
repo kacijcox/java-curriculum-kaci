@@ -30,7 +30,7 @@ public class CompositionExercise {
 					BudgetItem incomeItem = new BudgetItem(income);
 					budgetObject.addIncome(incomeItem);
 					System.out.println("enter description");
-					String description = ConsoleUI.getString("description: ");
+					String description = String.valueOf(ConsoleUI.getString("description: "));
 					incomeItem.setDescription(description);
 					System.out.println("enter how many times will occur annually :");
 					int repeatCount = ConsoleUI.getInt("repeats: ");
@@ -41,7 +41,7 @@ public class CompositionExercise {
 					BudgetItem expenseItem = new BudgetItem(expense);
 					budgetObject.addExpense(expenseItem);
 					System.out.println("enter description: ");
-					description = ConsoleUI.getString("description: ");
+					description = String.valueOf(ConsoleUI.getString("description: "));
 					expenseItem.setDescription(description);
 					System.out.println("enter how many times will occur annually :");
 					repeatCount = ConsoleUI.getInt("repeats: ");
