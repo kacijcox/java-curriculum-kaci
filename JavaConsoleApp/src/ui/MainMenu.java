@@ -1,5 +1,5 @@
 package ui;
-
+import model.Product;
 import objects.ConsoleUI;
 import service.InventoryService;
 

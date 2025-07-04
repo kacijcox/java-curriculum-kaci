@@ -1,1 +1,2 @@
-//persistent storage
+[productID, productName, price, quantity]
+1,apples,0.22,1

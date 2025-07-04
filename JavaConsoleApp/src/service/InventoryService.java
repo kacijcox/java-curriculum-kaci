@@ -1,11 +1,14 @@
 package service;
+import data.InventoryRepository;
+import model.Product;
 import objects.ConsoleUI;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public class InventoryService {
+
+public class InventoryService extends InventoryRepository {
+
 	//business logic
 	//user interaction
 	//repo calls
@@ -13,11 +16,13 @@ public class InventoryService {
 	public static void addProduct() {
 		System.out.println("Create New Product");
 		int productID = ConsoleUI.getInt("Enter Product ID: ");
-		int productName = ConsoleUI.getInt("Enter Product Name: : ");
-		int productPrice = ConsoleUI.getInt("Enter Product Price: : ");
+		String productName = String.valueOf(ConsoleUI.getString("Enter Product Name: : "));
+		double productPrice = ConsoleUI.getDouble("Enter Product Price: ");
+		int productQuantity = ConsoleUI.getInt("Enter Product Quantity: ");
 		System.out.println("Product Added Successfully");
-		// TODO: InventoryRepository.serialize(productID)
-		// TODO: StandardOpenOption.CREATE
+		Path productFile = Paths.get("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
+		Product product = new Product(productID, productQuantity, productName, productPrice);
+		InventoryRepository.serializeProduct(productFile, product);
 		// TODO: return the Menu()
 	}
 
@@ -51,4 +56,7 @@ public class InventoryService {
 		// StandardOpenOption.DELETE
 		//TODO: InventoryRepository.serializeProduct(productID)
 	}
+
+	public static void inventorySearch() {}
+	//use lambdas
 }

@@ -1,17 +1,18 @@
 package model;
 
 public class Product {
-	int productID;
-	String productName;
-	int quantity;
-	double price;
+	public int productID;
+	public String productName;
+	public int productQuantity;
+	public double productPrice;
 
-	public Product(int productID, String productName, int quantity, double price) {
+	public Product(int productID, int productQuantity, String productName, double productPrice) {
 		this.productID = productID;
+		this.productQuantity = productQuantity;
 		this.productName = productName;
-		this.quantity = quantity;
-		this.price = price;
+		this.productPrice = productPrice;
 	}
+
 
 	public int getProductID() {
 		return productID;
@@ -29,29 +30,19 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public int getQuantity() {
-		return quantity;
+	public int getProductQuantity() {
+		return productQuantity;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setProductQuantity(int productQuantity) {
+		this.productQuantity = productQuantity;
 	}
 
-	public double getPrice() {
-		return price;
+	public double getProductPrice() {
+		return productPrice;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	@Override
-	public String toString() {
-		return "Product{" +
-				"productID=" + productID +
-				", productName='" + productName + '\'' +
-				", quantity=" + quantity +
-				", price=" + price +
-				'}';
+	public void setProductPrice(double productPrice) {
+		this.productPrice = productPrice;
 	}
 }
