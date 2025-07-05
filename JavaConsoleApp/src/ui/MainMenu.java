@@ -1,11 +1,14 @@
 package ui;
+import data.InventoryRepository;
 import model.Product;
 import objects.ConsoleUI;
 import service.InventoryService;
 
+import java.io.IOException;
+
 public class MainMenu {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 
 		while (true) {
@@ -25,7 +28,7 @@ public class MainMenu {
 					InventoryService.addProduct();
 					break;
 				case 2:
-					//TODO: InventoryService.ViewProduct()
+					InventoryService.displayAllProducts();
 					break;
 				case 3:
 					//TODO: InventoryService.SearchProduct()

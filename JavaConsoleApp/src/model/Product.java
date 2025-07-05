@@ -1,6 +1,9 @@
 package model;
 
+import java.util.HashMap;
+
 public class Product {
+	public static HashMap<Object, Object> products;
 	public int productID;
 	public String productName;
 	public int productQuantity;
@@ -14,9 +17,7 @@ public class Product {
 	}
 
 
-	public int getProductID() {
-		return productID;
-	}
+	public int getProductID() {return productID;}
 
 	public void setProductID(int productID) {
 		this.productID = productID;
@@ -44,5 +45,15 @@ public class Product {
 
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "Product{" +
+				"productID=" + productID +
+				", productName='" + productName + '\'' +
+				", productQuantity=" + productQuantity +
+				", productPrice=" + productPrice +
+				'}';
 	}
 }

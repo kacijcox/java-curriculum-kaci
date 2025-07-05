@@ -3,6 +3,7 @@ import data.InventoryRepository;
 import model.Product;
 import objects.ConsoleUI;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -13,17 +14,15 @@ public class InventoryService extends InventoryRepository {
 	//user interaction
 	//repo calls
 
-	public static void addProduct() {
+	public static void addProduct() throws IOException {
 		System.out.println("Create New Product");
 		int productID = ConsoleUI.getInt("Enter Product ID: ");
-		String productName = String.valueOf(ConsoleUI.getString("Enter Product Name: : "));
+		String productName = String.valueOf(ConsoleUI.getString("Enter Product Name: "));
 		double productPrice = ConsoleUI.getDouble("Enter Product Price: ");
 		int productQuantity = ConsoleUI.getInt("Enter Product Quantity: ");
-		System.out.println("Product Added Successfully");
-		Path productFile = Paths.get("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 		Product product = new Product(productID, productQuantity, productName, productPrice);
-		InventoryRepository.serializeProduct(productFile, product);
-		// TODO: return the Menu()
+		InventoryRepository.add(product);
+		System.out.println("Product Added Successfully");
 	}
 
 	public static void updateProduct() {
@@ -57,6 +56,9 @@ public class InventoryService extends InventoryRepository {
 		//TODO: InventoryRepository.serializeProduct(productID)
 	}
 
-	public static void inventorySearch() {}
-	//use lambdas
+	public static void displayAllProducts() {
+		InventoryRepository.displayAll();
+	}
 }
+
+
