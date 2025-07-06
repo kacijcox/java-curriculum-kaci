@@ -36,11 +36,11 @@ public class InventoryRepository {
 
 	}
 
-	public static void serializeProduct(Path productFile) throws IOException {
+	public static void serializeProduct(Path productFile, String csvLine) throws IOException {
 		if (Files.exists(productFile)) {
 			Files.write(productFile, csvLine.getBytes(), StandardOpenOption.APPEND);
 		} else {
-
+			Files.write(productFile, csvLine.getBytes(), StandardOpenOption.CREATE);
 		}
 	}
 
@@ -66,7 +66,7 @@ public class InventoryRepository {
 				product.getProductQuantity() + "\n";
 
 		try {
-			serializeProduct(productFile);
+			serializeProduct(productFile, csvLine);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

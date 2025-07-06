@@ -1,9 +1,6 @@
 package ui;
-import data.InventoryRepository;
-import model.Product;
 import objects.ConsoleUI;
 import service.InventoryService;
-
 import java.io.IOException;
 
 public class MainMenu {

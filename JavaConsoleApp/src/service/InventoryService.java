@@ -2,10 +2,8 @@ package service;
 import data.InventoryRepository;
 import model.Product;
 import objects.ConsoleUI;
-
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 
 
 public class InventoryService extends InventoryRepository {

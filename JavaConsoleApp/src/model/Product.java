@@ -3,11 +3,12 @@ package model;
 import java.util.HashMap;
 
 public class Product {
-	public static HashMap<Object, Object> products;
 	public int productID;
 	public String productName;
 	public int productQuantity;
 	public double productPrice;
+	public static HashMap<String, Integer> products = new HashMap<>();
+
 
 	public Product(int productID, int productQuantity, String productName, double productPrice) {
 		this.productID = productID;
