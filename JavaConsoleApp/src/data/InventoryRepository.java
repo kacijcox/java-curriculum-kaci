@@ -8,6 +8,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
+import static model.Product.products;
+
 public class InventoryRepository {
 	static final Path productFile = Paths.get("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 	static String csvLine;
@@ -56,7 +58,7 @@ public class InventoryRepository {
 
 	public static void add(Product product) throws IOException {
 		csvLine =
-						product.getProductID() + ", " +
+				product.getProductID() + "," +
 						product.getProductName() + "," +
 						product.getProductPrice() + "," +
 						product.getProductQuantity() + "\n";
@@ -87,4 +89,36 @@ public class InventoryRepository {
 					product.getProductPrice());
 		}
 	}
+
+
+	public static void load() throws IOException {
+		ArrayList<Product> productList = deserializeProduct();
+
+		for (Product product : productList) {
+			Product.products.put(String.valueOf(product.getProductID()), product);
+		}
+	}
+
+
+	public static void delete(Product productID, int userSelectionProductID) {
+		try {
+			ArrayList<Product> productList = deserializeProduct();
+
+			for (Product product : productList) {
+				if (product.getProductID() == userSelectionProductID) {
+					productList.remove(product);
+					Files.write(productFile, "productID, productName, price, quantity\n".getBytes());
+					for (Product item : productList) {
+						csvLine = item.getProductID() + "," + item.getProductName() + "," +
+							item.getProductPrice() + "," + item.getProductQuantity() + "\n";
+						Files.write(productFile, csvLine.getBytes(), StandardOpenOption.APPEND);
+					}
+					break;
+				}
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
+

@@ -31,7 +31,7 @@ public class MainMenu {
 					//TODO: InventoryService.SearchProduct()
 					break;
 				case 4:
-					InventoryService.updateProduct();
+					//TODO: InventoryService.updateProduct();
 					break;
 				case 5:
 					InventoryService.deleteProduct();
@@ -40,7 +40,7 @@ public class MainMenu {
 					//TODO: InventoryService.SaveInventory()
 					break;
 				case 7:
-					//TODO: InventoryService.LoadInventory()
+					InventoryService.loadFromFile();
 					break;
 				case 8:
 					System.exit(0);

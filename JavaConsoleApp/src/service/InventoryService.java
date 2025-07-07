@@ -43,19 +43,25 @@ public class InventoryService extends InventoryRepository {
 		//TODO: any key returns the Menu()
 	}
 
-	public static void deleteProduct() {
+	public static void deleteProduct() throws IOException {
 		//TODO: displayProductInfo()
+		InventoryRepository.displayAll();
 		System.out.println("Delete Product");
-		int productID = ConsoleUI.getInt("Enter Product ID: ");
-		String confirmDeletion = ConsoleUI.getString("Are you sure you want to delete this product? (Y/N) ");
+		int userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
+		InventoryRepository.delete(Product.products.get(String.valueOf(userSelectionProductID)), userSelectionProductID);//		String confirmDeletion = ConsoleUI.getString("Are you sure you want to delete this product? (Y/N) ");
 		//TODO: IF confirmDeletion.equals Y
 		// then InventoryRepository.deserializeProduct(productID)
 		// StandardOpenOption.DELETE
 		//TODO: InventoryRepository.serializeProduct(productID)
+		System.out.println("Item successfully deleted");
 	}
 
 	public static void displayAllProducts() throws IOException {
 		InventoryRepository.displayAll();
+	}
+
+	public static void loadFromFile() throws IOException {
+		InventoryRepository.load();
 	}
 }
 

@@ -2,7 +2,7 @@ package data;
 import model.Product;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,14 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InventoryRepositoryTest {
-	List<Product> testProducts;
-
-
-	@BeforeEach
-	public void setup() {
-		testProducts = new ArrayList<>();
-
-	}
+	List<String> testProducts = new ArrayList<String>();
+	static final Path productFile = Paths.get("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 
 	@Test
 	public void InventoryRepository_add_productAdd() {
@@ -32,6 +26,13 @@ public class InventoryRepositoryTest {
 			e.printStackTrace();
 		}
 		Assert.assertNotNull(result);
+	}
+	@Test
+	public void InventoryRepository_serialize_serializeAProduct() {
+
+
+
+
 	}
 }
 

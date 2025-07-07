@@ -7,7 +7,7 @@ public class Product {
 	public String productName;
 	public int productQuantity;
 	public double productPrice;
-	public static HashMap<String, Integer> products = new HashMap<>();
+	public static HashMap<String, Product> products = new HashMap<String, Product>();
 
 
 	public Product(int productID, int productQuantity, String productName, double productPrice) {
