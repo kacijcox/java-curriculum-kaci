@@ -54,7 +54,7 @@ public class InventoryService extends InventoryRepository {
 		//TODO: InventoryRepository.serializeProduct(productID)
 	}
 
-	public static void displayAllProducts() {
+	public static void displayAllProducts() throws IOException {
 		InventoryRepository.displayAll();
 	}
 }
