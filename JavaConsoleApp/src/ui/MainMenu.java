@@ -1,9 +1,14 @@
 package ui;
+import model.Product;
 import objects.ConsoleUI;
 import service.InventoryService;
 import java.io.IOException;
 
+import static service.InventoryService.displayAll;
+
 public class MainMenu {
+	public static int userSelectionProductID;
+
 
 	public static void main(String[] args) throws IOException {
 
@@ -22,25 +27,53 @@ public class MainMenu {
 			int selectedChoice = ConsoleUI.getInt("enter selection: \n");
 			switch (selectedChoice) {
 				case 1:
-					InventoryService.addProduct();
+					System.out.println("Create New Product");
+					int productID = ConsoleUI.getInt("Enter Product ID: ");
+					String productName = String.valueOf(ConsoleUI.getString("Enter Product Name: "));
+					double productPrice = ConsoleUI.getDouble("Enter Product Price: ");
+					int productQuantity = ConsoleUI.getInt("Enter Product Quantity: ");
+					Product product = new Product(productID, productQuantity, productName, productPrice);
+					InventoryService.addProduct(product);
+					System.out.println("Product Added Successfully");
 					break;
 				case 2:
-					InventoryService.displayAllProducts();
+					displayAll();
 					break;
 				case 3:
-					//TODO: InventoryService.SearchProduct()
+					userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
+					InventoryService.searchProduct(userSelectionProductID);
 					break;
 				case 4:
-					//TODO: InventoryService.updateProduct();
+					displayAll();
+					System.out.println("Update Product");
+					int updateProductID = ConsoleUI.getInt("Enter Product ID: ");
+					System.out.println("Current Details: ");
+					//		InventoryRepository.deserializeProduct(Product.products.get(String.valueOf(updateProductID)))
+					//TODO: else "product does not exist"
+					//TODO: return the Menu()
+					//--- current details display ---
+					int quantity = ConsoleUI.scanner("Enter new quantity (press enter to skip)");
+					int price = ConsoleUI.scanner("Enter new price (press enter to skip)");
+					//TODO: APPEND productID.price
+					//TODO: InventoryRepository.serializeProduct(productID)
+					// StandardOpenOption.APPEND
+					System.out.println("Product successfully updated");
+					int returnMenu = ConsoleUI.scanner("Press enter to return to the main menu");
+					//TODO: any key returns the Menu()
 					break;
 				case 5:
+					displayAll();
+					System.out.println("Delete Product");
+					userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
 					InventoryService.deleteProduct();
+					System.out.println("Item successfully deleted");
+					displayAll();
 					break;
 				case 6:
-					//TODO: InventoryService.SaveInventory()
+					//InventoryService.saveInventory();
 					break;
 				case 7:
-					InventoryService.loadFromFile();
+					InventoryService.loadInventory();
 					break;
 				case 8:
 					System.exit(0);

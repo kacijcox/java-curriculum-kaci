@@ -1,5 +1,6 @@
 package data;
 import model.Product;
+import ui.MainMenu;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,30 +9,27 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-import static model.Product.products;
 
 public class InventoryRepository {
 	static final Path productFile = Paths.get("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 	static String csvLine;
-	private static String line;
 
-	public static void main(String[] args) throws IOException {
-		List<String> products = new ArrayList<>();
-		String header = "productID, productName, price, quantity";
-		products.add(header);
-
-		try {
-			Files.write(productFile, products, StandardOpenOption.CREATE);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-
+	public static void add(Product product) throws IOException {
+		serializeProduct(product);
 	}
 
-	public static void serializeProduct(Path productFile, String csvLine) throws IOException {
+	public static ArrayList<Product> serializeProduct(Product product) throws IOException {
+		ArrayList<Product> productList = new ArrayList<>();
+
 		if (Files.exists(InventoryRepository.productFile)) {
+			csvLine =
+					product.getProductID() + "," +
+							product.getProductName() + "," +
+							product.getProductPrice() + "," +
+							product.getProductQuantity() + "\n";
 			Files.write(InventoryRepository.productFile, csvLine.getBytes(), StandardOpenOption.APPEND);
 		}
+		return productList;
 	}
 
 	public static ArrayList<Product> deserializeProduct() {
@@ -56,51 +54,19 @@ public class InventoryRepository {
 		return productList;
 	}
 
-	public static void add(Product product) throws IOException {
-		csvLine =
-				product.getProductID() + "," +
-						product.getProductName() + "," +
-						product.getProductPrice() + "," +
-						product.getProductQuantity() + "\n";
-		try {
-			serializeProduct(productFile, csvLine);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
 
-	public static void displayAll() throws IOException {
-		ArrayList<Product> products = deserializeProduct();
-
-		if (products.isEmpty()) {
-			System.out.println("No products to display");
-			return;
-		}
-
-		System.out.println("===== Inventory List =====");
-		System.out.println("ID | Name | Quantity | Price");
-		System.out.println("-----------------------------------------");
-
-		for (Product product : products) {
-			System.out.printf("%d | %s | %d | $%.2f%n",
-					product.getProductID(),
-					product.getProductName(),
-					product.getProductQuantity(),
-					product.getProductPrice());
-		}
-	}
-
-
-	public static void load() throws IOException {
+	public static Product load() throws IOException {
 		ArrayList<Product> productList = deserializeProduct();
 
 		for (Product product : productList) {
 			Product.products.put(String.valueOf(product.getProductID()), product);
 		}
+		return null;
 	}
 
 
-	public static void delete(Product productID, int userSelectionProductID) {
+	public static void delete(int userSelectionProductID, Product productID) {
+
 		try {
 			ArrayList<Product> productList = deserializeProduct();
 
@@ -110,7 +76,7 @@ public class InventoryRepository {
 					Files.write(productFile, "productID, productName, price, quantity\n".getBytes());
 					for (Product item : productList) {
 						csvLine = item.getProductID() + "," + item.getProductName() + "," +
-							item.getProductPrice() + "," + item.getProductQuantity() + "\n";
+								item.getProductPrice() + "," + item.getProductQuantity() + "\n";
 						Files.write(productFile, csvLine.getBytes(), StandardOpenOption.APPEND);
 					}
 					break;
@@ -120,5 +86,24 @@ public class InventoryRepository {
 			throw new RuntimeException(e);
 		}
 	}
+
+	public static Product findByID(int userSelectionProductID) {
+		try {
+			ArrayList<Product> productList = deserializeProduct();
+
+			for (Product product : productList) {
+				if (product.getProductID() == MainMenu.userSelectionProductID) {
+					System.out.println(product.getProductName() + " " + product.getProductPrice() + " " + product.getProductQuantity());
+					return product;
+				}
+			}
+			return null;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
+
+
+
 

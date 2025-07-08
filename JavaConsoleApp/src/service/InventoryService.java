@@ -1,68 +1,81 @@
+//business logic
+//user interaction
+//repo calls
+
 package service;
 import data.InventoryRepository;
 import model.Product;
-import objects.ConsoleUI;
 import java.io.IOException;
-
+import java.util.ArrayList;
+import static model.Product.products;
+import static ui.MainMenu.userSelectionProductID;
 
 
 public class InventoryService extends InventoryRepository {
 
-	//business logic
-	//user interaction
-	//repo calls
 
-	public static void addProduct() throws IOException {
-		System.out.println("Create New Product");
-		int productID = ConsoleUI.getInt("Enter Product ID: ");
-		String productName = String.valueOf(ConsoleUI.getString("Enter Product Name: "));
-		double productPrice = ConsoleUI.getDouble("Enter Product Price: ");
-		int productQuantity = ConsoleUI.getInt("Enter Product Quantity: ");
-		Product product = new Product(productID, productQuantity, productName, productPrice);
-		InventoryRepository.add(product);
-		System.out.println("Product Added Successfully");
+	public static void addProduct(Product product) throws IOException {
+		if (products.containsKey(String.valueOf(product.getProductID()))) {
+			System.out.println("The product exists already");
+		} else {
+			InventoryRepository.add(product);
+			products.put(String.valueOf(product.getProductID()), product);
+		}
 	}
 
-	public static void updateProduct() {
-		//TODO: displayProductInfo()
-		System.out.println("Update Product");
-		int productID = ConsoleUI.getInt("Enter Product ID: ");
-		System.out.println("Current Details: ");
-		//TODO: IF ID exists then
-		//TODO: InventoryRepository.deserializeProduct(productID)
-		//TODO: else "product does not exist"
-		//TODO: return the Menu()
-		//--- current details display ---
-		int quantity = ConsoleUI.scanner("Enter new quantity (press enter to skip)");
-		int price = ConsoleUI.scanner("Enter new price (press enter to skip)");
-		//TODO: APPEND productID.price
-		//TODO: InventoryRepository.serializeProduct(productID)
-		// StandardOpenOption.APPEND
-		System.out.println("Product successfully updated");
-		int returnMenu = ConsoleUI.scanner("Press enter to return to the main menu");
-		//TODO: any key returns the Menu()
+	public static void updateProduct() throws IOException {
+
+
 	}
 
 	public static void deleteProduct() throws IOException {
-		//TODO: displayProductInfo()
-		InventoryRepository.displayAll();
-		System.out.println("Delete Product");
-		int userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
-		InventoryRepository.delete(Product.products.get(String.valueOf(userSelectionProductID)), userSelectionProductID);//		String confirmDeletion = ConsoleUI.getString("Are you sure you want to delete this product? (Y/N) ");
-		//TODO: IF confirmDeletion.equals Y
-		// then InventoryRepository.deserializeProduct(productID)
-		// StandardOpenOption.DELETE
-		//TODO: InventoryRepository.serializeProduct(productID)
-		System.out.println("Item successfully deleted");
+		InventoryRepository.delete(userSelectionProductID, products.get(String.valueOf(userSelectionProductID)));
+
+		if (products.isEmpty()) {
+			System.out.println("No products to display");
+			return;
+		}
 	}
 
-	public static void displayAllProducts() throws IOException {
-		InventoryRepository.displayAll();
+	public static void displayAll() throws IOException {
+		ArrayList<Product> products = deserializeProduct();
+
+		if (products.isEmpty()) {
+			System.out.println("No products to display");
+			return;
+		}
+
+		System.out.println("===== Inventory List =====");
+		System.out.println("ID | Name | Quantity | Price");
+		System.out.println("-----------------------------------------");
+
+		for (Product product : products) {
+			System.out.printf("%d | %s | %d | $%.2f%n",
+					product.getProductID(),
+					product.getProductName(),
+					product.getProductQuantity(),
+					product.getProductPrice());
+		}
 	}
 
-	public static void loadFromFile() throws IOException {
-		InventoryRepository.load();
+
+	public static void loadInventory() throws IOException {
+		ArrayList<Product> productList = deserializeProduct();
+		if (productList.isEmpty()) {
+			System.out.println("No products exist to load");
+		} else {
+			InventoryRepository.load();
+		}
+	}
+
+	public static void searchProduct(int userSelectionProductID) throws IOException {
+		ArrayList<Product> productList = deserializeProduct();
+
+		if (productList.isEmpty()) {
+			System.out.println("No products exist to search");
+		} else {
+			InventoryRepository.findByID(userSelectionProductID);
+		}
 	}
 }
-
 
