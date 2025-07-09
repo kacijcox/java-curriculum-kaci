@@ -9,28 +9,46 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import static model.Product.products;
 import static ui.MainMenu.userSelectionProductID;
 
 
 public class InventoryService extends InventoryRepository {
+	static final Path productFile = Paths.get("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 
 
 	public static void addProduct(Product product) throws IOException {
-		if (products.containsKey(String.valueOf(product.getProductID()))) {
-			System.out.println("The product exists already");
-		} else {
-			InventoryRepository.add(product);
-			products.put(String.valueOf(product.getProductID()), product);
+		try {
+			products.containsKey(String.valueOf(product.getProductID()));
+
+			if (!products.containsKey(String.valueOf(product.getProductID()))) {
+				InventoryRepository.add(product);
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static ArrayList<Product> deserializeProduct(BufferedReader reader) throws IOException {
+		try {
+			ArrayList<Product> productList = InventoryRepository.deserialize(reader);
+			return productList;
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
 	public static void deleteProduct() throws IOException {
-		InventoryRepository.delete(userSelectionProductID, products.get(String.valueOf(userSelectionProductID)));
+		try {
+			InventoryRepository.delete(userSelectionProductID, products.get(String.valueOf(userSelectionProductID)));
 
-		if (products.isEmpty()) {
-			System.out.println("No products to display");
+			if (products.isEmpty()) {
+				System.out.println("No products to display");
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -42,10 +60,14 @@ public class InventoryService extends InventoryRepository {
 	}
 
 	public static void findByID(int userSelectionProductID) throws IOException {
-		if (products.isEmpty()) {
-			System.out.println("No products to display");
+		try {
+			if (products.isEmpty()) {
+				System.out.println("No products to display");
+			}
+			InventoryRepository.find(userSelectionProductID);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
-		InventoryRepository.find(userSelectionProductID);
 	}
 
 	public static void searchProduct(int userSelectionProductID) throws IOException {
@@ -63,26 +85,41 @@ public class InventoryService extends InventoryRepository {
 	}
 
 	public static void saveProduct() throws IOException {
-		if (products.isEmpty()) {
-			System.out.println("There is nothing to save");
-		} else {
-			InventoryRepository.save();
+		try {
+			if (products.isEmpty()) {
+				System.out.println("There is nothing to save");
+			} else {
+				InventoryRepository.save();
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
 	public static void loadProduct() throws IOException {
-		if (products.isEmpty()) {
-			System.out.println("There is nothing to load");
-		} else {
-			InventoryRepository.load();
+		try {
+			if (products.isEmpty()) {
+				System.out.println("There is nothing to load");
+			} else {
+				InventoryRepository.load();
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
 
 	public static void updateProduct(Product product, int userSelectionProductID) throws IOException {
-		if (product == null) {
-			System.out.println("Product not found");
+		try {
+			if (products.isEmpty()) {
+				System.out.println("Product not found");
+			}
+			else {
+				InventoryRepository.update(product, userSelectionProductID);
+			}
 		}
-		InventoryRepository.update(userSelectionProductID);
+		catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
