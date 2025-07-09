@@ -44,7 +44,7 @@ public class MainMenu {
 					break;
 				case 3:
 					userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
-					InventoryService.searchProduct(userSelectionProductID, new BufferedReader(new InputStreamReader(System.in)));
+					InventoryService.searchProduct(userSelectionProductID);
 					break;
 				case 4:
 					userSelectionProductID = ConsoleUI.getInt("Enter New Product ID: ");

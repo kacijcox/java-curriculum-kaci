@@ -7,6 +7,7 @@ import data.InventoryRepository;
 import model.Product;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,9 +32,9 @@ public class InventoryService extends InventoryRepository {
 		}
 	}
 
-	public static ArrayList<Product> deserializeProduct(BufferedReader reader) throws IOException {
+	public static ArrayList<Product> deserializeProduct() throws IOException {
 		try {
-			ArrayList<Product> productList = InventoryRepository.deserialize(reader);
+			ArrayList<Product> productList = InventoryRepository.deserialize();
 			return productList;
 		} catch (IOException e) {
 			System.out.println("Invalid Input");;
@@ -67,27 +68,26 @@ public class InventoryService extends InventoryRepository {
 		}
 	}
 
-	public static void findByID(int userSelectionProductID, BufferedReader reader) throws IOException {
+	public static void findByID(int userSelectionProductID) throws IOException {
 		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 		try {
-			reader = Files.newBufferedReader(savedFile);
-			InventoryRepository.find(userSelectionProductID, reader);
+			BufferedReader reader = Files.newBufferedReader(savedFile);
+			InventoryRepository.find(userSelectionProductID);
 		} catch (Exception e) {
 			System.out.println("Invalid Input");
 		}
 	}
 
-	public static void searchProduct(int userSelectionProductID, BufferedReader reader) throws IOException {
+	public static void searchProduct(int userSelectionProductID) throws IOException {
 		Path inventoryFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
-		ArrayList<Product> productList = deserializeProduct(reader);
-
 
 		try {
-			reader = Files.newBufferedReader(inventoryFile);
+			BufferedReader reader = Files.newBufferedReader(inventoryFile);
+			ArrayList<Product> productList = deserializeProduct();
 			if (productList.isEmpty()) {
 				System.out.println("No Products Exist To Search");
 			} else {
-				InventoryRepository.search(userSelectionProductID, reader);
+				InventoryRepository.search(userSelectionProductID);
 			}
 		} catch (IOException e) {
 			System.out.println("Invalid Input");
