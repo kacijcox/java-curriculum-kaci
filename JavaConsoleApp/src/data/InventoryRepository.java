@@ -50,7 +50,9 @@ public class InventoryRepository {
 						Integer.parseInt(csvLine[0]),
 						Integer.parseInt(csvLine[3]),
 						csvLine[1],
-						Double.parseDouble(csvLine[2]));
+						Double.parseDouble(csvLine[2]),
+						Boolean.parseBoolean(csvLine[4]));
+
 				productList.add(products);
 			}
 		} catch (IOException e) {

@@ -24,7 +24,7 @@ public class MainMenu {
 							"6. Save Inventory to File\n" +
 							"7. Load Inventory from File\n" +
 							"8. Exit");
-			int selectedChoice = ConsoleUI.getInt("enter selection: \n");
+			int selectedChoice = ConsoleUI.getInt("Enter selection: \n");
 			switch (selectedChoice) {
 				case 1:
 					System.out.println("Create New Product");
@@ -32,7 +32,8 @@ public class MainMenu {
 					String productName = String.valueOf(ConsoleUI.getString("Enter Product Name: "));
 					double productPrice = ConsoleUI.getDouble("Enter Product Price: ");
 					int productQuantity = ConsoleUI.getInt("Enter Product Quantity: ");
-					Product product = new Product(productID, productQuantity, productName, productPrice);
+					boolean isPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is the product perishable? (true/false) "));
+					Product product = new Product(productID, productQuantity, productName, productPrice, isPerishable);
 					InventoryService.addProduct(product);
 					System.out.println("Product Added Successfully");
 					break;

@@ -16,7 +16,7 @@ public class ConsoleUI {
 				System.out.print(prompt);
 				return Integer.parseInt(scanner.nextLine());
 			} catch (NumberFormatException e) {
-				System.out.println("enter a valid number");
+				System.out.println("Enter a valid number");
 			}
 		}
 	}
@@ -27,13 +27,17 @@ public class ConsoleUI {
 				System.out.print(prompt);
 				return Double.parseDouble(scanner.nextLine());
 			} catch (NumberFormatException e) {
-				System.out.println("enter valid number");
+				System.out.println("Enter valid number");
 			}
 		}
 	}
 
 	public static boolean getBoolean(String prompt) {
-		return false;
+		if (scanner.nextLine().toLowerCase().startsWith("y")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public static int scanner(String s) {

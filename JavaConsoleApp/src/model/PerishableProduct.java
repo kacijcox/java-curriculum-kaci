@@ -1,8 +1,7 @@
 package model;
 
 public class PerishableProduct {
-	public static boolean isPerishable;
-
+	public boolean isPerishable;
 
 	public PerishableProduct(boolean isPerishable) {
 		this.isPerishable = isPerishable;
@@ -15,4 +14,5 @@ public class PerishableProduct {
 	public void setPerishable(boolean perishable) {
 		isPerishable = perishable;
 	}
+
 }

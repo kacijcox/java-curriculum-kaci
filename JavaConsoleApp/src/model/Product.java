@@ -1,16 +1,20 @@
 package model;
-
 import java.util.HashMap;
 
-public class Product {
+
+
+public class Product extends PerishableProduct {
 	public int productID;
 	public String productName;
 	public int productQuantity;
 	public double productPrice;
+	private boolean isPerishable;
 	public static HashMap<String, Product> products = new HashMap<String, Product>();
 
 
-	public Product(int productID, int productQuantity, String productName, double productPrice) {
+	public Product(int productID, int productQuantity, String productName, double productPrice, boolean isPerishable) {
+		super(isPerishable);
+		this.isPerishable = isPerishable;
 		this.productID = productID;
 		this.productQuantity = productQuantity;
 		this.productName = productName;
@@ -55,6 +59,7 @@ public class Product {
 				", productName='" + productName + '\'' +
 				", productQuantity=" + productQuantity +
 				", productPrice=" + productPrice +
+				", isPerishable=" + isPerishable +
 				'}';
 	}
 }
