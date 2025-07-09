@@ -2,7 +2,10 @@ package ui;
 import model.Product;
 import objects.ConsoleUI;
 import service.InventoryService;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+
 import static service.InventoryService.displayAll;
 
 public class MainMenu {
@@ -41,7 +44,7 @@ public class MainMenu {
 					break;
 				case 3:
 					userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
-					InventoryService.searchProduct(userSelectionProductID);
+					InventoryService.searchProduct(userSelectionProductID, new BufferedReader(new InputStreamReader(System.in)));
 					break;
 				case 4:
 					userSelectionProductID = ConsoleUI.getInt("Enter New Product ID: ");
@@ -52,7 +55,6 @@ public class MainMenu {
 					Product updatedProduct = new Product(userSelectionProductID, productQuantity, productName, productPrice, isPerishable);
 					InventoryService.updateProduct(updatedProduct, userSelectionProductID);
 					break;
-
 				case 5:
 					displayAll();
 					System.out.println("Delete Product");
