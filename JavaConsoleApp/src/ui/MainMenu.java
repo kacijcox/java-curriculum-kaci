@@ -1,9 +1,11 @@
 package ui;
+import data.InventoryRepository;
 import model.Product;
 import objects.ConsoleUI;
 import service.InventoryService;
 import java.io.IOException;
 
+import static model.Product.products;
 import static service.InventoryService.displayAll;
 
 public class MainMenu {
@@ -32,10 +34,10 @@ public class MainMenu {
 					String productName = String.valueOf(ConsoleUI.getString("Enter Product Name: "));
 					double productPrice = ConsoleUI.getDouble("Enter Product Price: ");
 					int productQuantity = ConsoleUI.getInt("Enter Product Quantity: ");
-					boolean isPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is the product perishable? (true/false) "));
+					boolean isPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is the product perishable? (true/false): "));
 					Product product = new Product(productID, productQuantity, productName, productPrice, isPerishable);
 					InventoryService.addProduct(product);
-					System.out.println("Product Added Successfully");
+					System.out.println("Product Added Successfully\n");
 					break;
 				case 2:
 					displayAll();
@@ -45,33 +47,26 @@ public class MainMenu {
 					InventoryService.searchProduct(userSelectionProductID);
 					break;
 				case 4:
-					displayAll();
-					System.out.println("Update Product");
-					int updateProductID = ConsoleUI.getInt("Enter Product ID: ");
-					System.out.println("Current Details: ");
-					//		InventoryRepository.deserializeProduct(Product.products.get(String.valueOf(updateProductID)))
-					//TODO: else "product does not exist"
-					//TODO: return the Menu()
-					//--- current details display ---
-					int quantity = ConsoleUI.scanner("Enter new quantity (press enter to skip)");
-					int price = ConsoleUI.scanner("Enter new price (press enter to skip)");
-					//TODO: APPEND productID.price
-					//TODO: InventoryRepository.serializeProduct(productID)
-					// StandardOpenOption.APPEND
-					System.out.println("Product successfully updated");
-					int returnMenu = ConsoleUI.scanner("Press enter to return to the main menu");
-					//TODO: any key returns the Menu()
+					userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
+					productName = ConsoleUI.getString("Enter Product Name: ");
+					productPrice = ConsoleUI.getDouble("Enter Product Price: ");
+					productQuantity = ConsoleUI.getInt("Enter Product Quantity: ");
+					isPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is the product perishable? (true/false): "));
+					Product updatedProduct = new Product(userSelectionProductID, productQuantity, productName, productPrice, isPerishable);
+					InventoryService.updateProduct(updatedProduct, userSelectionProductID);
 					break;
+
 				case 5:
 					displayAll();
 					System.out.println("Delete Product");
 					userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
 					InventoryService.deleteProduct();
-					System.out.println("Item successfully deleted");
+					System.out.println("Item successfully deleted\n");
 					displayAll();
 					break;
 				case 6:
 					InventoryService.saveProduct();
+					System.out.println("Current inventory saved to file\n");
 					break;
 				case 7:
 					InventoryService.loadProduct();

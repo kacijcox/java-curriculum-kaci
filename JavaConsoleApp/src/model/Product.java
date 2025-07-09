@@ -21,6 +21,9 @@ public class Product extends PerishableProduct {
 		this.productPrice = productPrice;
 	}
 
+	public boolean getPerishable() {return isPerishable;}
+
+	public boolean setPerishable() {return isPerishable = !isPerishable;}
 
 	public int getProductID() {return productID;}
 

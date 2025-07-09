@@ -26,11 +26,6 @@ public class InventoryService extends InventoryRepository {
 		}
 	}
 
-	public static void updateProduct() throws IOException {
-
-
-	}
-
 	public static void deleteProduct() throws IOException {
 		InventoryRepository.delete(userSelectionProductID, products.get(String.valueOf(userSelectionProductID)));
 
@@ -40,7 +35,17 @@ public class InventoryService extends InventoryRepository {
 	}
 
 	public static void displayAll() throws IOException {
-		System.out.println(products);
+		if (products.isEmpty()) {
+			System.out.println("No products to display");
+		}
+		InventoryRepository.display();
+	}
+
+	public static void findByID(int userSelectionProductID) throws IOException {
+		if (products.isEmpty()) {
+			System.out.println("No products to display");
+		}
+		InventoryRepository.find(userSelectionProductID);
 	}
 
 	public static void searchProduct(int userSelectionProductID) throws IOException {
@@ -52,7 +57,7 @@ public class InventoryService extends InventoryRepository {
 			if (productList.isEmpty()) {
 				System.out.println("No products exist to search");
 			} else {
-				InventoryRepository.findByID(userSelectionProductID);
+				findByID(userSelectionProductID);
 			}
 		}
 	}
@@ -71,5 +76,13 @@ public class InventoryService extends InventoryRepository {
 		} else {
 			InventoryRepository.load();
 		}
+	}
+
+
+	public static void updateProduct(Product product, int userSelectionProductID) throws IOException {
+		if (product == null) {
+			System.out.println("Product not found");
+		}
+		InventoryRepository.update(userSelectionProductID);
 	}
 }

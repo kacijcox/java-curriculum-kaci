@@ -31,7 +31,9 @@ public class InventoryRepository {
 					product.getProductID() + "," +
 							product.getProductName() + "," +
 							product.getProductPrice() + "," +
-							product.getProductQuantity() + "\n";
+							product.getProductQuantity() + "," +
+							product.isPerishable() + "\n";
+
 			Files.write(InventoryRepository.productFile, csvLine.getBytes(), StandardOpenOption.APPEND);
 		}
 		return productList;
@@ -85,7 +87,7 @@ public class InventoryRepository {
 		}
 	}
 
-	public static Product findByID(int userSelectionProductID) {
+	public static Product find(int userSelectionProductID) {
 		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 
 		try (BufferedReader reader = Files.newBufferedReader(savedFile)) {
@@ -108,30 +110,24 @@ public class InventoryRepository {
 		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 
 		try {
-			Files.write(savedFile, "productID,productName,price,quantity\n".getBytes());
+			Files.write(savedFile, "Product ID | Product Name | Price | Quantity | Perishable\n".getBytes());
 			for (Product product : products.values()) {
 				serializeProduct(product);
 			}
-			System.out.println("Current inventory saved to file");
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 		return null;
 	}
 
-	public static void load() throws IOException {
+	public static Product load() throws IOException {
 		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 
 		try (BufferedReader reader = Files.newBufferedReader(savedFile)) {
 			ArrayList<Product> products = deserializeProduct(reader);
 
-			if (products.isEmpty()) {
-				System.out.println("No products to display");
-				return;
-			}
-
 			System.out.println("===== Inventory List =====");
-			System.out.println("ID | Name | Quantity | Price");
+			System.out.println("ID | Name | Quantity | Price | Perishable");
 			System.out.println("-----------------------------------------");
 
 			for (Product product : products) {
@@ -139,11 +135,46 @@ public class InventoryRepository {
 						product.getProductID(),
 						product.getProductName(),
 						product.getProductQuantity(),
-						product.getProductPrice());
+						product.getProductPrice(),
+						product.getPerishable());
 			}
 		}
+		return null;
+	}
+
+	public static void display() throws IOException {
+		for (Product product : products.values()) {
+			System.out.printf("%d | %s | %d | $%.2f%n",
+					product.getProductID(),
+					product.getProductName(),
+					product.getProductQuantity(),
+					product.getProductPrice(),
+					product.isPerishable());
+		}
+	}
+
+	public static Product update(int userSelectionProductID) throws IOException {
+
+		String productKey = String.valueOf(userSelectionProductID);
+		Product product = products.get(productKey);
+
+		System.out.println("===== Inventory List =====");
+		System.out.println("ID | Name | Quantity | Price | Perishable");
+		System.out.println("-----------------------------------------");
+
+		System.out.printf("%d | %s | %d | $%.2f%n",
+				product.getProductID(),
+				product.getProductName(),
+				product.getProductQuantity(),
+				product.getProductPrice(),
+				product.getPerishable());
+
+		products.put(productKey, product);
+		return product;
 	}
 }
+
+
 
 
 
