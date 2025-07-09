@@ -2,14 +2,17 @@ package ui;
 import model.Product;
 import objects.ConsoleUI;
 import service.InventoryService;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 import static service.InventoryService.displayAll;
 
 public class MainMenu {
 	public static int userSelectionProductID;
+	public static String newProductName;
+	public static double newProductPrice;
+	public static int newProductQuantity;
+	public static boolean newIsPerishable;
+	public static int newProductID;
 
 
 	public static void main(String[] args) throws IOException {
@@ -47,12 +50,12 @@ public class MainMenu {
 					InventoryService.searchProduct(userSelectionProductID);
 					break;
 				case 4:
-					userSelectionProductID = ConsoleUI.getInt("Enter New Product ID: ");
-					productName = ConsoleUI.getString("Enter New Product Name: ");
-					productPrice = ConsoleUI.getDouble("Enter New Product Price: ");
-					productQuantity = ConsoleUI.getInt("Enter New Product Quantity: ");
-					isPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is The Product Perishable? (true/false): "));
-					Product updatedProduct = new Product(userSelectionProductID, productQuantity, productName, productPrice, isPerishable);
+					newProductID = ConsoleUI.getInt("Enter New Product ID: ");
+					newProductName = ConsoleUI.getString("Enter New Product Name: ");
+					newProductPrice = ConsoleUI.getDouble("Enter New Product Price: ");
+					newProductQuantity = ConsoleUI.getInt("Enter New Product Quantity: ");
+					newIsPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is The Product Perishable? (true/false): "));
+					Product updatedProduct = new Product(userSelectionProductID, newProductQuantity, newProductName, newProductPrice, newIsPerishable);
 					InventoryService.updateProduct(updatedProduct, userSelectionProductID);
 					break;
 				case 5:

@@ -12,6 +12,7 @@ import java.util.List;
 import static model.Product.products;
 import static service.InventoryService.deserializeProduct;
 import static service.InventoryService.findByID;
+import static ui.MainMenu.*;
 
 
 public class InventoryRepository {
@@ -129,7 +130,7 @@ public class InventoryRepository {
 
 	public static void display() throws IOException {
 		products.values().forEach(product -> // (demonstrate use of a lambda) iterate through the products hash map values
-			System.out.printf("%d | %s | %d | $%.2f%n",
+			System.out.printf("%d | %s | %d | $%.2f%n | %b%n",
 					product.getProductID(),
 					product.getProductName(),
 					product.getProductQuantity(),
@@ -153,14 +154,21 @@ public class InventoryRepository {
 		System.out.println("ID | Name | Quantity | Price | Perishable");
 		System.out.println("-----------------------------------------");
 
-		System.out.printf("%d | %s | %d | $%.2f%n", // the new product information is printed
+		//set the values
+		product.setProductID(newProductID);
+		product.setProductName(newProductName);
+		product.setProductQuantity(newProductQuantity);
+		product.setProductPrice(newProductPrice);
+		product.setPerishable(newIsPerishable);
+
+		System.out.printf("%d | %s | %d | $%.2f%n | %b%n", // print the new product information
 				product.getProductID(),
 				product.getProductName(),
 				product.getProductQuantity(),
 				product.getProductPrice(),
 				product.getPerishable());
 
-		return product; // the new product is returned
+		return product;
 	}
 }
 

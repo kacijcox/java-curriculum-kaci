@@ -21,38 +21,44 @@ public class Product extends PerishableProduct {
 		this.productPrice = productPrice;
 	}
 
-	public boolean getPerishable() {return isPerishable;}
+	public boolean getPerishable() {
+		return isPerishable;
+	}
 
-	public boolean setPerishable() {return isPerishable = !isPerishable;}
+	public int getProductID() {
+		return productID;
+	}
 
-	public int getProductID() {return productID;}
-
-	public void setProductID(int productID) {
+	public int setProductID(int productID) {
 		this.productID = productID;
+		return productID;
 	}
 
 	public String getProductName() {
 		return productName;
 	}
 
-	public void setProductName(String productName) {
+	public String setProductName(String productName) {
 		this.productName = productName;
+		return productName;
 	}
 
 	public int getProductQuantity() {
 		return productQuantity;
 	}
 
-	public void setProductQuantity(int productQuantity) {
+	public int setProductQuantity(int productQuantity) {
 		this.productQuantity = productQuantity;
+		return productQuantity;
 	}
 
 	public double getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(double productPrice) {
+	public double setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
+		return productPrice;
 	}
 
 	@Override
