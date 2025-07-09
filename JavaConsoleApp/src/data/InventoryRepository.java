@@ -1,6 +1,7 @@
 package data;
 import model.Product;
 import ui.MainMenu;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,6 +9,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import static model.Product.products;
 
 
 public class InventoryRepository {
@@ -15,11 +17,16 @@ public class InventoryRepository {
 	static String csvLine;
 
 	public static void add(Product product) throws IOException {
-		serializeProduct(product);
+		if (products.containsKey(String.valueOf(product.getProductID()))) {
+			System.out.println("The product exists already");
+		} else {
+			products.put(String.valueOf(product.getProductID()), product);
+		}
 	}
 
 	public static ArrayList<Product> serializeProduct(Product product) throws IOException {
 		ArrayList<Product> productList = new ArrayList<>();
+		productList.add(product);
 
 		if (Files.exists(InventoryRepository.productFile)) {
 			csvLine =
@@ -32,7 +39,7 @@ public class InventoryRepository {
 		return productList;
 	}
 
-	public static ArrayList<Product> deserializeProduct() {
+	public static ArrayList<Product> deserializeProduct(BufferedReader reader) {
 		ArrayList<Product> productList = new ArrayList<>();
 
 		try {
@@ -54,28 +61,19 @@ public class InventoryRepository {
 		return productList;
 	}
 
+	public static void delete(int userSelectionProductID, Product productID) throws IOException {
+		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 
-	public static Product load() throws IOException {
-		ArrayList<Product> productList = deserializeProduct();
-
-		for (Product product : productList) {
-			Product.products.put(String.valueOf(product.getProductID()), product);
-		}
-		return null;
-	}
-
-
-	public static void delete(int userSelectionProductID, Product productID) {
-
-		try {
-			ArrayList<Product> productList = deserializeProduct();
+		try (BufferedReader reader = Files.newBufferedReader(savedFile)) {
+			ArrayList<Product> productList = deserializeProduct(reader);
 
 			for (Product product : productList) {
 				if (product.getProductID() == userSelectionProductID) {
 					productList.remove(product);
-					Files.write(productFile, "productID, productName, price, quantity\n".getBytes());
+					Path productFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
+					Files.write(productFile, "productID,productName,price,quantity\n".getBytes());
 					for (Product item : productList) {
-						csvLine = item.getProductID() + "," + item.getProductName() + "," +
+						String csvLine = item.getProductID() + "," + item.getProductName() + "," +
 								item.getProductPrice() + "," + item.getProductQuantity() + "\n";
 						Files.write(productFile, csvLine.getBytes(), StandardOpenOption.APPEND);
 					}
@@ -88,8 +86,11 @@ public class InventoryRepository {
 	}
 
 	public static Product findByID(int userSelectionProductID) {
-		try {
-			ArrayList<Product> productList = deserializeProduct();
+		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
+
+		try (BufferedReader reader = Files.newBufferedReader(savedFile)) {
+			ArrayList<Product> productList = deserializeProduct(reader);
+
 
 			for (Product product : productList) {
 				if (product.getProductID() == MainMenu.userSelectionProductID) {
@@ -102,7 +103,49 @@ public class InventoryRepository {
 			throw new RuntimeException(e);
 		}
 	}
+
+	public static Product save() throws IOException {
+		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
+
+		try {
+			Files.write(savedFile, "productID,productName,price,quantity\n".getBytes());
+			for (Product product : products.values()) {
+				serializeProduct(product);
+			}
+			System.out.println("Current inventory saved to file");
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		return null;
+	}
+
+	public static void load() throws IOException {
+		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
+
+		try (BufferedReader reader = Files.newBufferedReader(savedFile)) {
+			ArrayList<Product> products = deserializeProduct(reader);
+
+			if (products.isEmpty()) {
+				System.out.println("No products to display");
+				return;
+			}
+
+			System.out.println("===== Inventory List =====");
+			System.out.println("ID | Name | Quantity | Price");
+			System.out.println("-----------------------------------------");
+
+			for (Product product : products) {
+				System.out.printf("%d | %s | %d | $%.2f%n",
+						product.getProductID(),
+						product.getProductName(),
+						product.getProductQuantity(),
+						product.getProductPrice());
+			}
+		}
+	}
 }
+
+
 
 
 

@@ -70,10 +70,10 @@ public class MainMenu {
 					displayAll();
 					break;
 				case 6:
-					//InventoryService.saveInventory();
+					InventoryService.saveProduct();
 					break;
 				case 7:
-					InventoryService.loadInventory();
+					InventoryService.loadProduct();
 					break;
 				case 8:
 					System.exit(0);
