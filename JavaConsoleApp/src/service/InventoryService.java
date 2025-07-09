@@ -40,28 +40,7 @@ public class InventoryService extends InventoryRepository {
 	}
 
 	public static void displayAll() throws IOException {
-		Path inventoryFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
-
-		try (BufferedReader reader = Files.newBufferedReader(inventoryFile)) {
-			ArrayList<Product> products = deserializeProduct(reader);
-			if (products.isEmpty()) {
-				System.out.println("No products to display");
-				return;
-			}
-
-			System.out.println("===== Inventory List =====");
-			System.out.println("ID | Name | Quantity | Price");
-			System.out.println("-----------------------------------------");
-
-			for (Product product : products) {
-				System.out.printf("%d | %s | %d | $%.2f%n",
-						product.getProductID(),
-						product.getProductName(),
-						product.getProductQuantity(),
-						product.getProductPrice());
-			}
-		}
-
+		System.out.println(products);
 	}
 
 	public static void searchProduct(int userSelectionProductID) throws IOException {

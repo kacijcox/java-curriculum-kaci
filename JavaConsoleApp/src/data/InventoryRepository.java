@@ -18,8 +18,6 @@ public class InventoryRepository {
 
 	public static void add(Product product) throws IOException {
 		if (products.containsKey(String.valueOf(product.getProductID()))) {
-			System.out.println("The product exists already");
-		} else {
 			products.put(String.valueOf(product.getProductID()), product);
 		}
 	}
