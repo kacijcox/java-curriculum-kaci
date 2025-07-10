@@ -7,7 +7,6 @@ import data.InventoryRepository;
 import model.Product;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,6 +21,7 @@ public class InventoryService extends InventoryRepository {
 
 	public static void addProduct(Product product) throws IOException {
 		try {
+
 			products.containsKey(String.valueOf(product.getProductID()));
 
 			if (!products.containsKey(String.valueOf(product.getProductID()))) {
@@ -50,8 +50,8 @@ public class InventoryService extends InventoryRepository {
 			else {
 				InventoryRepository.delete(null, userSelectionProductID);
 			}
-	} catch (IOException e) {
-			System.out.println("Invalid Input");;
+	} catch (NumberFormatException e) {
+			System.out.println("Invalid number");;
 		}
 		}
 
@@ -63,22 +63,23 @@ public class InventoryService extends InventoryRepository {
 			else {
 				InventoryRepository.display();
 			}
-		} catch (IOException e) {
-			System.out.println("Invalid Input");
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid Selection");
 		}
 	}
 
-	public static void findByID(int userSelectionProductID) throws IOException {
+	public static int findByID(int userSelectionProductID) throws IOException {
 		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 		try {
 			BufferedReader reader = Files.newBufferedReader(savedFile);
 			InventoryRepository.find(userSelectionProductID);
-		} catch (Exception e) {
-			System.out.println("Invalid Input");
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid Number Or Product Does Not Exist");
 		}
+		return userSelectionProductID;
 	}
 
-	public static void searchProduct(int userSelectionProductID) throws IOException {
+	public static int searchProduct(int userSelectionProductID) throws IOException {
 		Path inventoryFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 
 		try {
@@ -89,9 +90,10 @@ public class InventoryService extends InventoryRepository {
 			} else {
 				InventoryRepository.search(userSelectionProductID);
 			}
-		} catch (IOException e) {
-			System.out.println("Invalid Input");
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid Number Or Product Does Not Exist");
 		}
+		return userSelectionProductID;
 	}
 
 	public static void saveProduct() throws IOException {
@@ -101,8 +103,8 @@ public class InventoryService extends InventoryRepository {
 			} else {
 				InventoryRepository.save();
 			}
-		} catch (IOException e) {
-			System.out.println("Invalid Input");
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid Selection");
 		}
 	}
 
@@ -128,8 +130,8 @@ public class InventoryService extends InventoryRepository {
 				InventoryRepository.update(product, userSelectionProductID);
 			}
 		}
-		catch (IOException e) {
-			System.out.println("Invalid Input");
+		catch (NumberFormatException e) {
+			System.out.println("Invalid Input Or Product Does Not Exist");
 		}
 	}
 }

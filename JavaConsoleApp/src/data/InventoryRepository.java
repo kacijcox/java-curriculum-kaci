@@ -108,15 +108,14 @@ public class InventoryRepository {
 	public static Product load() throws IOException {
 		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 
-		try (BufferedReader reader = Files.newBufferedReader(savedFile)) { //the inventory file is buffered for reading
-			ArrayList<Product> products = deserializeProduct(); // and the array list is deserialized
+		ArrayList<Product> products = deserializeProduct(); // and the array list is deserialized
 
 			System.out.println("===== Inventory List =====");
 			System.out.println("ID | Name | Quantity | Price | Perishable");
 			System.out.println("-----------------------------------------");
 
 			for (Product product : products) { // the products are iterated through
-				System.out.printf("%d | %s | %d | $%.2f%n",
+				System.out.printf("%d | %s | %d | $%.2f%n", //format
 						//product getters are called to print the product info
 						product.getProductID(),
 						product.getProductName(),
@@ -124,7 +123,6 @@ public class InventoryRepository {
 						product.getProductPrice(),
 						product.getPerishable());
 			}
-		}
 		return null;
 	}
 
