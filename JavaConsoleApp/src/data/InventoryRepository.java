@@ -1,7 +1,8 @@
 package data;
+
 import model.Product;
 import ui.MainMenu;
-import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,14 +10,14 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+
 import static model.Product.products;
 import static service.InventoryService.deserializeProduct;
 import static service.InventoryService.findByID;
 import static ui.MainMenu.*;
 
-
 public class InventoryRepository {
-	static final Path productFile = Paths.get("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
+	static Path productFile = Paths.get("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
 	// define final path of the file being used to load/save inventory
 	static String csvLine;
 	// define csvLine in productFile
@@ -46,7 +47,7 @@ public class InventoryRepository {
 
 	public static ArrayList<Product> deserialize() throws IOException {
 		ArrayList<Product> productList = new ArrayList<>(); // creating a new array list for the products to be deserialized and prepared for viewing
-		List<String> lines = Files.readAllLines(productFile); // a new list is created for iteration
+		List<String> lines = Files.readAllLines(productFile);
 		lines.remove(0); // skip the header
 
 		for (String line : lines) { // iterate through the lines of the csv file
@@ -60,7 +61,7 @@ public class InventoryRepository {
 
 			productList.add(products); //the product is added to the new array list
 		}
-		return productList; // and finally the array list is returned for viewing
+		return productList; // returned for viewing
 	}
 
 	public static void delete(Product productID, int userSelectionProductID) throws IOException {
@@ -82,8 +83,7 @@ public class InventoryRepository {
 	}
 
 	public static int find(int userSelectionProductID) throws IOException {
-		ArrayList<Product> productList = deserializeProduct(); // the stored array list is deserialized and prepared for viewing
-
+		ArrayList<Product> productList = deserializeProduct(); // the stored array list in the inventory file is deserialized and prepared for viewing
 
 		for (Product product : productList) { //iterate through the array list
 			if (product.getProductID() == MainMenu.userSelectionProductID) { // if the user input matches a product ID that exists
@@ -95,56 +95,47 @@ public class InventoryRepository {
 	}
 
 	public static Product save() throws IOException {
-		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
-
-		Files.write(savedFile, "Product ID | Product Name | Price | Quantity | Perishable\n".getBytes()); // a header is added to the saved inventory
-		for (Product product : products.values()) { //products is interated through
+		Files.write(productFile, "Product ID | Product Name | Price | Quantity | Perishable\n".getBytes()); // a header is added to the saved inventory
+		for (Product product : products.values()) { //products array is interated through
 			serializeProduct(product); // and serialize is called to add the products in the array list
 		}
 		return null;
 	}
 
-
 	public static Product load() throws IOException {
-		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
-
 		ArrayList<Product> products = deserializeProduct(); // and the array list is deserialized
 
-			System.out.println("===== Inventory List =====");
-			System.out.println("ID | Name | Quantity | Price | Perishable");
-			System.out.println("-----------------------------------------");
+		System.out.println("===== Inventory List =====");
+		System.out.println("ID | Name | Quantity | Price | Perishable");
+		System.out.println("-----------------------------------------");
 
-			for (Product product : products) { // the products are iterated through
-				System.out.printf("%d | %s | %d | $%.2f%n", //format
-						//product getters are called to print the product info
-						product.getProductID(),
-						product.getProductName(),
-						product.getProductQuantity(),
-						product.getProductPrice(),
-						product.getPerishable());
-			}
+		for (Product product : products) { // the products are iterated through
+			System.out.printf("%d | %s | %d | $%.2f%n", //format
+					//product getters are called to print the product info
+					product.getProductID(),
+					product.getProductName(),
+					product.getProductQuantity(),
+					product.getProductPrice(),
+					product.getPerishable());
+		}
 		return null;
 	}
 
 	public static void display() throws IOException {
 		products.values().forEach(product -> // (demonstrate use of a lambda) iterate through the products hash map values
-			System.out.printf("%d | %s | %d | $%.2f%n | %b%n",
-					product.getProductID(),
-					product.getProductName(),
-					product.getProductQuantity(),
-					product.getProductPrice(),
-					product.isPerishable()));
+				System.out.printf("%d | %s | %d | $%.2f%n | %b%n",
+						product.getProductID(),
+						product.getProductName(),
+						product.getProductQuantity(),
+						product.getProductPrice(),
+						product.isPerishable()));
 	}
 
 	public static void search(int userSelectionProductID) throws IOException {
-		Path inventoryFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
-
 		findByID(userSelectionProductID); // the findbyID method is called to find the product ID that matches the user input
 	}
 
-
 	public static Product update(Product product, int userSelectionProductID) throws IOException {
-
 		String productKey = String.valueOf(userSelectionProductID); // the product ID is converted to a string for the hash map key
 		products.put(productKey, product); // the product is added to the hash map with the updated product ID as the key
 

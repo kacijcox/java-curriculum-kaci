@@ -1,7 +1,9 @@
 package ui;
+
 import model.Product;
 import objects.ConsoleUI;
 import service.InventoryService;
+
 import java.io.IOException;
 
 import static service.InventoryService.displayAll;
@@ -14,10 +16,7 @@ public class MainMenu {
 	public static boolean newIsPerishable;
 	public static int newProductID;
 
-
 	public static void main(String[] args) throws IOException {
-
-
 		while (true) {
 			System.out.println(
 					"===== Inventory Manager =====\n" +
@@ -67,7 +66,7 @@ public class MainMenu {
 					displayAll();
 					break;
 				case 6:
-					InventoryService.saveProduct();
+					InventoryService.saveProduct(); //product has to be saved before update and search can execute
 					System.out.println("Current Inventory Saved To File\n");
 					break;
 				case 7:

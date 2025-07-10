@@ -1,5 +1,7 @@
 package data;
 import model.Product;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import java.io.IOException;
@@ -9,12 +11,24 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import static model.Product.products;
 import static ui.MainMenu.userSelectionProductID;
 
 
 public class InventoryRepositoryTest {
 	Product testProduct = new Product(1, 5, "apple", .34, false); //created a test product for test
 	static final Path testFile = Paths.get("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv"); // defined inventory path
+
+
+	@Before
+	public void setUp() {
+		products.clear();
+	}
+
+	@After
+	public void endTest() {
+		products.clear();
+	}
 
 	@Test
 	public void InventoryRepository_add_productAdd() throws IOException {
@@ -27,9 +41,11 @@ public class InventoryRepositoryTest {
 
 	@Test
 	public void InventoryRepository_delete_deleteProduct() throws IOException {
+		InventoryRepository.add(testProduct);
 
-		InventoryRepository.delete(testProduct, 1); //deletng the product added in the previous test
+		InventoryRepository.save();
 
+		InventoryRepository.delete(testProduct, 1);
 		Assertions.assertEquals(0, Product.products.size()); // checked that the size is 0. since it was 1 before product was deleted, it should be 0 now
 	}
 
@@ -37,6 +53,7 @@ public class InventoryRepositoryTest {
 	@Test
 	public void InventoryRepository_find_findProduct() throws IOException {
 		InventoryRepository.add(testProduct); // add  the test product
+		InventoryRepository.save(); //added, product was not being saved
 		userSelectionProductID = 1; //find the test product by id 1
 		String result = String.valueOf(InventoryRepository.find(testProduct.getProductID())); // set the result to the test ID which is one
 
@@ -71,12 +88,12 @@ public class InventoryRepositoryTest {
 	@Test
 	public void InventoryRepository_update_productUpdate() throws IOException {
 		InventoryRepository.add(testProduct); // add the test prodyct
-		testProduct.setProductID(5); // set the product ID to a different int
 
-		InventoryRepository.update(testProduct, 5); //update it
+		Product updatedProduct = new Product(5, 5, "apple", .34, false); //added need to create NEW one instead of modifying existing one
 
-		Assertions.assertEquals(5, testProduct.getProductID()); //compare
+		InventoryRepository.update(updatedProduct, testProduct.getProductID());
+
+		Assertions.assertTrue(products.containsKey("1"));
+		Assertions.assertEquals(updatedProduct.getProductID(), products.get("1").getProductID());
 	}
-
-
 }
