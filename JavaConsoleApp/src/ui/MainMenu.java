@@ -1,76 +1,34 @@
 package ui;
-
-import model.Product;
-import objects.ConsoleUI;
-import service.InventoryService;
-
 import java.io.IOException;
 
-import static service.InventoryService.displayAll;
+import static ui.MenuUserInput.*;
 
 public class MainMenu {
-	public static int userSelectionProductID;
-	public static String newProductName;
-	public static double newProductPrice;
-	public static int newProductQuantity;
-	public static boolean newIsPerishable;
-	public static int newProductID;
 
 	public static void main(String[] args) throws IOException {
 		while (true) {
-			System.out.println(
-					"===== Inventory Manager =====\n" +
-							"1. Add Product\n" +
-							"2. View Products\n" +
-							"3. Search Product\n" +
-							"4. Update Product\n" +
-							"5. Delete Product\n" +
-							"6. Save Inventory to File\n" +
-							"7. Load Inventory from File\n" +
-							"8. Exit");
-			int selectedChoice = ConsoleUI.getInt("Enter Selection: \n");
+			MenuChoice.menuChoice();
 			switch (selectedChoice) {
 				case 1:
-					System.out.println("Create New Product");
-					int productID = ConsoleUI.getInt("Enter Product ID: ");
-					String productName = String.valueOf(ConsoleUI.getString("Enter Product Name: "));
-					double productPrice = ConsoleUI.getDouble("Enter Product Price: ");
-					int productQuantity = ConsoleUI.getInt("Enter Product Quantity: ");
-					boolean isPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is The Product Perishable? (true/false): "));
-					Product product = new Product(productID, productQuantity, productName, productPrice, isPerishable);
-					InventoryService.addProduct(product);
-					System.out.println("Product Added Successfully\n");
+					MenuUserInput.caseOne();
 					break;
 				case 2:
-					displayAll();
+					MenuUserInput.caseTwo();
 					break;
 				case 3:
-					userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
-					InventoryService.searchProduct(userSelectionProductID);
+					MenuUserInput.caseThree();
 					break;
 				case 4:
-					newProductID = ConsoleUI.getInt("Enter New Product ID: ");
-					newProductName = ConsoleUI.getString("Enter New Product Name: ");
-					newProductPrice = ConsoleUI.getDouble("Enter New Product Price: ");
-					newProductQuantity = ConsoleUI.getInt("Enter New Product Quantity: ");
-					newIsPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is The Product Perishable? (true/false): "));
-					Product updatedProduct = new Product(userSelectionProductID, newProductQuantity, newProductName, newProductPrice, newIsPerishable);
-					InventoryService.updateProduct(updatedProduct, userSelectionProductID);
+					MenuUserInput.caseFour();
 					break;
 				case 5:
-					displayAll();
-					System.out.println("Delete Product");
-					userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
-					InventoryService.deleteProduct();
-					System.out.println("Item Successfully Deleted\n");
-					displayAll();
+					MenuUserInput.caseFive();
 					break;
 				case 6:
-					InventoryService.saveProduct(); //product has to be saved before update and search can execute
-					System.out.println("Current Inventory Saved To File\n");
+					MenuUserInput.caseSix();
 					break;
 				case 7:
-					InventoryService.loadProduct();
+					MenuUserInput.caseSeven();
 					break;
 				case 8:
 					System.exit(0);

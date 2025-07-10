@@ -2,6 +2,7 @@ package data;
 
 import model.Product;
 import ui.MainMenu;
+import ui.MenuUserInput;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,6 +16,7 @@ import static model.Product.products;
 import static service.InventoryService.deserializeProduct;
 import static service.InventoryService.findByID;
 import static ui.MainMenu.*;
+import static ui.MenuUserInput.*;
 
 public class InventoryRepository {
 	static Path productFile = Paths.get("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
@@ -86,7 +88,7 @@ public class InventoryRepository {
 		ArrayList<Product> productList = deserializeProduct(); // the stored array list in the inventory file is deserialized and prepared for viewing
 
 		for (Product product : productList) { //iterate through the array list
-			if (product.getProductID() == MainMenu.userSelectionProductID) { // if the user input matches a product ID that exists
+			if (product.getProductID() == MenuUserInput.userSelectionProductID) { // if the user input matches a product ID that exists
 				System.out.println(product.getProductName() + " " + product.getProductPrice() + " " + // then the product information is printed
 						product.getProductQuantity() + " " + product.getPerishable());
 			}

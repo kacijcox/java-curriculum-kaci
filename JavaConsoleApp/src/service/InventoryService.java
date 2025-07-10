@@ -11,9 +11,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-
 import static model.Product.products;
-import static ui.MainMenu.userSelectionProductID;
+import static ui.MenuUserInput.userSelectionProductID;
 
 public class InventoryService {
 
