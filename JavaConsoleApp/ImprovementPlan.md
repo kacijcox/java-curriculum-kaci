@@ -23,15 +23,49 @@
 
 ### Move formatting from Inventory Repository into toStrings
 
-Helpers
-Create repopsitory
+### Create Helpers
 
-call Main method
-Pagnation
-Lambdas
-Win pattern matching
+### Call Main method
+### Pagnation
+### Implement more Lambdas
+### Win pattern matching
 
 ### Advanced features
   * Admin login
   * User login
     * Tracks user activity
+
+### GUI React.js
+  * CORS
+  * Create React folder
+  * Run npx create-react-app JavaConsoleApp-Front-End
+  * Components
+    * Login.jsx
+    * Menu.jsx //implement component composition
+      * Inventory.jsx
+      * AddProduct.jsx
+        * ProductID.jsx
+        * ProductName.jsx
+        * ProductQuantity.jsx
+        * ProductPrice.jsx
+        * IsPerishable.jsx
+      * DeleteProduct.jsx
+      * UpdateProduct.jsx
+      * SaveProduct.jsx
+      * LoadProduct.jsx
+      * Search.jsx
+  * App.jsx  
+    *  Display Main Menu
+      * {<Menu />}
+        * {<AddProduct />}
+          * {<ProductID />}
+          * {<ProductName />}
+          * {<ProductQuantity />}
+          * {<ProductPrice />}
+          * {<IsPerishable />}
+        * {<DeleteProduct />}
+          * {<ProductID />}
+      * {<Login />}
+      * //TBC
+
+    

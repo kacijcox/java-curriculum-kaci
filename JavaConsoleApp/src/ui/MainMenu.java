@@ -4,31 +4,46 @@ import java.io.IOException;
 import static ui.MenuUserInput.*;
 
 public class MainMenu {
+	private MenuUserInput menuUserInput;
+	private MenuChoice menuChoice;
+
+	public MainMenu() {
+		//have to create an INSTANCE of MenuUserInput to call on it's methods
+		this.menuUserInput = new MenuUserInput();
+		this.menuChoice = new MenuChoice();
+	}
 
 	public static void main(String[] args) throws IOException {
+		MainMenu mainMenu = new MainMenu();
+		mainMenu.runMenu();
+	}
+
+	public void runMenu() throws IOException {
 		while (true) {
-			MenuChoice.menuChoice();
+			MenuChoice.displayMenu();
+			int selectedChoice = menuChoice.getUserChoice();
+
 			switch (selectedChoice) {
 				case 1:
-					MenuUserInput.caseOne();
+					menuUserInput.caseOne();
 					break;
 				case 2:
-					MenuUserInput.caseTwo();
+					menuUserInput.caseTwo();
 					break;
 				case 3:
-					MenuUserInput.caseThree();
+					menuUserInput.caseThree();
 					break;
 				case 4:
-					MenuUserInput.caseFour();
+					menuUserInput.caseFour();
 					break;
 				case 5:
-					MenuUserInput.caseFive();
+					menuUserInput.caseFive();
 					break;
 				case 6:
-					MenuUserInput.caseSix();
+					menuUserInput.caseSix();
 					break;
 				case 7:
-					MenuUserInput.caseSeven();
+					menuUserInput.caseSeven();
 					break;
 				case 8:
 					System.exit(0);

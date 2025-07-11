@@ -9,63 +9,65 @@ import static service.InventoryService.displayAll;
 
 public class MenuUserInput {
 
-	public static String newProductName;
-	public static double newProductPrice;
-	public static int newProductQuantity;
-	public static boolean newIsPerishable;
-	public static int newProductID;
-	public static int userSelectionProductID;
-	public static int selectedChoice;
+	private String newProductName;
+	private double newProductPrice;
+	private int newProductQuantity;
+	private boolean newIsPerishable;
+	private int newProductID;
+	private int userSelectionProductID;
+	private int selectedChoice;
 
 
-
-
-	public static void userSelectionProductIDInput() {
-		userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
+	public void userSelectionProductIDInput() {
+		this.userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
 	}
 
-	public static void newProductIDInput() {
-		newProductID = ConsoleUI.getInt("Enter New Product ID: ");
+	public void newProductIDInput() {
+		this.newProductID = ConsoleUI.getInt("Enter New Product ID: ");
 	}
 
-	public static void newProductNameInput() {
-		newProductName = ConsoleUI.getString("Enter New Product Name: ");
+	public void newProductNameInput() {
+		this.newProductName = ConsoleUI.getString("Enter New Product Name: ");
 	}
 
-	public static void newProductPriceInput() {
-		newProductPrice = ConsoleUI.getDouble("Enter New Product Price: ");
+	public void newProductPriceInput() {
+		this.newProductPrice = ConsoleUI.getDouble("Enter New Product Price: ");
 	}
 
-	public static void newProductQuantityInput() {
-		newProductQuantity = ConsoleUI.getInt("Enter New Product Quantity: ");
+	public void newProductQuantityInput() {
+		this.newProductQuantity = ConsoleUI.getInt("Enter New Product Quantity: ");
 	}
 
-	public static void newIsPerishableInput () {
-		newIsPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is The Product Perishable? (true/false): "));
+	public void newIsPerishableInput () {
+		this.newIsPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is The Product Perishable? (true/false): "));
 	}
 
-	public static void caseOne() throws IOException {
+	public void caseOne() throws IOException {
 		System.out.println("Create New Product");
 		newProductIDInput();
 		newProductNameInput();
 		newProductPriceInput();
 		newProductQuantityInput();
 		newIsPerishableInput();
-		Product product = new Product(newProductID, newProductQuantity, newProductName, newProductPrice, newIsPerishable);
-		InventoryService.addProduct(product);
+
+		Product newProduct = new Product(newProductID, newProductQuantity,
+				newProductName, newProductPrice, newIsPerishable);
+
+		InventoryService.addProduct(newProduct);
 		System.out.println("Product Added Successfully\n");
 	}
 
-	public static void caseTwo() throws IOException {
+	public void caseTwo() throws IOException {
+		System.out.println("View Products: ");
 		InventoryService.displayAll();
 	}
 
-	public static void caseThree() throws IOException {
+	public void caseThree() throws IOException {
 		userSelectionProductIDInput();
 		InventoryService.searchProduct(userSelectionProductID);
 	}
 
-	public static void caseFour() throws IOException {
+	public void caseFour() throws IOException {
 		newProductIDInput();
 		newProductNameInput();
 		newProductPriceInput();
@@ -75,7 +77,7 @@ public class MenuUserInput {
 		InventoryService.updateProduct(updatedProduct, userSelectionProductID);
 	}
 
-	public static void caseFive() throws IOException {
+	public void caseFive() throws IOException {
 		displayAll();
 		System.out.println("Delete Product");
 		userSelectionProductIDInput();
@@ -84,22 +86,43 @@ public class MenuUserInput {
 		displayAll();
 	}
 
-	public static void caseSix() throws IOException {
+	public void caseSix() throws IOException {
 		InventoryService.saveProduct(); //product has to be saved before update and search can execute
 		System.out.println("Current Inventory Saved To File\n");
 	}
 
-	public static void caseSeven() throws IOException {
+	public void caseSeven() throws IOException {
 		InventoryService.loadProduct();
 	}
 
-	public static void caseEight() throws IOException {
+	public void caseEight() throws IOException {
 		System.out.println("Exiting Application");
 		System.exit(0);
 	}
 
-	public static void selectedChoice() {
+	public void selectedChoice() {
 		selectedChoice = ConsoleUI.getInt("Enter Selection: \n");
 	}
+
+	public String getNewProductName() { return newProductName; }
+	public void setNewProductName(String newProductName) { this.newProductName = newProductName; }
+
+	public double getNewProductPrice() { return newProductPrice; }
+	public void setNewProductPrice(double newProductPrice) { this.newProductPrice = newProductPrice; }
+
+	public int getNewProductID() { return newProductID; }
+	public void setNewProductID(int newProductID) { this.newProductID = newProductID; }
+
+	public boolean isNewIsPerishable() { return newIsPerishable; }
+	public void setNewIsPerishable(boolean newIsPerishable) { this.newIsPerishable = newIsPerishable; }
+
+	public int getNewProductQuantity() { return newProductQuantity; }
+	public void setNewProductQuantity(int newProductQuantity) { this.newProductQuantity = newProductQuantity; }
+
+	public int getUserSelectionProductID() { return userSelectionProductID; }
+	public void setUserSelectionProductID(int userSelectionProductID) { this.userSelectionProductID = userSelectionProductID; }
+
+	public int getSelectedChoice() { return selectedChoice; }
+	public void setSelectedChoice(int selectedChoice) { this.selectedChoice = selectedChoice; }
 }
 

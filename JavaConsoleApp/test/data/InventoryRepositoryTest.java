@@ -9,11 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
 import static model.Product.products;
-import static ui.MainMenu.userSelectionProductID;
-
 
 public class InventoryRepositoryTest {
 	Product testProduct = new Product(1, 5, "apple", .34, false); //created a test product for test
@@ -54,7 +51,7 @@ public class InventoryRepositoryTest {
 	public void InventoryRepository_find_findProduct() throws IOException {
 		InventoryRepository.add(testProduct); // add  the test product
 		InventoryRepository.save(); //added, product was not being saved
-		userSelectionProductID = 1; //find the test product by id 1
+//		userSelectionProductID = 1; //find the test product by id 1
 		String result = String.valueOf(InventoryRepository.find(testProduct.getProductID())); // set the result to the test ID which is one
 
 		Assertions.assertEquals(1, Integer.parseInt(result)); //expect 1, and check against the result

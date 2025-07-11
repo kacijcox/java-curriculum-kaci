@@ -1,9 +1,7 @@
 package data;
 
 import model.Product;
-import ui.MainMenu;
 import ui.MenuUserInput;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,12 +9,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
-
 import static model.Product.products;
 import static service.InventoryService.deserializeProduct;
 import static service.InventoryService.findByID;
-import static ui.MainMenu.*;
-import static ui.MenuUserInput.*;
+
 
 public class InventoryRepository {
 	static Path productFile = Paths.get("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
