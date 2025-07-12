@@ -1,11 +1,9 @@
 package ui;
+import data.InventoryRepository;
 import model.Product;
 import objects.ConsoleUI;
 import service.InventoryService;
-
 import java.io.IOException;
-
-import static service.InventoryService.displayAll;
 
 public class MenuUserInput {
 
@@ -16,7 +14,11 @@ public class MenuUserInput {
 	private int newProductID;
 	private int userSelectionProductID;
 	private int selectedChoice;
+	private InventoryService inventoryService;
 
+	public MenuUserInput(InventoryService inventoryService) {
+		this.inventoryService = inventoryService;
+	}
 
 	public void userSelectionProductIDInput() {
 		this.userSelectionProductID = ConsoleUI.getInt("Enter Product ID: ");
@@ -50,21 +52,20 @@ public class MenuUserInput {
 		newProductQuantityInput();
 		newIsPerishableInput();
 
-		Product newProduct = new Product(newProductID, newProductQuantity,
-				newProductName, newProductPrice, newIsPerishable);
+		Product newProduct = new Product();
 
-		InventoryService.addProduct(newProduct);
+		inventoryService.addProduct(newProduct);
 		System.out.println("Product Added Successfully\n");
 	}
 
 	public void caseTwo() throws IOException {
 		System.out.println("View Products: ");
-		InventoryService.displayAll();
+		inventoryService.displayAll();
 	}
 
 	public void caseThree() throws IOException {
 		userSelectionProductIDInput();
-		InventoryService.searchProduct(userSelectionProductID);
+		inventoryService.searchProduct(userSelectionProductID);
 	}
 
 	public void caseFour() throws IOException {
@@ -73,26 +74,34 @@ public class MenuUserInput {
 		newProductPriceInput();
 		newProductQuantityInput();
 		newIsPerishableInput();
-		Product updatedProduct = new Product(userSelectionProductID, newProductQuantity, newProductName, newProductPrice, newIsPerishable);
-		InventoryService.updateProduct(updatedProduct, userSelectionProductID);
+
+		Product updatedProduct = new Product();
+		updatedProduct.setAllProduct(
+			newProductID,
+			newProductQuantity,
+			newProductName,
+			newProductPrice,
+			newIsPerishable
+		);
+		inventoryService.updateProduct(updatedProduct, userSelectionProductID);
 	}
 
 	public void caseFive() throws IOException {
-		displayAll();
+		inventoryService.displayAll();
 		System.out.println("Delete Product");
 		userSelectionProductIDInput();
-		InventoryService.deleteProduct();
+		inventoryService.deleteProduct();
 		System.out.println("Item Successfully Deleted\n");
-		displayAll();
+		inventoryService.displayAll();
 	}
 
 	public void caseSix() throws IOException {
-		InventoryService.saveProduct(); //product has to be saved before update and search can execute
+		inventoryService.saveProduct(); //product has to be saved before update and search can execute
 		System.out.println("Current Inventory Saved To File\n");
 	}
 
 	public void caseSeven() throws IOException {
-		InventoryService.loadProduct();
+		inventoryService.loadProduct();
 	}
 
 	public void caseEight() throws IOException {

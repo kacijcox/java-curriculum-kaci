@@ -1,15 +1,17 @@
 package ui;
-import java.io.IOException;
+import data.InventoryRepository;
+import service.InventoryService;
 
-import static ui.MenuUserInput.*;
+import java.io.IOException;
 
 public class MainMenu {
 	private MenuUserInput menuUserInput;
 	private MenuChoice menuChoice;
 
 	public MainMenu() {
-		//have to create an INSTANCE of MenuUserInput to call on it's methods
-		this.menuUserInput = new MenuUserInput();
+		InventoryRepository inventoryRepository = new InventoryRepository();
+		InventoryService inventoryService = new InventoryService(inventoryRepository);
+		this.menuUserInput = new MenuUserInput(inventoryService);
 		this.menuChoice = new MenuChoice();
 	}
 
