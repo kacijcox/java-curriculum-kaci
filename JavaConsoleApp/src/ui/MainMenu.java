@@ -5,8 +5,8 @@ import service.InventoryService;
 import java.io.IOException;
 
 public class MainMenu {
-	private MenuUserInput menuUserInput;
-	private MenuChoice menuChoice;
+	private final MenuUserInput menuUserInput;
+	private final MenuChoice menuChoice;
 
 	public MainMenu() {
 		InventoryRepository inventoryRepository = new InventoryRepository();
@@ -48,7 +48,7 @@ public class MainMenu {
 					menuUserInput.caseSeven();
 					break;
 				case 8:
-					System.exit(0);
+					menuUserInput.caseEight();
 			}
 		}
 	}

@@ -14,7 +14,7 @@ public class MenuUserInput {
 	private int newProductID;
 	private int userSelectionProductID;
 	private int selectedChoice;
-	private InventoryService inventoryService;
+	private final InventoryService inventoryService;
 
 	public MenuUserInput(InventoryService inventoryService) {
 		this.inventoryService = inventoryService;
@@ -36,9 +36,7 @@ public class MenuUserInput {
 		this.newProductPrice = ConsoleUI.getDouble("Enter New Product Price: ");
 	}
 
-	public void newProductQuantityInput() {
-		this.newProductQuantity = ConsoleUI.getInt("Enter New Product Quantity: ");
-	}
+	public void newProductQuantityInput() {this.newProductQuantity = ConsoleUI.getInt("Enter New Product Quantity: ");}
 
 	public void newIsPerishableInput () {
 		this.newIsPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is The Product Perishable? (true/false): "));
@@ -53,6 +51,7 @@ public class MenuUserInput {
 		newIsPerishableInput();
 
 		Product newProduct = new Product();
+		newProduct.setAllProduct(newIsPerishable, newProductID, newProductName, newProductQuantity, newProductPrice);
 
 		inventoryService.addProduct(newProduct);
 		System.out.println("Product Added Successfully\n");
@@ -69,6 +68,8 @@ public class MenuUserInput {
 	}
 
 	public void caseFour() throws IOException {
+		System.out.println("Update Product");
+		userSelectionProductIDInput();
 		newProductIDInput();
 		newProductNameInput();
 		newProductPriceInput();
@@ -77,12 +78,12 @@ public class MenuUserInput {
 
 		Product updatedProduct = new Product();
 		updatedProduct.setAllProduct(
-			newProductID,
-			newProductQuantity,
-			newProductName,
-			newProductPrice,
-			newIsPerishable
-		);
+				newIsPerishable,
+				newProductID,
+				newProductName,
+				newProductQuantity,
+				newProductPrice
+				);
 		inventoryService.updateProduct(updatedProduct, userSelectionProductID);
 	}
 
@@ -90,7 +91,7 @@ public class MenuUserInput {
 		inventoryService.displayAll();
 		System.out.println("Delete Product");
 		userSelectionProductIDInput();
-		inventoryService.deleteProduct();
+		inventoryService.deleteProduct(userSelectionProductID );
 		System.out.println("Item Successfully Deleted\n");
 		inventoryService.displayAll();
 	}

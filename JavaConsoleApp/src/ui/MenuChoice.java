@@ -18,6 +18,6 @@ public class MenuChoice {
 	}
 
 	public int getUserChoice() {
-		return ConsoleUI.getInt("Enter Your Choice:");
+		return ConsoleUI.getInt("Enter Your Choice: \n");
 	}
 }

@@ -1,32 +1,24 @@
 package model;
+import objects.ConsoleUI;
+
 import java.util.HashMap;
 
-public class Product extends PerishableProduct {
+public class Product {
 	private int productID;
 	private String productName;
 	private int productQuantity;
 	private double productPrice;
 	private boolean isPerishable;
-	Product product;
+	private String isPerishableDate;
 
 	public static HashMap<String, Product> products = new HashMap<String, Product>();
 
-	public Product() {
-		super(false);
-		this.productID = 0;
-		this.productName = "";
-		this.productQuantity = 0;
-		this.productPrice = 0.0;
-		this.isPerishable = false;
-		this.product = null;
-	}
-
-	public Product setAllProduct (int productID, int productQuantity, String productName, double productPrice, boolean isPerishable) {
-		this.isPerishable = isPerishable;
+	public Product setAllProduct(boolean isPerishable, int productID, String productName, int productQuantity, double productPrice) {
 		this.productID = productID;
-		this.productQuantity = productQuantity;
 		this.productName = productName;
+		this.productQuantity = productQuantity;
 		this.productPrice = productPrice;
+		this.isPerishable = isPerishable;
 		return this;
 	}
 
@@ -38,27 +30,33 @@ public class Product extends PerishableProduct {
 		boolean isPerishable = Boolean.parseBoolean(csvLine[4]);
 
 		Product product = new Product();
-		product.setAllProduct(productID, productQuantity, productName, productPrice, isPerishable);
+		product.setAllProduct(isPerishable, productID, productName, productQuantity, productPrice);
 		return product;
 	}
 
-	public Product formatUpdateProductGetter() {
-		System.out.println("===== Inventory List =====");
-		System.out.println("ID | Name | Quantity | Price | Perishable");
-		System.out.println("-----------------------------------------");
-		System.out.printf("%d | %s | %d | $%.2f%n | %b%n", // print the new product information
-				product.getProductID(),
-				product.getProductName(),
-				product.getProductQuantity(),
-				product.getProductPrice(),
-				product.getPerishable());
-		return product;
+	public void formatUpdateProductGetter() {
+		String s = " ".repeat(5);
+		System.out.println("=========================================================");
+		System.out.println("Product ID | Product Name | Price | Quantity | Perishable");
+		System.out.printf("%d" + s + "|" + s + "%s" + s + "|" + s + "$%.2f" + s + "|" + s + "%d" + s + "|" + s + "%b%n",
+				productID,
+				productName,
+				productPrice,
+				productQuantity,
+				isPerishable);
+	}
+
+	public void ifPerishable() {
+		if (isPerishable) {
+			System.out.println("Enter The Expiration Date in MM/DD/YYYY Format:");
+			String perishableDate = ConsoleUI.getString("Enter New Product Quantity: ");
+			products.put(perishableDate.toLowerCase(), this);
+        }
 	}
 
 	public String productHeader() {
-		return "Product ID | Product Name | Price | Quantity | Perishable\n";
+		return "Product ID | Product Name | Price | Quantity | Perishable \n";
 	}
-
 
 	public boolean getPerishable() {
 		return isPerishable;
@@ -107,8 +105,6 @@ public class Product extends PerishableProduct {
 				productQuantity + "," +
 				isPerishable;
 	}
-
-
 
 	@Override
 	public String toString() {

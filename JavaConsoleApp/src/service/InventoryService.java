@@ -16,123 +16,105 @@ import java.util.ArrayList;
 import static model.Product.products;
 
 public class InventoryService {
-	private final InventoryRepository inventoryRepository;
-	private MenuUserInput menuUserInput;
+    private final InventoryRepository inventoryRepository;
 
 
-	public InventoryService(InventoryRepository inventoryRepository) {
-		this.inventoryRepository = inventoryRepository;
-		this.menuUserInput = menuUserInput;
-	}
+    public InventoryService(InventoryRepository inventoryRepository) {
+        this.inventoryRepository = inventoryRepository;
+    }
 
-	public void addProduct(Product product) throws IOException {
-		try {
-			products.containsKey(String.valueOf(product.getProductID()));
+    public void addProduct(Product product) throws IOException {
+        try {
+            products.containsKey(String.valueOf(product.getProductID()));
 
-			if (!products.containsKey(String.valueOf(product.getProductID()))) {
-				inventoryRepository.add(product);
-			}
-		} catch (IOException e) {
-			System.out.println("Invalid Input");
-		}
-	}
+            if (!products.containsKey(String.valueOf(product.getProductID()))) {
+                inventoryRepository.add(product);
+            }
+        } catch (IOException e) {
+            System.out.println("Invalid Input\n");
+        }
+    }
 
-	public ArrayList<Product> deserializeProduct() throws IOException {
-		try {
-			ArrayList<Product> productList = inventoryRepository.deserialize();
-			return productList;
-		} catch (IOException e) {
-			System.out.println("Invalid Input");
-		}
-		return null;
-	}
+    public ArrayList<Product> deserializeProduct() throws IOException {
+        try {
+            return inventoryRepository.deserialize();
+        } catch (IOException e) {
+            System.out.println("Invalid Input\n");
+        }
+        return null;
+    }
 
-	public void deleteProduct() throws IOException {
-		try {
-			if (products.isEmpty()) {
-				System.out.println("No Products To Delete");
-			} else {
-				menuUserInput.userSelectionProductIDInput();
-				inventoryRepository.delete(menuUserInput.getUserSelectionProductID());
-			}
-		} catch (NumberFormatException e) {
-			System.out.println("Invalid number");
-		}
-	}
+    public void deleteProduct(int userSelectionProductID) throws IOException {
+        try {
+            if (products.isEmpty()) {
+                System.out.println("No Products To Delete\n");
+            } else {
+                inventoryRepository.delete(userSelectionProductID);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number\n");
+        }
+    }
 
-	public void displayAll() throws IOException {
-		try {
-			if (products.isEmpty()) {
-				System.out.println("No Products To Display");
-			} else {
-				inventoryRepository.display();
-			}
-		} catch (NumberFormatException e) {
-			System.out.println("Invalid Selection");
-		}
-	}
+    public void displayAll() throws IOException {
+        try {
+            if (products.isEmpty()) {
+                System.out.println("No Products To Display\n");
+            } else {
+                inventoryRepository.display();
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Selection\n");
+        }
+    }
 
-	public int findByID(int userSelectionProductID) throws IOException {
-		Path savedFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
-		try {
-			BufferedReader reader = Files.newBufferedReader(savedFile);
-			inventoryRepository.find(userSelectionProductID);
-		} catch (NumberFormatException e) {
-			System.out.println("Invalid Number Or Product Does Not Exist");
-		}
-		return userSelectionProductID;
-	}
+    public void searchProduct(int userSelectionProductID) throws IOException {
+        try {
+            ArrayList<Product> productList = deserializeProduct();
+            if (productList.isEmpty()) {
+                System.out.println("No Products Exist To Search\n");
+            } else {
+                inventoryRepository.find(userSelectionProductID);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Number Or Product Does Not Exist\n");
+        }
+    }
 
-	public int searchProduct(int userSelectionProductID) throws IOException {
-		Path inventoryFile = Path.of("/home/kaci/IdeaProjects/java-curriculum/java-curriculum-kaci/JavaConsoleApp/inventory.csv");
-		try {
-			BufferedReader reader = Files.newBufferedReader(inventoryFile);
-			ArrayList<Product> productList = deserializeProduct();
-			if (productList.isEmpty()) {
-				System.out.println("No Products Exist To Search");
-			} else {
-				inventoryRepository.search(userSelectionProductID);
-			}
-		} catch (NumberFormatException e) {
-			System.out.println("Invalid Number Or Product Does Not Exist");
-		}
-		return userSelectionProductID;
-	}
+    public void saveProduct() throws IOException {
+        try {
+            if (products.isEmpty()) {
+                System.out.println("There Is Nothing To Save");
+            } else {
+                inventoryRepository.save();
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Selection");
+        }
+    }
 
-	public void saveProduct() throws IOException {
-		try {
-			if (products.isEmpty()) {
-				System.out.println("There Is Nothing To Save");
-			} else {
-				inventoryRepository.save();
-			}
-		} catch (NumberFormatException e) {
-			System.out.println("Invalid Selection");
-		}
-	}
+    public void loadProduct() throws IOException {
 
-	public void loadProduct() throws IOException {
+        try {
+            if (products.isEmpty()) {
+                System.out.println("There Is Nothing To Load");
+            } else {
+                inventoryRepository.load();
+            }
+        } catch (IOException e) {
+            System.out.println("Invalid Input");
+        }
+    }
 
-		try {
-			if (products.isEmpty()) {
-				System.out.println("There Is Nothing To Load");
-			} else {
-				inventoryRepository.load();
-			}
-		} catch (IOException e) {
-			System.out.println("Invalid Input");
-		}
-	}
-
-	public void updateProduct(Product product, int userSelectionProductID) throws IOException {
-		try {
-			if (products.isEmpty()) {
-				System.out.println("Product Not Found");
-			} else {
-				inventoryRepository.update(product, userSelectionProductID);
-			}
-		} catch (NumberFormatException e) {
-			System.out.println("Invalid Input Or Product Does Not Exist");
-		}
-	}
+    public void updateProduct(Product product, int userSelectionProductID) throws IOException {
+        try {
+            if (products.isEmpty()) {
+                System.out.println("Product Not Found\n");
+            } else {
+                inventoryRepository.update(product, userSelectionProductID);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Input Or Product Does Not Exist\n");
+        }
+    }
 }
