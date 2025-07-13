@@ -1,5 +1,4 @@
 package ui;
-import data.InventoryRepository;
 import model.Product;
 import objects.ConsoleUI;
 import service.InventoryService;
@@ -39,8 +38,9 @@ public class MenuUserInput {
 	public void newProductQuantityInput() {this.newProductQuantity = ConsoleUI.getInt("Enter New Product Quantity: ");}
 
 	public void newIsPerishableInput () {
-		this.newIsPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is The Product Perishable? (true/false): "));
+		this.newIsPerishable = Boolean.parseBoolean(ConsoleUI.getString("Is The Product Perishable? (Yes/No): "));
 	}
+
 
 	public void caseOne() throws IOException {
 		System.out.println("Create New Product");
@@ -76,6 +76,7 @@ public class MenuUserInput {
 		newProductQuantityInput();
 		newIsPerishableInput();
 
+
 		Product updatedProduct = new Product();
 		updatedProduct.setAllProduct(
 				newIsPerishable,
@@ -91,7 +92,7 @@ public class MenuUserInput {
 		inventoryService.displayAll();
 		System.out.println("Delete Product");
 		userSelectionProductIDInput();
-		inventoryService.deleteProduct(userSelectionProductID );
+		inventoryService.deleteProduct();
 		System.out.println("Item Successfully Deleted\n");
 		inventoryService.displayAll();
 	}

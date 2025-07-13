@@ -1,8 +1,6 @@
 package data;
 
 import model.Product;
-import service.InventoryService;
-import ui.MenuUserInput;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -15,21 +13,22 @@ import java.util.List;
 import static model.Product.products;
 
 public class InventoryRepository {
-    final Path productFile = Paths.get("inventory.csv");
+   Path productFile = Paths.get("inventory.csv");
+   private int userSelectionProductID;
 
     public void add(Product product) throws IOException {
         products.put(String.valueOf(product.getProductID()), product);
     }
 
-    public void serializeProduct(Product product) throws IOException {
-        ArrayList<Product> productList = new ArrayList<>();
-        productList.add(product);
-
-        if (Files.exists(productFile)) {
-            String csvLine = product.toCsvString();
-            Files.write(productFile, csvLine.getBytes(), StandardOpenOption.APPEND);
-        }
-    }
+//    public void serializeProduct(Product product) throws IOException {
+//        ArrayList<Product> productList = new ArrayList<>();
+//        productList.add(product);
+//
+//        if (Files.exists(productFile)) {
+//            String csvLine = product.toCsvString();
+//            Files.write(productFile, csvLine.getBytes(), StandardOpenOption.APPEND);
+//        }
+//    }
 
     public ArrayList<Product> deserialize() throws IOException {
         ArrayList<Product> productList = new ArrayList<>();
@@ -62,17 +61,22 @@ public class InventoryRepository {
         }
     }
 
-    public void find(int userSelectionProductID) throws IOException {
+    public int find(int userSelectionProductID) throws IOException {
         ArrayList<Product> productList = deserialize();
 
         for (Product product : productList) {
             if (product.getProductID() == userSelectionProductID || products.containsKey(String.valueOf(userSelectionProductID))) {
                 product.formatUpdateProductGetter();
+                return product.getProductID();
             }
         }
-    }
+		return userSelectionProductID;
+	}
 
     public void save() throws IOException {
+        if (products.isEmpty()) {
+            throw new IOException("No Products To Save");
+        }
         Path savedFile = Path.of("inventory.csv");
 
         FileWriter writer = new FileWriter(savedFile.toFile());

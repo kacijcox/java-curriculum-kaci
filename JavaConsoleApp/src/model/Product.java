@@ -1,6 +1,8 @@
 package model;
 import objects.ConsoleUI;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public class Product {
@@ -9,7 +11,7 @@ public class Product {
 	private int productQuantity;
 	private double productPrice;
 	private boolean isPerishable;
-	private String isPerishableDate;
+
 
 	public static HashMap<String, Product> products = new HashMap<String, Product>();
 
@@ -37,21 +39,18 @@ public class Product {
 	public void formatUpdateProductGetter() {
 		String s = " ".repeat(5);
 		System.out.println("=========================================================");
-		System.out.println("Product ID | Product Name | Price | Quantity | Perishable");
+		System.out.println("Product ID | Product Name | Price | Quantity | Perishable | Expiration Date");
 		System.out.printf("%d" + s + "|" + s + "%s" + s + "|" + s + "$%.2f" + s + "|" + s + "%d" + s + "|" + s + "%b%n",
 				productID,
 				productName,
 				productPrice,
 				productQuantity,
-				isPerishable);
+				isPerishable
+				);
 	}
 
 	public void ifPerishable() {
-		if (isPerishable) {
-			System.out.println("Enter The Expiration Date in MM/DD/YYYY Format:");
-			String perishableDate = ConsoleUI.getString("Enter New Product Quantity: ");
-			products.put(perishableDate.toLowerCase(), this);
-        }
+
 	}
 
 	public String productHeader() {
