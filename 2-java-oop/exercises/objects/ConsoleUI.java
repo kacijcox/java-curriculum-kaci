@@ -16,7 +16,7 @@ public class ConsoleUI {
 				System.out.print(prompt);
 				return Integer.parseInt(scanner.nextLine());
 			} catch (NumberFormatException e) {
-				System.out.println("Enter a valid number");
+				System.out.println("Enter Valid Number");
 			}
 		}
 	}
@@ -27,13 +27,13 @@ public class ConsoleUI {
 				System.out.print(prompt);
 				return Double.parseDouble(scanner.nextLine());
 			} catch (NumberFormatException e) {
-				System.out.println("Enter valid number");
+				System.out.println("Enter Valid Number");
 			}
 		}
 	}
 
 	public static boolean getBoolean(String prompt) {
-		if (scanner.nextLine().toLowerCase().startsWith("y")) {
+		if (scanner.nextLine().equalsIgnoreCase("yes")) {
 			return true;
 		} else {
 			return false;
