@@ -74,7 +74,7 @@ public class MainMenu {
 					break;
 				case 8:
 					JOptionPane.showMessageDialog(null, "Bye");
-					System.exit(0);
+					menuUserInput.caseEight();
 				default:
 					JOptionPane.showMessageDialog(null, "Invalid");
 			}
