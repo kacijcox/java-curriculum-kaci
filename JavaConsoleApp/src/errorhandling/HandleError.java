@@ -3,7 +3,6 @@ package errorhandling;
 import model.Product;
 
 public class HandleError {
-	private Product product;
 
 	public void handleEmptyError(Product product) {
 		if (product.getProductID() < 0) {

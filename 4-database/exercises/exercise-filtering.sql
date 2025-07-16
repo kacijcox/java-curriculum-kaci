@@ -77,5 +77,12 @@ WHERE StudentID = (
 
 -- 17. What teachers are teaching a period between 13:00:00 and 13:45:00? (2 rows returned)
 
+SELECT * FROM Teacher
+WHERE TeacherID IN (
+SELECT TeacherID FROM Section
+WHERE PeriodID IN (
+SELECT PeriodID FROM Period
+WHERE StartTime = '13:00:00' AND EndTime = '13:45:00'));
+
 
 

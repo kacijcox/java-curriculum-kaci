@@ -36,7 +36,6 @@ SELECT 'Hello world'; -- printing from SELECT
 SELECT * FROM Teacher;
 
 SELECT FirstName, LastName FROM Teacher;
-SELECT CONCAT(FirstName, ' ', LastName) AS Name FROM Teacher; -- AS keyword allows us to give an alias to columns and tables
 
 -- functions for reducing data to a single result
 SELECT COUNT(*) AS number_of_teachers FROM Teacher;
