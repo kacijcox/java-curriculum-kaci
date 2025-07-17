@@ -28,8 +28,7 @@ ORDER BY UserName DESC;
 SELECT FirstName, LastName, UserName
 FROM Customer 
 INNER JOIN login ON Customer.CustomerId = login.CustomerId
-WHERE Customer.LastName = 'W%'
-ORDER BY UserName DESC;
+WHERE Customer.LastName = 'W%';
 
 -- Join Item and Category. Select the item name and category name.
 -- Expected: 19 Rows
@@ -61,7 +60,6 @@ INNER JOIN Unit ON Unit.Unitid = Item.Unitid;
 
 SELECT * FROM Item, Category
 INNER JOIN Item ON Category.CategoryId = Item.CategoryId;
-
 
 -- Select FirstName, LastName from Customer,
 -- select Description from Project,
@@ -104,18 +102,36 @@ INNER JOIN Item ON Category.CategoryId = Item.CategoryId;
 -- Lanie Stelfox 481 Wall Stone        3452.100000
 
 -- Determine which customers employee Fleur Soyle worked for in
--- the 'M3H' postal_code. All customers in the postal_code should be included
+-- the 'M3H' postal_code. All customers in the postal_code should be included 
 -- regardless of if they have a project or Fleur worked on it.
 -- Though something should indicate if Fleur was on a M3H project.
 -- Expected: 48 Rows, 3 projects that Fleur worked on.
 
+SELECT c.FirstName, c.LastName FROM Customer
+LEFT JOIN Project p USING (CustomerId)
+LEFT JOIN ProjectEmployee pe ON p.projectId AND pe.employeeId  = (
+SELECT EmployeeId
+FROM Employee
+WHERE FirstName = "Fleur" AND LastName = "Soyle")
+WHERE PostalCode = "M3H";
+
+
 -- Find customers without logins using a `right outer` join.
 -- Expected: 341 Rows
+SELECT * 
+FROM login l
+RIGHT JOIN customer c USING(CustomerId)
+WHERE l.CustomerId = NULL;
 
 
 -- List category with its parent category, but make the parent category
 -- optional to include categories without a parent.
 -- Expected: 8 Rows
+SELECT 
+	c.Name child_name,
+    p.Name parent_name
+FROM Category c
+LEFT JOIN Category p ON c.ParentCategoryId = p.CategoryId;
 
 -- Write an "everything" query:
 -- CustomerId and names from customer
@@ -126,3 +142,21 @@ INNER JOIN Item ON Category.CategoryId = Item.CategoryId;
 -- Name from Unit
 -- for customers in the 'L3K' postal_code.
 -- Expected: 39 Rows
+SELECT
+    c.customerId,
+concat(c.firstName, " ", c.lastName) customer_name,
+p.description,
+pi.quantity,
+i.name item_name,
+ca.name category_name,
+u.name unit_name
+FROM customer c
+JOIN project p USING(customerId)
+JOIN projectItem pi USING(projectId)
+JOIN item i USING(itemId)
+JOIN category ca USING(categoryId)
+JOIN unit u USING(unitId)
+WHERE postalCode = "L3K";
+                                    
+
+
