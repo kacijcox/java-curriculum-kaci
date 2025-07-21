@@ -1,5 +1,4 @@
 package data.repository;
-
 import data.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 

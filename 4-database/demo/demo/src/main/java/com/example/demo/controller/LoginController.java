@@ -1,7 +1,8 @@
 package com.example.demo.controller;
-import data.model.Customer;
-import data.repository.CustomerRepository;
+import data.model.Login;
+import data.repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,15 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer") // localhost:8080/customers
+@RequestMapping("/login") // localhost:8080/login
+@Repository
 
-public class CustomerController {
+public class LoginController {
 	@Autowired
-	CustomerRepository customerRepository;
+	LoginRepository loginRepository;
 
 	@GetMapping()
-	public List<Customer> getCustomers() {
-		return customerRepository.findAll();
+	public List<Login> getItems() {
+		return loginRepository.findAll();
 	}
 }
 
