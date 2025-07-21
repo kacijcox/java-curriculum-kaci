@@ -142,6 +142,4 @@ DECLARE row_count INT DEFAULT 0;
 END $$;
 DELIMITER ;
 
-SELECT * FROM account;
-SELECT * FROM transaction;
-SELECT * FROM `transfer`;
+CALL 
