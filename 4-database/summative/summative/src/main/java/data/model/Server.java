@@ -1,0 +1,74 @@
+package data.model;
+
+
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "server")
+
+public class Server {
+
+    //    Server_ID INT PRIMARY KEY AUTO_INCREMENT,
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Server_ID")
+    private Integer serverID;
+
+//    First_Name VARCHAR(25) NOT NULL,
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+//    Last_Name VARCHAR(25) NOT NULL,
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+//    Hire_Date DATE NOT NULL,
+    @Column(name = "hire_date", nullable = false)
+    private LocalDateTime hireDate;
+
+//    Term_Date DATE NULL
+    @Column(name = "term_date")
+    private LocalDateTime termDate;
+
+    public Integer getServerID() {
+        return serverID;
+    }
+
+    public void setServerID(Integer serverID) {
+        this.serverID = serverID;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LocalDateTime getHireDate() {
+        return hireDate;
+    }
+
+    public void setHireDate(LocalDateTime hireDate) {
+        this.hireDate = hireDate;
+    }
+
+    public LocalDateTime getTermDate() {
+        return termDate;
+    }
+
+    public void setTermDate(LocalDateTime termDate) {
+        this.termDate = termDate;
+    }
+}

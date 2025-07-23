@@ -163,7 +163,11 @@ ORDER BY Total DESC;
 -- Select the item name and sum.
 -- Sort by the sum desc;
 -- Expected: 18 Rows
-
+SELECT *
+FROM project p 
+JOIN projectItem pi USING(projectId)
+JOIN item i USING(itemId)
+GROUP BY ProjectId;
 
 
 -- Across all projects, what are the total costs per item category?
@@ -174,6 +178,26 @@ ORDER BY Total DESC;
 
 -- What's the average 'Standard Labor' cost per city?
 -- Expected: 88 Rows
+SELECT c.city
+FROM item i, AVG(pi.quantity * i pricePerUnit) AS standard_labor_cost
+JOIN projectItem pi USING(itemId)
+JOIN project p USING (projectId)
+JOIN customer c USING (customerId)
+WHERE i.name = "standard labor"
+GROUP BY city;
+
+-- you can create a named temp tables or derived table by passing a SELECT statement into the FROm clause
+SELECT MAX(standard_labor_cost
+
+FROM (
+SELECT c.city
+FROM item i, FORMAT(AVG(pi.quantity * i pricePerUnit),2) AS standard_labor_cost
+JOIN projectItem pi USING(itemId)
+JOIN project p USING (projectId)
+JOIN customer c USING (customerId)
+WHERE i.name = "standard labor"
+GROUP BY city);
+
 
 
 -- Challenge: Which customer has the first project of 2019?

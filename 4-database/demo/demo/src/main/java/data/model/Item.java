@@ -31,12 +31,6 @@ public class Item {
 	@Column(name = "price", precision = 8, scale = 2, nullable = false)
 	private BigDecimal price;
 
-	public Item(int itemId, String name, String description, BigDecimal price) {
-		this.itemId = itemId;
-		this.name = name;
-		this.description = description;
-		this.price = price;
-	}
 
 	public int getItemId() {
 		return itemId;

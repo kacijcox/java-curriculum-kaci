@@ -1,0 +1,101 @@
+package data.model;
+
+
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "item")
+
+public class Item {
+
+    //    Item_ID INT PRIMARY KEY AUTO_INCREMENT,
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "item_id", nullable = false)
+    private Integer itemId;
+
+//    Item_Category_ID INT NOT NULL,
+    @Column(name = "item_category_id", nullable = false)
+    private Integer itemCategoryId;
+
+//    Item_Name VARCHAR(25) NOT NULL,
+    @Column(name = "item_name", nullable = false)
+    private String itemName;
+
+//    Item_Description VARCHAR(255) NOT NULL,
+    @Column(name = "item_description", nullable = false)
+    private String itemDescription;
+
+//    Start_Date DATE NOT NULL,
+    @Column(name = "start_date", nullable = false)
+    private LocalDateTime startDate;
+
+//    End_Date DATE NULL,
+    @Column(name = "end_date", nullable = false)
+    private LocalDateTime endDate;
+
+//    Unit_Price DECIMAL(7 , 2 ) NOT NULL DEFAULT 0,
+    @Column(name = "unit_price", nullable = false)
+    private Double unitPrice;
+//    CONSTRAINT fk_item_ItemCategory_id FOREIGN KEY (Item_Category_ID)
+//    REFERENCES Item_Category (Item_Category_ID)
+
+
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
+    }
+
+    public Integer getItemCategoryId() {
+        return itemCategoryId;
+    }
+
+    public void setItemCategoryId(Integer itemCategoryId) {
+        this.itemCategoryId = itemCategoryId;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+}

@@ -1,43 +1,66 @@
 package data.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
-@Table(name = "order_status")
-
+@Table(name = "order")
 public class OrderStatus {
-
-	public OrderStatus() {}
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "order_status_id", nullable = false)
-	private String orderStatusId;
+	private Integer orderId;
 
+	@Column(name = "order_date", nullable = false)
+	private LocalDateTime orderDate;
 
-//    `name` varchar(50) not null,
-	@Column(name = "name", nullable = false)
-	private String name;
+	@Column(name = "customer_id", nullable = false)
+	private UUID customerId;
 
-	public OrderStatus(String orderStatusId, String name) {
-		this.orderStatusId = orderStatusId;
-		this.name = name;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "order_status_id")
+	private OrderStatus orderStatus;
+
+	private String notes;
+
+	public Integer getOrderId() {
+		return orderId;
 	}
 
-	public String getOrderStatusId() {
-		return orderStatusId;
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
 	}
 
-	public void setOrderStatusId(String orderStatusId) {
-		this.orderStatusId = orderStatusId;
+	public LocalDateTime getOrderDate() {
+		return orderDate;
 	}
 
-	public String getName() {
-		return name;
+	public void setOrderDate(LocalDateTime orderDate) {
+		this.orderDate = orderDate;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public UUID getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(UUID customerId) {
+		this.customerId = customerId;
+	}
+
+	public OrderStatus getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 }

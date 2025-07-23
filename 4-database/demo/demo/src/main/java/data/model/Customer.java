@@ -30,6 +30,10 @@ public class Customer {
 	@Column(name = "street_address", nullable = false)
 	private String streetAddress;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "customer_id", referencedColumnName = "Customer_Id")
+	private Login login;
+
 //	city varchar(50) null,
 	@Column(name = "city", nullable = false)
 	private String city;
@@ -57,18 +61,6 @@ public class Customer {
 //	reward_points int not null
 	@Column(name = "reward_points", nullable = false)
 	private int rewardPoints;
-
-
-	public Customer(UUID customerId, String firstName, String lastName, String streetAddress, String city, String state, String zipCode, String emailAddress, String phone, String dateAdded, int rewardPoints) {
-		this.customerId = customerId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.streetAddress = streetAddress;
-		this.city = city;
-		this.state = state;
-		this.zipCode = zipCode;
-		this.emailAddress = emailAddress;
-	}
 
 	public UUID getCustomerId() {
 		return customerId;
@@ -156,5 +148,13 @@ public class Customer {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 }

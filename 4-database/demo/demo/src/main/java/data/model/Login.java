@@ -21,11 +21,6 @@ public class Login {
 	@Column(name = "password_hash", nullable = false)
 	private String passwordHash;
 
-	public Login(String customerId, String userName, String passwordHash) {
-		this.customerId = customerId;
-		this.userName = userName;
-		this.passwordHash = passwordHash;
-	}
 
 	public String getCustomerId() {
 		return customerId;

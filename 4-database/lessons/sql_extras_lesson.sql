@@ -141,5 +141,3 @@ DECLARE row_count INT DEFAULT 0;
 	END IF;
 END $$;
 DELIMITER ;
-
-CALL 
