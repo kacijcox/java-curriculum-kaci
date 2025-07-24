@@ -5,18 +5,12 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_status")
 public class OrderStatus {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer orderId;
-
-	@Column(name = "order_date", nullable = false)
-	private LocalDateTime orderDate;
-
-	@Column(name = "customer_id", nullable = false)
-	private UUID customerId;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "order_status_id")
@@ -30,22 +24,6 @@ public class OrderStatus {
 
 	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
-	}
-
-	public LocalDateTime getOrderDate() {
-		return orderDate;
-	}
-
-	public void setOrderDate(LocalDateTime orderDate) {
-		this.orderDate = orderDate;
-	}
-
-	public UUID getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(UUID customerId) {
-		this.customerId = customerId;
 	}
 
 	public OrderStatus getOrderStatus() {

@@ -12,12 +12,9 @@ public class Item {
 	public Item() {}
 
 	@Id
+	@Column(name = "item_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer item;
-
-	//	item_id int primary key auto_increment,
-	@Column(name = "item_id", nullable = false)
-	private int itemId;
+	private Integer itemId;
 
 	//  `name` varchar(50) not null,
 	@Column(name = "name", nullable = false)
@@ -31,14 +28,6 @@ public class Item {
 	@Column(name = "price", precision = 8, scale = 2, nullable = false)
 	private BigDecimal price;
 
-
-	public int getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
-	}
 
 	public String getName() {
 		return name;
@@ -64,5 +53,22 @@ public class Item {
 		this.price = price;
 	}
 
+	public Integer getItemId() {
+		return itemId;
+	}
 
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
+	}
+
+	@Override
+	public String toString() {
+		return "Item{" +
+				"itemId=" + itemId +
+				", name='" + name + '\'' +
+				", description='" + description + '\'' +
+				", price=" + price +
+				'}';
+	}
 }
+

@@ -1,11 +1,13 @@
 package data.model;
 
 import jakarta.persistence.*;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "customer")
+
 
 public class Customer {
 
@@ -16,6 +18,7 @@ public class Customer {
 //	customer_id char(36) primary key,
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
+	@Column(name = "customer_id")
 	private UUID customerId;
 
 //	first_name varchar(50) not null,
@@ -31,7 +34,7 @@ public class Customer {
 	private String streetAddress;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "customer_id", referencedColumnName = "Customer_Id")
+	@JoinColumn(name = "customer_id")
 	private Login login;
 
 //	city varchar(50) null,

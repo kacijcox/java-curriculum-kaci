@@ -18,10 +18,10 @@ public class Order {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-	private OrderStatus customer;
+	private Customer customer;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "order_status_id", referencedColumnName = "order_Status_Id")
+	@JoinColumn(name = "order_status_id")
 	private OrderStatus orderStatus;
 
 	private String notes;

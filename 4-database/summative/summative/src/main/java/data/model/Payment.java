@@ -11,7 +11,7 @@ public class Payment {
     //    Payment_ID INT PRIMARY KEY AUTO_INCREMENT,
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Payment_ID")
+    @Column(name = "payment_id")
     private Integer paymentId;
 
 //    Payment_Type_ID INT NOT NULL,
@@ -19,8 +19,9 @@ public class Payment {
     private Integer paymentTypeId;
 
 //    Order_ID INT NOT NULL,
-    @Column(name = "order_id", nullable = false)
-    private Integer orderId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
+    private Order order;
 
 //    Amount DECIMAL(9 , 2 ) NOT NULL DEFAULT 0,
     @Column(name = "amount", precision = 9, scale = 2, nullable = false)
@@ -30,7 +31,6 @@ public class Payment {
 //    REFERENCES Payment_Type (Payment_Type_ID),
 //    CONSTRAINT fk_Payment_OrderID_id FOREIGN KEY (Order_ID)
 //    REFERENCES `Order` (Order_ID)
-
 
     public Integer getPaymentId() {
         return paymentId;
@@ -48,12 +48,12 @@ public class Payment {
         this.paymentTypeId = paymentTypeId;
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Double getAmount() {

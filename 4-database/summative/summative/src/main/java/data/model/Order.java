@@ -3,6 +3,7 @@ package data.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "order")
@@ -12,14 +13,22 @@ public class Order {
     //    Order_ID INT PRIMARY KEY AUTO_INCREMENT,
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Order_ID")
+    @Column(name = "order_id")
     private Integer orderId;
 
-//    Server_ID INT NOT NULL,
-    @Column(name = "server_id", nullable = false)
-    private Integer serverId;
+    @OneToMany(mappedBy = "order_id", fetch = FetchType.LAZY)
+    private List<OrderItem> orderItem;
 
-//    Order_Date DATETIME NOT NULL,
+    @OneToMany(mappedBy = "order_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Payment> payment;
+
+//    Server_ID INT NOT NULL,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "server_id", referencedColumnName = "server_id")
+    private Server server;
+
+
+    //    Order_Date DATETIME NOT NULL,
     @Column(name ="order_date", nullable = false)
     private LocalDateTime orderDate;
 
@@ -51,12 +60,28 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Integer getServerId() {
-        return serverId;
+    public List<OrderItem> getOrderItem() {
+        return orderItem;
     }
 
-    public void setServerId(Integer serverId) {
-        this.serverId = serverId;
+    public void setOrderItem(List<OrderItem> orderItem) {
+        this.orderItem = orderItem;
+    }
+
+    public List<Payment> getPayment() {
+        return payment;
+    }
+
+    public void setPayment(List<Payment> payment) {
+        this.payment = payment;
+    }
+
+    public Server getServer() {
+        return server;
+    }
+
+    public void setServer(Server server) {
+        this.server = server;
     }
 
     public LocalDateTime getOrderDate() {

@@ -4,6 +4,7 @@ package data.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "server")
@@ -13,8 +14,11 @@ public class Server {
     //    Server_ID INT PRIMARY KEY AUTO_INCREMENT,
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Server_ID")
-    private Integer serverID;
+    @Column(name = "server_id")
+    private Integer serverId;
+
+    @OneToMany(mappedBy = "server_id", fetch = FetchType.LAZY)
+    private List<Order> orderServerId;
 
 //    First_Name VARCHAR(25) NOT NULL,
     @Column(name = "first_name", nullable = false)
@@ -32,12 +36,20 @@ public class Server {
     @Column(name = "term_date")
     private LocalDateTime termDate;
 
-    public Integer getServerID() {
-        return serverID;
+    public Integer getServerId() {
+        return serverId;
     }
 
-    public void setServerID(Integer serverID) {
-        this.serverID = serverID;
+    public void setServerId(Integer serverId) {
+        this.serverId = serverId;
+    }
+
+    public List<Order> getOrderServerId() {
+        return orderServerId;
+    }
+
+    public void setOrderServerId(List<Order> orderServerId) {
+        this.orderServerId = orderServerId;
     }
 
     public String getFirstName() {

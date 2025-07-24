@@ -4,6 +4,7 @@ package data.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "item")
@@ -13,12 +14,16 @@ public class Item {
     //    Item_ID INT PRIMARY KEY AUTO_INCREMENT,
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "item_id", nullable = false)
-    private Integer itemId;
+    @Column(name = "item_id")
+    private int itemId;
 
-//    Item_Category_ID INT NOT NULL,
-    @Column(name = "item_category_id", nullable = false)
-    private Integer itemCategoryId;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrderItem> orderItemId;
+
+    // Item_Category_ID INT NOT NULL,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_category_id", referencedColumnName = "item_category_id")
+    private ItemCategory itemCategory;
 
 //    Item_Name VARCHAR(25) NOT NULL,
     @Column(name = "item_name", nullable = false)
@@ -51,12 +56,12 @@ public class Item {
         this.itemId = itemId;
     }
 
-    public Integer getItemCategoryId() {
-        return itemCategoryId;
+    public ItemCategory getItemCategory() {
+        return itemCategory;
     }
 
-    public void setItemCategoryId(Integer itemCategoryId) {
-        this.itemCategoryId = itemCategoryId;
+    public void setItemCategory(ItemCategory itemCategory) {
+        this.itemCategory = itemCategory;
     }
 
     public String getItemName() {
