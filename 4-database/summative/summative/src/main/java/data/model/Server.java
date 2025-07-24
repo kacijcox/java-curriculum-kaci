@@ -17,7 +17,7 @@ public class Server {
     @Column(name = "server_id")
     private Integer serverId;
 
-    @OneToMany(mappedBy = "server_id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "server", fetch = FetchType.LAZY)
     private List<Order> orderServerId;
 
 //    First_Name VARCHAR(25) NOT NULL,

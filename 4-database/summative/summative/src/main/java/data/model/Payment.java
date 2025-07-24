@@ -3,6 +3,8 @@ package data.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "payment")
 
@@ -25,7 +27,7 @@ public class Payment {
 
 //    Amount DECIMAL(9 , 2 ) NOT NULL DEFAULT 0,
     @Column(name = "amount", precision = 9, scale = 2, nullable = false)
-    private Double amount;
+    private BigDecimal amount;
 
 //    CONSTRAINT fk_Payment_PaymentTypeID_id FOREIGN KEY (Payment_Type_ID)
 //    REFERENCES Payment_Type (Payment_Type_ID),
@@ -56,11 +58,11 @@ public class Payment {
         this.order = order;
     }
 
-    public Double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 }

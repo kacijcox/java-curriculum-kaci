@@ -2,6 +2,7 @@ package data.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,10 +17,10 @@ public class Order {
     @Column(name = "order_id")
     private Integer orderId;
 
-    @OneToMany(mappedBy = "order_id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private List<OrderItem> orderItem;
 
-    @OneToMany(mappedBy = "order_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order",  cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Payment> payment;
 
 //    Server_ID INT NOT NULL,
@@ -27,26 +28,25 @@ public class Order {
     @JoinColumn(name = "server_id", referencedColumnName = "server_id")
     private Server server;
 
-
     //    Order_Date DATETIME NOT NULL,
     @Column(name ="order_date", nullable = false)
     private LocalDateTime orderDate;
 
 //    Sub_Total DECIMAL(9 , 2 ) NOT NULL DEFAULT 0,
     @Column(name = "sub_total", precision = 9, scale = 2, nullable = false)
-    private Double subTotal;
+    private BigDecimal subTotal;
 
 //    Tax DECIMAL(9 , 2 ) NOT NULL DEFAULT 0,
     @Column(name = "tax", precision = 9, scale = 2, nullable = false)
-    private Double tax;
+    private BigDecimal tax;
 
 //    Tip DECIMAL(9 , 2 ) NOT NULL DEFAULT 0,
     @Column(name = "tip", precision = 9, scale = 2, nullable = false)
-    private Double tip;
+    private BigDecimal tip;
 
 //    Total DECIMAL(9 , 2 ) NOT NULL DEFAULT 0,
     @Column(name = "total", precision = 9, scale = 2, nullable = false)
-    private Double total;
+    private BigDecimal total;
 
 //    CONSTRAINT fk_item_OrderServer_id FOREIGN KEY (Server_ID)
 //    REFERENCES Server (Server_ID)
@@ -92,35 +92,35 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public Double getSubTotal() {
+    public BigDecimal getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(Double subTotal) {
+    public void setSubTotal(BigDecimal subTotal) {
         this.subTotal = subTotal;
     }
 
-    public Double getTax() {
+    public BigDecimal getTax() {
         return tax;
     }
 
-    public void setTax(Double tax) {
+    public void setTax(BigDecimal tax) {
         this.tax = tax;
     }
 
-    public Double getTip() {
+    public BigDecimal getTip() {
         return tip;
     }
 
-    public void setTip(Double tip) {
+    public void setTip(BigDecimal tip) {
         this.tip = tip;
     }
 
-    public Double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 }

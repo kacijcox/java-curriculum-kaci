@@ -3,6 +3,7 @@ package data.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,17 +44,25 @@ public class Item {
 
 //    Unit_Price DECIMAL(7 , 2 ) NOT NULL DEFAULT 0,
     @Column(name = "unit_price", nullable = false)
-    private Double unitPrice;
+    private BigDecimal unitPrice;
 //    CONSTRAINT fk_item_ItemCategory_id FOREIGN KEY (Item_Category_ID)
 //    REFERENCES Item_Category (Item_Category_ID)
 
 
-    public Integer getItemId() {
+    public int getItemId() {
         return itemId;
     }
 
-    public void setItemId(Integer itemId) {
+    public void setItemId(int itemId) {
         this.itemId = itemId;
+    }
+
+    public List<OrderItem> getOrderItemId() {
+        return orderItemId;
+    }
+
+    public void setOrderItemId(List<OrderItem> orderItemId) {
+        this.orderItemId = orderItemId;
     }
 
     public ItemCategory getItemCategory() {
@@ -96,11 +105,11 @@ public class Item {
         this.endDate = endDate;
     }
 
-    public Double getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(Double unitPrice) {
+    public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
 }

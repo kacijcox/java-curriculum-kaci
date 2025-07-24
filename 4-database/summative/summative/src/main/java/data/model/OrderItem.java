@@ -2,6 +2,8 @@ package data.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "order_item")
 
@@ -30,7 +32,7 @@ public class OrderItem {
 
 //    Price DECIMAL(9 , 2 ) NOT NULL DEFAULT 0,
     @Column(name = "price", precision = 9, scale = 2, nullable = false)
-    private Double price;
+    private BigDecimal price;
 
 //    CONSTRAINT fk_OrderItem_OrderID_id FOREIGN KEY (Order_ID)
 //    REFERENCES `Order` (Order_ID),
@@ -69,11 +71,11 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }

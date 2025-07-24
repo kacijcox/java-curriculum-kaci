@@ -11,9 +11,7 @@
         <module name="summative" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="code-along-hash-based-collections" target="21" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="21" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
