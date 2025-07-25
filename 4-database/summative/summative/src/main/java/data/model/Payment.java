@@ -17,8 +17,9 @@ public class Payment {
     private Integer paymentId;
 
 //    Payment_Type_ID INT NOT NULL,
-    @Column(name = "payment_type_id", nullable = false)
-    private Integer paymentTypeId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "payment_type_id", referencedColumnName = "payment_type_id")
+    private PaymentType paymentType;
 
 //    Order_ID INT NOT NULL,
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,6 +35,7 @@ public class Payment {
 //    CONSTRAINT fk_Payment_OrderID_id FOREIGN KEY (Order_ID)
 //    REFERENCES `Order` (Order_ID)
 
+
     public Integer getPaymentId() {
         return paymentId;
     }
@@ -42,12 +44,12 @@ public class Payment {
         this.paymentId = paymentId;
     }
 
-    public Integer getPaymentTypeId() {
-        return paymentTypeId;
+    public PaymentType getPaymentType() {
+        return paymentType;
     }
 
-    public void setPaymentTypeId(Integer paymentTypeId) {
-        this.paymentTypeId = paymentTypeId;
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
     }
 
     public Order getOrder() {

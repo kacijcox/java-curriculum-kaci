@@ -2,6 +2,7 @@ package data.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,7 +17,7 @@ public class Tax {
 
     //    Tax_Percentage DECIMAL(5 , 2 ) NOT NULL,
     @Column(name = "tax_percentage", precision = 9, scale = 2, nullable = false)
-    private Double taxPercentage;
+    private BigDecimal taxPercentage;
 
     //    Start_Date DATE NOT NULL,
     @Column(name = "start_date", nullable = false)
@@ -34,11 +35,11 @@ public class Tax {
         this.taxID = taxID;
     }
 
-    public Double getTaxPercentage() {
+    public BigDecimal getTaxPercentage() {
         return taxPercentage;
     }
 
-    public void setTaxPercentage(Double taxPercentage) {
+    public void setTaxPercentage(BigDecimal taxPercentage) {
         this.taxPercentage = taxPercentage;
     }
 

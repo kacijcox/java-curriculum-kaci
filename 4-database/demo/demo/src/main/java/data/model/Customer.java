@@ -1,7 +1,6 @@
 package data.model;
 
 import jakarta.persistence.*;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 

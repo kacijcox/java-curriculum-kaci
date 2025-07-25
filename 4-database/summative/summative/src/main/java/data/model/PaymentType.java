@@ -2,6 +2,8 @@ package data.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "payment_type")
 
@@ -13,9 +15,8 @@ public class PaymentType {
     @Column(name = "payment_type_id")
     private Integer paymentTypeId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_type_id", referencedColumnName = "payment_type_id")
-    private Payment payment;
+    @OneToMany(mappedBy = "paymentType")
+    private List<Payment> payments;
 
 //    Payment_Type_Name VARCHAR(25) NOT NULL
     @Column(name = "payment_type_name", nullable = false)
@@ -29,12 +30,12 @@ public class PaymentType {
         this.paymentTypeId = paymentTypeId;
     }
 
-    public Payment getPayment() {
-        return payment;
+    public List<Payment> getPayments() {
+        return payments;
     }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
     }
 
     public String getPaymentTypeName() {
