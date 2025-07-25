@@ -25,15 +25,11 @@ public class ItemController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Item> getItem(@PathVariable Integer id) {
-		// itemRepository.findById(id); ← unnecessary line removed
 		Optional<Item> itemOptional = itemRepository.findById(id);
 		if (itemOptional.isPresent()) {
 			return ResponseEntity.ok(itemOptional.get());
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		// the following are also valid ways of returning the same response entity
-		// return ResponseEntity.notFound().build();
-		// return ResponseEntity.status(404).build();
 	}
 
 	@PostMapping  // inserting new data
@@ -65,13 +61,13 @@ public class ItemController {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
-	// inserting new data
+//	 inserting new data
 
-	// @PutMapping  // PUT for updating existing data
-	// public Item updateItem(@RequestBody Item item) {
-	//     System.out.println(item);
-	//     item = itemRepository.saveAndFlush(item);
-	//     System.out.println(item);
-	//     return item;
-	// }
+//	 @PutMapping  // PUT for updating existing data
+//	 public Item updateItem(@RequestBody Item item) {
+//	     System.out.println(item);
+//	     item = itemRepository.saveAndFlush(item);
+//	     System.out.println(item);
+//	     return item;
+//	 }
 }

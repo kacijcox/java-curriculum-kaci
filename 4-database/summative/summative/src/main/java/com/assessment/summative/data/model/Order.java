@@ -1,4 +1,4 @@
-package data.model;
+package com.assessment.summative.data.model;
 
 import jakarta.persistence.*;
 

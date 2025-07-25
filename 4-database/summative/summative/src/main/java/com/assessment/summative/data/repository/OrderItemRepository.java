@@ -1,5 +1,5 @@
-package data.repository;
-import data.model.OrderItem;
+package com.assessment.summative.data.repository;
+import com.assessment.summative.data.model.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {

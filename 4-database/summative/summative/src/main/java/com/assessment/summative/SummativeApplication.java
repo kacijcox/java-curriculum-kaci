@@ -7,9 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.assessment.summative", "data"})
-@EnableJpaRepositories(basePackages = "data.repository")
-@EntityScan(basePackages = "data.model")
 
 public class SummativeApplication {
 
