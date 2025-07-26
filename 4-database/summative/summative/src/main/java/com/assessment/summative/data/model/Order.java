@@ -1,5 +1,6 @@
 package com.assessment.summative.data.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -7,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "`order`")
 
 public class Order {
 
@@ -17,16 +18,9 @@ public class Order {
     @Column(name = "order_id")
     private Integer orderId;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-    private List<OrderItem> orderItem;
-
-    @OneToMany(mappedBy = "order",  cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Payment> payment;
-
-//    Server_ID INT NOT NULL,
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "server_id", referencedColumnName = "server_id")
-    private Server server;
+    //    Server_ID INT NOT NULL,
+    @Column(name = "server_id", nullable = false)
+    private Integer serverId;
 
     //    Order_Date DATETIME NOT NULL,
     @Column(name ="order_date", nullable = false)
@@ -60,28 +54,12 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public List<OrderItem> getOrderItem() {
-        return orderItem;
+    public Integer getServerId() {
+        return serverId;
     }
 
-    public void setOrderItem(List<OrderItem> orderItem) {
-        this.orderItem = orderItem;
-    }
-
-    public List<Payment> getPayment() {
-        return payment;
-    }
-
-    public void setPayment(List<Payment> payment) {
-        this.payment = payment;
-    }
-
-    public Server getServer() {
-        return server;
-    }
-
-    public void setServer(Server server) {
-        this.server = server;
+    public void setServerId(Integer serverId) {
+        this.serverId = serverId;
     }
 
     public LocalDateTime getOrderDate() {

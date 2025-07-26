@@ -1,6 +1,8 @@
 package com.assessment.summative.data.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -16,9 +18,6 @@ public class Server {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "server_id")
     private Integer serverId;
-
-    @OneToMany(mappedBy = "server", fetch = FetchType.LAZY)
-    private List<Order> orderServerId;
 
 //    First_Name VARCHAR(25) NOT NULL,
     @Column(name = "first_name", nullable = false)
@@ -42,14 +41,6 @@ public class Server {
 
     public void setServerId(Integer serverId) {
         this.serverId = serverId;
-    }
-
-    public List<Order> getOrderServerId() {
-        return orderServerId;
-    }
-
-    public void setOrderServerId(List<Order> orderServerId) {
-        this.orderServerId = orderServerId;
     }
 
     public String getFirstName() {

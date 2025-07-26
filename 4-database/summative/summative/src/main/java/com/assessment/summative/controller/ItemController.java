@@ -34,8 +34,15 @@ public class ItemController {
         // return ResponseEntity.status(404).build();
     }
 
+    @GetMapping(params = "item_category_id")  // localhost:8080/customer?city=Austin
+    public ResponseEntity<List<Item>> getItemByCategoryId(@RequestParam(name = "item_category_id", required = false) Integer itemCategoryId) {
+        return ResponseEntity.ok(itemRepository.findByItemCategoryId(itemCategoryId));
+    }
+
+
     @PostMapping  // POST http method for inserting new data
     public ResponseEntity<Item> addItem(@RequestBody Item item) {
+        item.setItemId(0);
         // save() or saveAndFlush() persist changes to our models to the database
         item = itemRepository.saveAndFlush(item);
         return ResponseEntity.status(HttpStatus.CREATED).body(item);

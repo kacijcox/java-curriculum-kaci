@@ -1,5 +1,6 @@
 package com.assessment.summative.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -11,19 +12,22 @@ import java.util.List;
 
 public class Item {
 
+    public Item() {}
+
     //    Item_ID INT PRIMARY KEY AUTO_INCREMENT,
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private int itemId;
 
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<OrderItem> orderItemId;
 
-    // Item_Category_ID INT NOT NULL,
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_category_id", referencedColumnName = "item_category_id")
-    private ItemCategory itemCategory;
+    @Column (name = "item_category_id", nullable = false)
+    private Integer itemCategoryId;
+//
+//    // Item_Category_ID INT NOT NULL,
 
 //    Item_Name VARCHAR(25) NOT NULL,
     @Column(name = "item_name", nullable = false)
@@ -64,12 +68,12 @@ public class Item {
         this.orderItemId = orderItemId;
     }
 
-    public ItemCategory getItemCategory() {
-        return itemCategory;
+    public Integer getItemCategoryId() {
+        return itemCategoryId;
     }
 
-    public void setItemCategory(ItemCategory itemCategory) {
-        this.itemCategory = itemCategory;
+    public void setItemCategoryId(Integer itemCategoryId) {
+        this.itemCategoryId = itemCategoryId;
     }
 
     public String getItemName() {
@@ -112,3 +116,4 @@ public class Item {
         this.unitPrice = unitPrice;
     }
 }
+

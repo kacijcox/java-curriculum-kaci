@@ -22,9 +22,8 @@ public class Payment {
     private PaymentType paymentType;
 
 //    Order_ID INT NOT NULL,
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
-    private Order order;
+    @Column(name = "order_id")
+    private Integer orderId;
 
 //    Amount DECIMAL(9 , 2 ) NOT NULL DEFAULT 0,
     @Column(name = "amount", precision = 9, scale = 2, nullable = false)
@@ -52,12 +51,12 @@ public class Payment {
         this.paymentType = paymentType;
     }
 
-    public Order getOrder() {
-        return order;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     public BigDecimal getAmount() {

@@ -4,9 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/2-java-oop/2-java-oop.iml" filepath="$PROJECT_DIR$/2-java-oop/2-java-oop.iml" />
       <module fileurl="file://$PROJECT_DIR$/3-advanced-java-concepts/3-advanced-java-concepts.iml" filepath="$PROJECT_DIR$/3-advanced-java-concepts/3-advanced-java-concepts.iml" />
-      <module fileurl="file://$PROJECT_DIR$/4-database/demo/demo/demo.iml" filepath="$PROJECT_DIR$/4-database/demo/demo/demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-curriculum.iml" filepath="$PROJECT_DIR$/java-curriculum.iml" />
-      <module fileurl="file://$PROJECT_DIR$/4-database/summative/summative/summative.iml" filepath="$PROJECT_DIR$/4-database/summative/summative/summative.iml" />
     </modules>
   </component>
 </project>

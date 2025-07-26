@@ -17,9 +17,8 @@ public class OrderItem {
     private Integer orderItemId;
 
 //    Order_ID INT NOT NULL,
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
-    private Order order;
+    @Column(name = "order_id")
+    private Integer orderId;
 
 //    Item_ID INT NOT NULL,
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,6 +38,7 @@ public class OrderItem {
 //    CONSTRAINT fk_OrderItem_Item_ID_id FOREIGN KEY (Item_ID)
 //    REFERENCES Item (Item_ID)
 
+
     public Integer getOrderItemId() {
         return orderItemId;
     }
@@ -47,12 +47,12 @@ public class OrderItem {
         this.orderItemId = orderItemId;
     }
 
-    public Order getOrder() {
-        return order;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     public Item getItem() {
