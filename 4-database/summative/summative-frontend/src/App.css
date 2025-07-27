@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.title {
+  font-size: 50px;
+  color: rainbow;
+}
+
+.items-title, .server-title, .order-title {
+   color: blue;
+   letter-spacing: 3px;
+    }
+
+.item-button:hover, .server-button:hover, .order-button:hover {
+background-color: white;
+}

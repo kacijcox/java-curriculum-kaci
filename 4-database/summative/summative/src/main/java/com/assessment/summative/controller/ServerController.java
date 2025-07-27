@@ -1,6 +1,5 @@
 package com.assessment.summative.controller;
 
-
 import com.assessment.summative.data.model.Order;
 import com.assessment.summative.data.model.Server;
 import com.assessment.summative.data.repository.OrderRepository;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/server")
 
