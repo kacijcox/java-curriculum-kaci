@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>content separator practice</title>
+    <style>
+        #banner {  /* to target an id, use the # selector */
+            text-align: center;
+            font-size: 30px;
+            background-image: linear-gradient(rgba(0, 157, 255, 0.83), rgba(0, 12, 73, 0.79));
+            color: aliceblue;
+            border-color: #0000FF;
+            border-style: solid;
+        }
+
+        nav li {
+            background-color: turquoise;
+            border: 3px;
+            padding: 4px;
+            margin-bottom: 5px;
+            border-style: solid;
+            width: 120px;
+        }
+
+        main li:nth-child(3n) {
+            background-color: lightblue;
+        }
+
+    </style>
+</head>
+<body>
+<header id = "banner">banner</header>
+<nav>
+    <ul>
+        <li><a href="https://google.com">bonus</a></li>
+        <li><a href="index.html">home</a></li>
+    </ul>
+</nav>
+<main>
+    <ul>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+    </ul>
+    <article>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias beatae consectetur dolorem, doloremque, eos et ex illum, ipsum odit optio pariatur quam similique voluptates. Et.
+    </article>
+    <section class = "conent">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dicta explicabo quae repellat? Adipisci debitis dolorum eaque error laboriosam velit voluptas voluptate. Quo, reprehenderit, soluta!
+    </section>
+    <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, cupiditate doloremque ex fugit in laudantium necessitatibus nemo optio, provident quasi quod, sapiente ut velit veniam?
+    </div>
+</main>
+<footer>
+    <p>&copy;</p>
+    <address>
+
+    </address>
+</footer>
+</body>
+</html>

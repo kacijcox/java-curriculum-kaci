@@ -9049,3 +9049,237 @@
        add constraint FKkvolsaw3e4jg4ra05vu135cj9 
        foreign key (payment_type_id) 
        references payment_type (payment_type_id);
+
+    create table item (
+        item_category_id integer not null,
+        item_id integer not null auto_increment,
+        unit_price decimal(38,2) not null,
+        end_date datetime(6) not null,
+        start_date datetime(6) not null,
+        item_description varchar(255) not null,
+        item_name varchar(255) not null,
+        primary key (item_id)
+    ) engine=InnoDB;
+
+    create table item_category (
+        item_category_id integer not null auto_increment,
+        item_category_name varchar(255) not null,
+        primary key (item_category_id)
+    ) engine=InnoDB;
+
+    create table `order` (
+        order_id integer not null auto_increment,
+        server_id integer not null,
+        sub_total decimal(9,2) not null,
+        tax decimal(9,2) not null,
+        tip decimal(9,2) not null,
+        total decimal(9,2) not null,
+        order_date datetime(6) not null,
+        primary key (order_id)
+    ) engine=InnoDB;
+
+    create table order_item (
+        item_id integer,
+        order_id integer,
+        order_item_id integer not null auto_increment,
+        price decimal(9,2) not null,
+        quantity integer not null,
+        primary key (order_item_id)
+    ) engine=InnoDB;
+
+    create table payment (
+        amount decimal(9,2) not null,
+        order_id integer,
+        payment_id integer not null auto_increment,
+        payment_type_id integer,
+        primary key (payment_id)
+    ) engine=InnoDB;
+
+    create table payment_type (
+        payment_type_id integer not null auto_increment,
+        payment_type_name varchar(255) not null,
+        primary key (payment_type_id)
+    ) engine=InnoDB;
+
+    create table server (
+        server_id integer not null auto_increment,
+        hire_date datetime(6) not null,
+        term_date datetime(6),
+        first_name varchar(255) not null,
+        last_name varchar(255) not null,
+        primary key (server_id)
+    ) engine=InnoDB;
+
+    create table tax (
+        tax_id integer not null auto_increment,
+        tax_percentage decimal(9,2) not null,
+        end_date datetime(6),
+        start_date datetime(6) not null,
+        primary key (tax_id)
+    ) engine=InnoDB;
+
+    alter table order_item 
+       add constraint FKija6hjjiit8dprnmvtvgdp6ru 
+       foreign key (item_id) 
+       references item (item_id);
+
+    alter table payment 
+       add constraint FKkvolsaw3e4jg4ra05vu135cj9 
+       foreign key (payment_type_id) 
+       references payment_type (payment_type_id);
+
+    create table item (
+        item_category_id integer not null,
+        item_id integer not null auto_increment,
+        unit_price decimal(38,2) not null,
+        end_date datetime(6) not null,
+        start_date datetime(6) not null,
+        item_description varchar(255) not null,
+        item_name varchar(255) not null,
+        primary key (item_id)
+    ) engine=InnoDB;
+
+    create table item_category (
+        item_category_id integer not null auto_increment,
+        item_category_name varchar(255) not null,
+        primary key (item_category_id)
+    ) engine=InnoDB;
+
+    create table `order` (
+        order_id integer not null auto_increment,
+        server_id integer not null,
+        sub_total decimal(9,2) not null,
+        tax decimal(9,2) not null,
+        tip decimal(9,2) not null,
+        total decimal(9,2) not null,
+        order_date datetime(6) not null,
+        primary key (order_id)
+    ) engine=InnoDB;
+
+    create table order_item (
+        item_id integer,
+        order_id integer,
+        order_item_id integer not null auto_increment,
+        price decimal(9,2) not null,
+        quantity integer not null,
+        primary key (order_item_id)
+    ) engine=InnoDB;
+
+    create table payment (
+        amount decimal(9,2) not null,
+        order_id integer,
+        payment_id integer not null auto_increment,
+        payment_type_id integer,
+        primary key (payment_id)
+    ) engine=InnoDB;
+
+    create table payment_type (
+        payment_type_id integer not null auto_increment,
+        payment_type_name varchar(255) not null,
+        primary key (payment_type_id)
+    ) engine=InnoDB;
+
+    create table server (
+        server_id integer not null auto_increment,
+        hire_date datetime(6) not null,
+        term_date datetime(6),
+        first_name varchar(255) not null,
+        last_name varchar(255) not null,
+        primary key (server_id)
+    ) engine=InnoDB;
+
+    create table tax (
+        tax_id integer not null auto_increment,
+        tax_percentage decimal(9,2) not null,
+        end_date datetime(6),
+        start_date datetime(6) not null,
+        primary key (tax_id)
+    ) engine=InnoDB;
+
+    alter table order_item 
+       add constraint FKija6hjjiit8dprnmvtvgdp6ru 
+       foreign key (item_id) 
+       references item (item_id);
+
+    alter table payment 
+       add constraint FKkvolsaw3e4jg4ra05vu135cj9 
+       foreign key (payment_type_id) 
+       references payment_type (payment_type_id);
+
+    create table item (
+        item_category_id integer not null,
+        item_id integer not null auto_increment,
+        unit_price decimal(38,2) not null,
+        end_date datetime(6) not null,
+        start_date datetime(6) not null,
+        item_description varchar(255) not null,
+        item_name varchar(255) not null,
+        primary key (item_id)
+    ) engine=InnoDB;
+
+    create table item_category (
+        item_category_id integer not null auto_increment,
+        item_category_name varchar(255) not null,
+        primary key (item_category_id)
+    ) engine=InnoDB;
+
+    create table `order` (
+        order_id integer not null auto_increment,
+        server_id integer not null,
+        sub_total decimal(9,2) not null,
+        tax decimal(9,2) not null,
+        tip decimal(9,2) not null,
+        total decimal(9,2) not null,
+        order_date datetime(6) not null,
+        primary key (order_id)
+    ) engine=InnoDB;
+
+    create table order_item (
+        item_id integer,
+        order_id integer,
+        order_item_id integer not null auto_increment,
+        price decimal(9,2) not null,
+        quantity integer not null,
+        primary key (order_item_id)
+    ) engine=InnoDB;
+
+    create table payment (
+        amount decimal(9,2) not null,
+        order_id integer,
+        payment_id integer not null auto_increment,
+        payment_type_id integer,
+        primary key (payment_id)
+    ) engine=InnoDB;
+
+    create table payment_type (
+        payment_type_id integer not null auto_increment,
+        payment_type_name varchar(255) not null,
+        primary key (payment_type_id)
+    ) engine=InnoDB;
+
+    create table server (
+        server_id integer not null auto_increment,
+        hire_date datetime(6) not null,
+        term_date datetime(6),
+        first_name varchar(255) not null,
+        last_name varchar(255) not null,
+        primary key (server_id)
+    ) engine=InnoDB;
+
+    create table tax (
+        tax_id integer not null auto_increment,
+        tax_percentage decimal(9,2) not null,
+        end_date datetime(6),
+        start_date datetime(6) not null,
+        primary key (tax_id)
+    ) engine=InnoDB;
+
+    alter table order_item 
+       add constraint FKija6hjjiit8dprnmvtvgdp6ru 
+       foreign key (item_id) 
+       references item (item_id);
+
+    alter table payment 
+       add constraint FKkvolsaw3e4jg4ra05vu135cj9 
+       foreign key (payment_type_id) 
+       references payment_type (payment_type_id);
