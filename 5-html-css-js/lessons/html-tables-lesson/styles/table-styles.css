@@ -1,0 +1,19 @@
+table {
+    border: 1px solid lightseagreen;
+    border-collapse: collapse;
+}
+
+td {
+    border: 2px solid cornflowerblue;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+tr {
+    border-bottom: 3px solid darkviolet;
+    border-top: 3px solid rebeccapurple;
+}
+
+tr:nth-child(even) {
+    background-color: greenyellow;
+}

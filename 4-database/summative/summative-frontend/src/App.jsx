@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
 const API_BASE = 'http://localhost:8080';
@@ -26,28 +27,31 @@ function App() {
     setOrders(data);
   };
 
-  return (
-    <div className = "App">
-      <h1 className = "title">bistro</h1>
-      <div className = "items">
-        <h2 className = "items-title">items</h2>
-        <button className = "item-button" onClick={handleGetItems}>get items</button>
-        <div><pre>{JSON.stringify(items)}</pre></div>
+return (
+  <div className="App">
+    <div className="card-row">
+      <div className="card">
+        <h2 className="title">items</h2>
+        <button className="button" onClick={handleGetItems}>get items</button>
+        <pre>{JSON.stringify(items, null, 2)}</pre>
       </div>
 
-      <div className = "servers">
-        <h2 className = "server-title">servers</h2>
-        <button className = "server-button" onClick={handleGetServers}>get servers</button>
-        <div><pre>{JSON.stringify(servers)}</pre></div>
+      <div className="card">
+        <h2 className="title">servers</h2>
+        <button className="button" onClick={handleGetServers}>get servers</button>
+        <pre>{JSON.stringify(servers, null, 2)}</pre>
       </div>
 
-      <div className = "orders">
-        <h2 className = "order-title" >orders</h2>
-        <button className = "order-button" onClick={handleGetOrders}>get orders</button>
-        <div><pre>{JSON.stringify(orders)}</pre></div>
+      <div className="card">
+        <h2 className="title">orders</h2>
+        <button className="button" onClick={handleGetOrders}>get orders</button>
+        <pre>{JSON.stringify(orders, null, 2)}</pre>
       </div>
     </div>
-  );
+  </div>
+);
+
+
 }
 
 export default App;
