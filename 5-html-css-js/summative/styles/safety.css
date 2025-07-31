@@ -1,7 +1,93 @@
-.pwned-tips p {
+.pwned-image {
+    animation: spin 2s infinite linear;
 
 }
 
-.pwned {
-
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
+
+body {
+    background-image: url("../images/stars.gif");
+    cursor: url("../images/rainbow-pointer.cur"), auto;
+}
+
+.pwned-image-box {
+    text-align: center;
+}
+
+.pwned-box {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    color: white;
+    font-size: 45px;
+    text-shadow:
+            0 0 5px #90ee90,
+            0 0 10px #90ee90,
+            0 0 20px #90ee90,
+            0 0 30px #90ee90;
+    text-align: center;
+}
+
+.navbar-navbar {
+    font-size: 25px;
+    color: white;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.navbar-nav {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.header-text {
+    border-bottom: 3px solid white;
+    font-size: 45px;
+    color: white;
+    text-align: center;
+    font-family: "Baskerville Old Face";
+}
+
+.footer {
+    color: white;
+    padding-top: 10px;
+    border-top: 3px solid white;
+    text-shadow:
+            0 0 5px #90ee90,
+            0 0 10px #90ee90,
+            0 0 20px #90ee90,
+            0 0 30px #90ee90;
+    text-align: center;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: greenyellow;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+    .learn-box {
+        color: white;
+        font-size: 45px;
+        text-shadow:
+                0 0 5px #0d95de,
+                0 0 10px #31ffb8,
+                0 0 20px #0b4a47,
+                0 0 30px #90ee90;
+        text-align: center;
+    }
+
