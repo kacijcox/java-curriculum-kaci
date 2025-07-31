@@ -14,7 +14,7 @@
 
 body {
     background-image: url("../images/stars.gif");
-    cursor: url("../images/rainbow-pointer.cur"), auto;
+    cursor: url("../../images/rainbow-pointer.cur"), auto;
 }
 
 .pwned-image-box {
