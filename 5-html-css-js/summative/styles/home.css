@@ -138,3 +138,23 @@ a:active {
             0 0 30px #90ee90;
     text-align: center;
 }
+
+.setup-pic {
+    align-content: center;
+}
+
+@media (min-width: 600px) {
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .pics, .hedge-pic {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+}
