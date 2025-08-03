@@ -12,6 +12,8 @@ public class FinalApplication {
 	public static void main(String[] args) throws IOException, InterruptedException {
 		//     SpringApplication.run(FinalProjectApplication.class, args);
 		CoinPriceClient coinPriceClient = new CoinPriceClient();
-		System.out.println(coinPriceClient.findAll());
+		System.out.println(coinPriceClient.findBitcoinCoinPrice());
+		System.out.println(coinPriceClient.findEthCoinPrice());
+		System.out.println(coinPriceClient.findSolCoinPrice());
 	}
 }
