@@ -62,7 +62,6 @@ body {
     color: white;
     text-align: center;
     padding-bottom: 10px;
-    border-top: 3px solid white;
     text-shadow:
             0 0 5px #90ee90,
             0 0 10px #90ee90,
@@ -106,7 +105,7 @@ a:active {
 }
 
 .instructions-box {
-    max-width: 300px;
+    max-width: 700px;
     margin: 0 auto;
     padding: 20px;
     color: white;
@@ -116,6 +115,12 @@ a:active {
             0 0 20px #90ee90,
             0 0 30px #90ee90;
     text-align: center;
+    display:grid;
+    align-content: center;
+    border-radius: 10px;
+    border-color: white;
+    border-style: dashed;
+    margin-bottom: 50px;
 }
 
 .pics {
