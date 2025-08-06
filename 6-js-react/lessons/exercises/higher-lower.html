@@ -28,12 +28,13 @@
         let randomNumber = Math.floor(Math.random() * 20) + 1;
         console.log(randomNumber)
 
-        if (randomNumber == guessText.value) {
-            return 'you guessed correctly '
+        if (randomNumber < guessText.value) {
+            return 'guess lower'
+        } if (randomNumber > guessText.value) {
+            return 'guess higher'
         } else {
-            return 'sorry try again '
+            return 'you got it'
         }
-
     }
 
     guessButton.addEventListener("click", () => {

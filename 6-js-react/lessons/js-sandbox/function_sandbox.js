@@ -36,7 +36,7 @@ function getInput(string = ""){
     return input;
 }
 
-let userInput: null = getInput({"Enter some text"});
+let userInput: null = getInput("Enter some text");
 console.log(userInput);
 
 
@@ -55,4 +55,4 @@ function getBooks() {
     .then(data => console.log(data))
     .catch(err => console.log(err));
     }
-    getCatFact();
+    getBooks();
