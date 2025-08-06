@@ -1,5 +1,3 @@
-import fs from 'fs/promises';
-
 // {
 //     "id": 1,
 //     "title": "To Kill a Mockingbird",
@@ -208,17 +206,16 @@ let carParse = JSON.parse(carStringify);
 console.log(carParse);
 
 
-// async function putBooks() {
-//     try {
-//         const jsonData = JSON.stringify(car, null, 2);
-//
-//         await fs.writeFile('books.json', jsonData, `utf8`);
-//         console.log("success");
-//         return { success: true };
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-//
-// putBooks();
+async function putCars() {
+    try {
+        const jsonData = JSON.stringify(car, null, 2);
+
+        await fs.writeFile('cars.json', jsonData, `utf8`);
+        console.log("success");
+        return { success: true };
+    } catch (error) {
+        console.log(error);
+    }
+}
+putCars();
 
