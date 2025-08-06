@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>higher or lower</title>
+</head>
+<body>
+<h1 id="title">higher or lower</h1>
+<h2 id="subtitle">guess a number between 1 and 20</h2>
+<h3 id ="subtitle2">your guess:</h3>
+
+<div id = "root">
+    <input type = "number" id = "guessText" placeholder = "guess goes here">
+    <button id = "guessButton" >guess</button>
+    <h3 id = "resultText">result: </h3>
+</div>
+
+<script>
+    console.log(document.querySelectorAll("*"));
+    const guessText = document.getElementById("guessText");
+    const guessButton = document.getElementById("guessButton");
+    const resultText = document.getElementById("resultText");
+
+    const numberGuess = () => {
+        let randomNumber = Math.floor(Math.random() * 20) + 1;
+        console.log(randomNumber)
+
+        if (randomNumber == guessText.value) {
+            return 'you guessed correctly '
+        } else {
+            return 'sorry try again '
+        }
+
+    }
+
+    guessButton.addEventListener("click", () => {
+        resultText.innerHTML = "result: " + numberGuess();
+        resultText.value="";
+    });
+</script>
+</body>
+</html>

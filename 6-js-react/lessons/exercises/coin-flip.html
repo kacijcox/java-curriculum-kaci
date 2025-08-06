@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>coin flip</title>
+</head>
+<body>
+<h1 id="title">coin flip</h1>
+<h2 id="subtitle">let's flip a coin. choose heads or tails:</h2>
+
+<div id = "root">
+    <button id = "headsButton">heads</button>
+    <button id = "tailsButton">tails</button>
+    <h1 id = "resultsText">results:</h1>
+
+</div>
+
+<script>
+    console.log(document.querySelectorAll("*"));
+    const headsButton = document.getElementById("headsButton");
+    const tailsButton = document.getElementById("tailsButton");
+    const resultsText = document.getElementById("resultsText");
+
+    const coinFlip = () => {
+        let randomNumber = Math.random();
+
+        if(randomNumber <.4){
+            return 'results: the result is tails'
+        } else {
+            return 'results: the result is heads'
+        }
+    }
+
+    headsButton.addEventListener("click", () => {
+        const result = coinFlip();
+        resultsText.innerHTML = result + " and you guessed heads"
+        if (result == "results: the result is heads") {
+            resultsText.innerHTML += " good job"
+        } else {
+            resultsText.innerHTML += " so better luck next time"
+        }
+    });
+
+    tailsButton.addEventListener("click", () => {
+        result = coinFlip();
+        resultsText.innerHTML = result + " and you guessed tails"
+        if (result == "results: the result is tails") {
+            resultsText.innerHTML += " good job"
+        } else {
+            resultsText.innerHTML += " so better luck next time"
+        }
+    });
+
+</script>
+</body>
+</html>

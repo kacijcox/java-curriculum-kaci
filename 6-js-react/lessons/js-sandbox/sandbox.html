@@ -6,10 +6,83 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>javascript sandbox</title>
+    <style>
+        .remove {
+            color: red;
+        }
+        .darkmode {
+            background-color: #030342;
+            font-color: #3069bf;
+        }
+
+    </style>
 </head>
 <body>
-<h1>javascript sandbox</h1>
+<div id = "root">
+    <h1 id ="titleText">javascript sandbox</h1>
+    <button id ="textButton">starting text</button>
+    <button id = "addButton">add an element</button>
+    <input type = "password" id = "textInput" placeholder = "enter text here">
+    <input type = "date" id = "dateInput" placeholder = "enter date here">
+    <input type = "number" id = "numberInput" placeholder = "enter number here">
+    <button id = "removeButton">remove an element</button>
+    <button id= "darkModeButton">blind mode</button>
+</div>
 <!--<script src="sandbox.js"></script>-->
-<script src ="function_sandbox.js"></script>
+<!--<script src ="function_sandbox.js"></script>-->
+<script>
+    console.log(document.querySelectorAll("*"));
+    const textButton = document.getElementById("textButton");
+    const titleText = document.getElementById("titleText");
+    const addButton = document.getElementById("addButton");
+    const removeButton = document.getElementById("removeButton");
+    const root = document.getElementById("root");
+    const darkModeButton = document.getElementById("darkModeButton");
+
+
+    // associating a click event with an anonymous function
+    textButton.addEventListener("click", function () {
+
+        //condition ? when true : when false
+        titleText.innerHTML !== "any text" ? titleText.innerHTML = "any other text?" : titleText.innerHTML = "the other text";
+    });
+
+    // naming a method and adding it to a click event
+    function addElementToTitle() {
+        const littleHeader = document.createElement("h6");
+        littleHeader.innerHTML = "this is a little header";
+        root.appendChild(littleHeader);
+    }
+
+    addButton.addEventListener ("click", addElementToTitle);
+
+
+
+    removeButton.addEventListener("click", () => {
+        const littleHeaders = document.getElementsByTagName("h6");
+        const removeCount = document.getElementById("numberInput").value;
+        for (let i =0; i < removeCount; i++) {
+            const lastHeader = littleHeaders[littleHeaders.length - 1];
+            lastHeader.remove();
+        }
+    });
+
+    removeButton.addEventListener("mouseover", () => {
+        console.log("testing");
+        const littleHeaders = document.getElementsByTagName("h6");
+        const removeCount = document.getElementById("numberInput").value;
+        for (let i =0; i < removeCount; i++) {
+            const lastHeader = littleHeaders[littleHeaders.length - 1];
+            lastHeader.classList.add("remove");
+        }
+    });
+
+    darkModeButton.addEventListener("click", () => {
+        document.body.classList.toggle("darkmode")
+    });
+
+
+
+</script>
 </body>
 </html>
