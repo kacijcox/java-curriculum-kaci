@@ -1,0 +1,160 @@
+.header-index {
+    background: #ed3d0c;
+    background: radial-gradient(circle, rgba(237, 61, 12, 1) 0%, rgba(199, 162, 87, 1) 18%, rgba(232, 223, 46, 1) 37%, rgba(85, 215, 111, 1) 53%, rgba(84, 141, 224, 1) 71%, rgba(219, 83, 237, 1) 89%);
+    background-clip: text;
+    color: transparent;
+    font-family: 'Impact';
+    font-size: 2em;
+}
+
+body {
+    background-image: url("../images/stars.gif");
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    background: #111;
+    color: #fff;
+}
+
+.marquee-track {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-left 10s linear infinite;
+}
+
+@keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.marquee-track span {
+    display: inline-block;
+    padding-right: 2rem;
+}
+
+.navbar-navbar {
+    font-size: 25px;
+    color: white;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.navbar-nav {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.header-text {
+    border-bottom: 3px solid white;
+    font-size: 45px;
+    color: white;
+    text-align: center;
+}
+
+.footer {
+    color: white;
+    text-align: center;
+    padding-bottom: 10px;
+    border-top: 3px solid white;
+    text-shadow:
+            0 0 5px #90ee90,
+            0 0 10px #90ee90,
+            0 0 20px #90ee90,
+            0 0 30px #90ee90;
+    text-align: center;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: greenyellow;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.hedge {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.hedge-pic {
+    box-shadow: 0 6px 12px lightseagreen;
+    object-fit: cover;
+}
+
+.step-box {
+    color: white;
+    font-size: 25px;
+    background: #ed3d0c;
+    background: -webkit-linear-gradient(90deg,rgba(237, 61, 12, 1) 0%, rgba(163, 131, 131, 1) 24%, rgba(232, 223, 46, 1) 44%, rgba(120, 85, 215, 1) 60%, rgba(224, 84, 210, 1) 74%, rgba(237, 83, 83, 1) 89%);
+    background: -moz-linear-gradient(90deg,rgba(237, 61, 12, 1) 0%, rgba(163, 131, 131, 1) 24%, rgba(232, 223, 46, 1) 44%, rgba(120, 85, 215, 1) 60%, rgba(224, 84, 210, 1) 74%, rgba(237, 83, 83, 1) 89%);
+    background: linear-gradient(90deg,rgba(237, 61, 12, 1) 0%, rgba(163, 131, 131, 1) 24%, rgba(232, 223, 46, 1) 44%, rgba(120, 85, 215, 1) 60%, rgba(224, 84, 210, 1) 74%, rgba(237, 83, 83, 1) 89%);
+    filter: progid:DXImageTransform.Microsoft.gradient(
+            startColorstr="#ED3D0C",
+            endColorstr="#ED5353",
+            GradientType=1
+    );
+}
+
+.instructions-box {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    color: white;
+    text-shadow:
+            0 0 5px #90ee90,
+            0 0 10px #90ee90,
+            0 0 20px #90ee90,
+            0 0 30px #90ee90;
+    text-align: center;
+}
+
+.pics {
+    box-shadow: 0 12px 17px rebeccapurple;
+}
+
+.container-pic {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.learn-box {
+    color: white;
+    font-size: 45px;
+    text-shadow:
+            0 0 5px #90ee90,
+            0 0 10px #90ee90,
+            0 0 20px #90ee90,
+            0 0 30px #90ee90;
+    text-align: center;
+}
+
+.setup-pic {
+    align-content: center;
+}
+
+@media (min-width: 600px) {
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .pics, .hedge-pic {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+}

@@ -1,0 +1,99 @@
+.pwned-image {
+    animation: spin 2s infinite linear;
+
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+body {
+    background-image: url("../images/stars.gif");
+    cursor: url("../../images/rainbow-pointer.cur"), auto;
+}
+
+.pwned-image-box {
+    text-align: center;
+}
+
+.pwned-box {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    color: white;
+    font-size: 45px;
+    text-shadow:
+            0 0 5px #90ee90,
+            0 0 10px #90ee90,
+            0 0 20px #90ee90,
+            0 0 30px #90ee90;
+    text-align: center;
+}
+
+.navbar-navbar {
+    font-size: 25px;
+    color: white;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.navbar-nav {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.header-learn {
+    padding-top: 25px;
+    padding-bottom: 70px;
+    font-size: 100px;
+}
+
+.header {
+    font-size: 50px;
+}
+
+.footer {
+    color: white;
+    padding-top: 10px;
+    border-top: 3px solid white;
+    text-shadow:
+            0 0 5px #90ee90,
+            0 0 10px #90ee90,
+            0 0 20px #90ee90,
+            0 0 30px #90ee90;
+    text-align: center;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: greenyellow;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+    .learn-box {
+        color: white;
+        font-size: 45px;
+        text-shadow:
+                0 0 5px #0d95de,
+                0 0 10px #31ffb8,
+                0 0 20px #0b4a47,
+                0 0 30px #90ee90;
+        text-align: center;
+    }
+
+.pwned-list {
+    background: #ed3d0c;
+    background: linear-gradient(90deg, rgba(237, 61, 12, 1) 0%, rgba(163, 131, 131, 1) 24%, rgba(232, 223, 46, 1) 44%, rgba(120, 85, 215, 1) 60%, rgba(224, 84, 210, 1) 74%, rgba(237, 83, 83, 1) 89%);
+}
