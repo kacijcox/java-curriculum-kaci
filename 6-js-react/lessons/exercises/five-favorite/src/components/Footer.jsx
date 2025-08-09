@@ -7,7 +7,7 @@ export default function Footer() {
 
     return (
         <footer className="page-footer">
-            <h3>©{currentYear} this is my website, all right reserved.</h3>
+            <h3 className="footer-text">©{currentYear} this is my website, all right reserved.</h3>
         </footer>
     );
 

@@ -1,28 +1,120 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&display=swap');
+
+body {
+  background-image: url('./images/mew-tew-gif.gif');
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.series {
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffcb05;
+  text-shadow:
+          2px 2px 0px #3d7dca,
+          4px 4px 8px rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.artist {
+  font-style: italic;
+  font-weight: bold;
+
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive;
+  font-size: 2.5rem;
+  color: #ffcb05;
+  text-shadow:
+          2px 2px 0px #3d7dca,
+          4px 4px 8px rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.card {
-  padding: 2em;
+.lore {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.2em;
+
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive;
+  color: #ffcb05;
+  text-shadow:
+          2px 2px 0px #3d7dca,
+          4px 4px 8px rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.read-the-docs {
-  color: #888;
+.logo {
+  max-width: 200px;
+  height: auto;
+}
+
+.page-header {
+  text-align: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-text {
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffcb05;
+  text-shadow:
+          2px 2px 0px #3d7dca,
+          4px 4px 8px rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  width: 20em;
+}
+
+.page-footer {
+text-align: center;
+}
+
+.footer-text {
+  color: #fdc907;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.2em;
+
+  font-family: 'Gill Sans', 'Gill Sans MT', sans-serif;
+  line-height: 1.4;
+}
+
+.expansion-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  width: 50em;
+}
+
+.expansion {
+  font-style: italic;
+  font-weight: bold;
+
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive;
+  font-size: 1.5rem;
+  color: #ffcb05;
+  text-shadow:
+          2px 2px 0px #3d7dca,
+          4px 4px 8px rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
