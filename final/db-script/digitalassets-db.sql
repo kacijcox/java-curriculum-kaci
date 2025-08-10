@@ -27,7 +27,7 @@ usd INT NOT NULL,
 usd_market_cap INT NOT NULL,
 usd_24h_vol INT NOT NULL,
 usd_24h_change INT NOT NULL,
-last_updated_at INT NOT NULL,
+last_updated_at DATE NOT NULL,
 user_id VARCHAR(25),
 
 constraint fk_coin_price_user_id 

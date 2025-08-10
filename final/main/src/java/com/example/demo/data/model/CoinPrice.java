@@ -2,6 +2,12 @@ package com.example.demo.data.model;
 
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "coin_price")
@@ -11,9 +17,8 @@ public class CoinPrice {
     public CoinPrice() {}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private String id;
+    private String coinId;
 
     @Column (name = "usd", nullable = false)
     private Integer coinUsd;
@@ -28,14 +33,14 @@ public class CoinPrice {
     private Integer coinUsd24Change;
 
     @Column (name = "last_updated_at", nullable = false)
-    private DateTimeFormat coinLastUpdatedAt;
+    private LocalDateTime coinLastUpdatedAt;
 
-    public String getId() {
-        return id;
+    public String getCoinId() {
+        return coinId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCoinId(String coinId) {
+        this.coinId = coinId;
     }
 
     public Integer getCoinUsd() {
@@ -70,11 +75,11 @@ public class CoinPrice {
         this.coinUsd24Change = coinUsd24Change;
     }
 
-    public DateTimeFormat getCoinLastUpdatedAt() {
+    public LocalDateTime getCoinLastUpdatedAt() {
         return coinLastUpdatedAt;
     }
 
-    public void setCoinLastUpdatedAt(DateTimeFormat coinLastUpdatedAt) {
+    public void setCoinLastUpdatedAt(LocalDateTime coinLastUpdatedAt) {
         this.coinLastUpdatedAt = coinLastUpdatedAt;
     }
 }

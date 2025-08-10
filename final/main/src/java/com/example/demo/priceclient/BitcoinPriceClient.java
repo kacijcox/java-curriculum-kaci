@@ -11,8 +11,8 @@ import java.net.http.HttpResponse;
 public class BitcoinPriceClient {
 
     @Value("{api.key}")
-    // private final String BASE_URL = "https://api.coingecko.com/api/v3/simple/price";
     private final HttpClient client;
+    private String apiKey;
 
     public BitcoinPriceClient() {
         client = HttpClient.newHttpClient();
@@ -22,11 +22,11 @@ public class BitcoinPriceClient {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://api.coingecko.com/api/v3/simple/price?vs_currencies=usd&ids=bitcoin&names=Bitcoin&symbols=btc&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true&precision=full"))
                 .header("accept", "application/json")
-                .header("x-cg-api-key", "{api.key}")
+                .header("x-cg-api-key", apiKey)
                 .method("GET", HttpRequest.BodyPublishers.noBody())
                 .build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
-        return "";
+        return response.body();
     }
 }
