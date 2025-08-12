@@ -1,14 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, { useContext } from "react";
 import '../App.css';
-import {BooksContext} from "../contexts/BooksContext.jsx";
 
-export default function Body() {
-
+export default function Book(props) {
     return (
-        <BooksContext.Provider value={} >
-            {children}
-        </BooksContext.Provider>
+        <div className="book">
+            <h4>{props.title}</h4>
+            <p>{props.description}</p>
+            <p>{props.author}</p>
+        </div>
     );
 }
-
 
