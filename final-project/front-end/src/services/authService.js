@@ -1,9 +1,9 @@
 const authService = {
-    register: async (username, password) => {
+    register: async (userName, password) => {
         const response = await fetch('http://localhost:8080/api/auth/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ userName, password })
         });
         return response.text();
     },
@@ -12,7 +12,7 @@ const authService = {
         const response = await fetch('http://localhost:8080/api/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ userName: username, password })
         });
 
         if (response.ok) {
@@ -29,7 +29,9 @@ const authService = {
         localStorage.removeItem('username');
     },
 
-    isLoggedIn: () => !!localStorage.getItem('token')
+    isLoggedIn: () => !!localStorage.getItem('token'),
+
+    getUsername: () => localStorage.getItem('username')
 };
 
 export default authService;
