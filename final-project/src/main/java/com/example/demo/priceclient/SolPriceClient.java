@@ -13,6 +13,7 @@ public class SolPriceClient {
     @Value("{api.key}")
     // private final String BASE_URL = "https://api.coingecko.com/api/v3/simple/price";
     private final HttpClient client;
+
     public SolPriceClient() {
         client = HttpClient.newHttpClient();
     }

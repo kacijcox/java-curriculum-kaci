@@ -29,11 +29,11 @@ public class AuthController {
         if (userRepository.existsByUserName(request.getUserName())) {
             return ResponseEntity.badRequest().body("Username Already Exists");
         }
-            User user = new User(
-                    request.getUserName(),
-                    passwordEncoder.encode(request.getPassword())
-            );
-            userRepository.save(user);
+        User user = new User(
+                request.getUserName(),
+                passwordEncoder.encode(request.getPassword())
+        );
+        userRepository.save(user);
         return ResponseEntity.ok("User Registered");
     }
 

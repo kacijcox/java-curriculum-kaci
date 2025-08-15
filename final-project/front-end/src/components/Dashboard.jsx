@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import authService from '../services/authService';
 import CoinSelection from './CoinSelection'
 import '../styles/Dashboard.css';
@@ -21,7 +21,7 @@ const Dashboard = () => {
                 <h2 className="dashboard-header">HedgeHog Dashboard</h2>
             </div>
             <div className="coin-selection">
-                <CoinSelection />
+                <CoinSelection/>
             </div>
         </>
     );

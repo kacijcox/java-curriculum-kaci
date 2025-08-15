@@ -16,7 +16,8 @@ public class User {
     @Column(name = "user_role", nullable = false)
     private Role role = Role.USER; // Set default value
 
-    public User() {}
+    public User() {
+    }
 
     public User(String userName, String password, Role role) {
         this.userName = userName;
@@ -30,14 +31,29 @@ public class User {
         this.role = Role.USER; // Set default role
     }
 
-    public String getUserName() { return userName; }
-    public void setUserName(String userName) { this.userName = userName; }
+    public String getUserName() {
+        return userName;
+    }
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-    public Role getRole() { return role; }
-    public void setRole(Role role) { this.role = role; }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public enum Role {
         USER
